@@ -1,120 +1,69 @@
-
-    <!--footer start-->
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-sm-3 address wow fadeInUp" data-wow-duration="2s" data-wow-delay=".1s">
-            <h1>
-              contact info
-            </h1>
-            <address>
-              <p><i class="fa fa-home pr-10"></i>Address: No.XXXXXX street</p>
-              <p><i class="fa fa-globe pr-10"></i>Mars city, Country </p>
-              <p><i class="fa fa-mobile pr-10"></i>Mobile : (123) 456-7890 </p>
-              <p><i class="fa fa-phone pr-10"></i>Phone : (123) 456-7890 </p>
-              <p><i class="fa fa-envelope pr-10"></i>Email :   <a href="javascript:;">support@example.com</a></p>
-            </address>
-          </div>
-          <div class="col-lg-3 col-sm-3 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".3s">
-            <h1>latest tweet</h1>
-              <div class="tweet-box">
-                <i class="fa fa-twitter"></i>
-                <em>
-                  Please follow
-                  <a href="javascript:;">@example</a>
-                  for all future updates of us!
-                  <a href="javascript:;">twitter.com/acme</a>
-                </em>
-              </div>
-              <div class="tweet-box">
-                <i class="fa fa-twitter"></i>
-                <em>
-                  Please follow
-                  <a href="javascript:;">@example</a>
-                  for all future updates of us!
-                  <a href="javascript:;">twitter.com/acme</a>
-                </em>
-              </div>
-              <div class="tweet-box">
-                <i class="fa fa-twitter"></i>
-                <em>
-                  Please follow
-                  <a href="javascript:;">@example</a>
-                  for all future updates of us!
-                  <a href="javascript:;">twitter.com/acme</a>
-                </em>
-              </div>
-          </div>
-          <div class="col-lg-3 col-sm-3">
-            <div class="page-footer wow fadeInUp" data-wow-duration="2s" data-wow-delay=".5s">
-              <h1>
-                Our Company
-              </h1>
-              <ul class="page-footer-list">
-                <li>
-                  <i class="fa fa-angle-right"></i>
-                  <a href="about.html">About Us</a>
-                </li>
-                <li>
-                  <i class="fa fa-angle-right"></i>
-                  <a href="faq.html">Support</a>
-                </li>
-                <li>
-                  <i class="fa fa-angle-right"></i>
-                  <a href="service.html">Service</a>
-                </li>
-                <li>
-                  <i class="fa fa-angle-right"></i>
-                  <a href="privacy-policy.html">Privacy Policy</a>
-                </li>
-                <li>
-                  <i class="fa fa-angle-right"></i>
-                  <a href="career.html">We are Hiring</a>
-                </li>
-                <li>
-                  <i class="fa fa-angle-right"></i>
-                  <a href="terms.html">Term & condition</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-3">
-            <div class="text-footer wow fadeInUp" data-wow-duration="2s" data-wow-delay=".7s">
-              <h1>
-                Text Widget
-              </h1>
-              <p>
-                This is a text widget.Lorem ipsum dolor sit amet.
-                This is a text widget.Lorem ipsum dolor sit amet.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- footer end -->
-    <!--small footer start -->
-    <footer class="footer-small">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-6 pull-right">
-                    <ul class="social-link-footer list-unstyled">
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".1s"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".2s"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".3s"><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".4s"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".5s"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".6s"><a href="#"><i class="fa fa-skype"></i></a></li>
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".7s"><a href="#"><i class="fa fa-github"></i></a></li>
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".8s"><a href="#"><i class="fa fa-youtube"></i></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                  <div class="copyright">
-                    <p>Shared by <i class="fa fa-love"></i><a href="/">Triplan</a></p>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--small footer end-->
+	<footer>
+			<div id="footer">
+				<div class="container">
+					<div class="row row-bottom-padded-md">
+						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
+							<h3>About Travel</h3>
+							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
+							<h3>Top Flights Routes</h3>
+							<ul>
+								<li><a href="#">Manila flights</a></li>
+								<li><a href="#">Dubai flights</a></li>
+								<li><a href="#">Bangkok flights</a></li>
+								<li><a href="#">Tokyo Flight</a></li>
+								<li><a href="#">New York Flights</a></li>
+							</ul>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
+							<h3>Top Hotels</h3>
+							<ul>
+								<li><a href="#">Boracay Hotel</a></li>
+								<li><a href="#">Dubai Hotel</a></li>
+								<li><a href="#">Singapore Hotel</a></li>
+								<li><a href="#">Manila Hotel</a></li>
+							</ul>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
+							<h3>Interest</h3>
+							<ul>
+								<li><a href="#">Beaches</a></li>
+								<li><a href="#">Family Travel</a></li>
+								<li><a href="#">Budget Travel</a></li>
+								<li><a href="#">Food &amp; Drink</a></li>
+								<li><a href="#">Honeymoon and Romance</a></li>
+							</ul>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
+							<h3>Best Places</h3>
+							<ul>
+								<li><a href="#">Boracay Beach</a></li>
+								<li><a href="#">Dubai</a></li>
+								<li><a href="#">Singapore</a></li>
+								<li><a href="#">Hongkong</a></li>
+							</ul>
+						</div>
+						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
+							<h3>Affordable</h3>
+							<ul>
+								<li><a href="#">Food &amp; Drink</a></li>
+								<li><a href="#">Fare Flights</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 text-center">
+							<p class="fh5co-social-icons">
+								<a href="#"><i class="icon-twitter2"></i></a>
+								<a href="#"><i class="icon-facebook2"></i></a>
+								<a href="#"><i class="icon-instagram"></i></a>
+								<a href="#"><i class="icon-dribbble2"></i></a>
+								<a href="#"><i class="icon-youtube"></i></a>
+							</p>
+							<p>Copyright 2016 Free Html5 <a href="#">Module</a>. All Rights Reserved. <br>Made with <i class="icon-heart3"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>

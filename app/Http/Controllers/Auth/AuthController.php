@@ -24,29 +24,14 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/';
 
-    /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -54,20 +39,17 @@ class AuthController extends Controller
             'lastname' => 'required|max:30',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
+
     protected function create(array $data)
     {
         return User::create([
             'firstname' => $data['firstname'],
             'email' => $data['email'],
+            'username' => $data['username'],
             'lastname' => $data['lastname'],
             'age' => $data['age'],
             'password' => bcrypt($data['password']),
@@ -109,7 +91,7 @@ class AuthController extends Controller
             $tempUser = User::where('email',$socialUser->getEmail())->first();
             if($tempUser)
             {
-                return redirect('/login')->with(['error' => 'There is already a user with this email. please try another']);
+                return back()->with(['errorform' => 'There is already a user with this email. please try another']);
             }
             $arrContextOptions=['ssl'=>['verify_peer'=>false,'verify_peer_name'=>false]];
             
@@ -161,7 +143,7 @@ class AuthController extends Controller
             $tempUser = User::where('email',$socialUser->getEmail())->first();
             if($tempUser)
             {
-                return redirect('/login')->with(['error' => 'There is already a user with this email. please try another']);
+                return redirect('/login')->with(['errorform' => 'There is already a user with this email. please try another']);
             }
             $arrContextOptions=['ssl'=>['verify_peer'=>false,'verify_peer_name'=>false]];
             
@@ -211,7 +193,7 @@ class AuthController extends Controller
             $tempUser = User::where('email',$socialUser->getEmail())->first();
             if($tempUser)
             {
-                return redirect('/login')->with(['error' => 'There is already a user with this email. please try another']);
+                return redirect('/login')->with(['errorform' => 'There is already a user with this email. please try another']);
             }
             $arrContextOptions=['ssl'=>['verify_peer'=>false,'verify_peer_name'=>false]];
             

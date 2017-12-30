@@ -1,0 +1,128 @@
+
+html,
+body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+body {
+	padding: 2rem 0rem;
+	text-align: center;
+	-webkit-transform: translatez(0);
+	-moz-transform: translatez(0);
+	-ms-transform: translatez(0);
+	-o-transform: translatez(0);
+	transform: translatez(0);
+}
+
+.ui.right.floated {
+	float: right;
+}
+
+.ui.shape {
+	position: relative;
+	display: inherit !important;
+	text-align: left;
+	padding-right: 20%;
+	padding-left: 20%;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+    .ui.shape {
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+.ui.segment,
+.ui.attached.button {
+	width: 100% !important;
+	margin-right: 25%;
+	margin-left: 25%;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background: #eee;
+}
+
+.share{
+  width: 100%;
+  height: 80px;
+  margin: 5em auto;
+  background: #F5F5F5;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  border: linear-gradient(90deg, #FFC0CB 50%, #00FFFF 50%) solid 2px;
+}
+
+.share a{
+  display: inline-block;
+  width: 50%;
+  height: 80px;
+  float: left;
+  position: relative;
+  text-indent: -9999px;
+  z-index: 9999;
+}
+
+.share:after{
+  content: "Login with Social Network";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  font-size: 20px;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: #333; 
+  
+}
+
+.share a.fb{
+  background: #3c5b9b url(https://cdn1.iconfinder.com/data/icons/social-media-icons-2/83/facebook_64x83.png) no-repeat center;
+  top: -200px;
+  transition: all 0.3s ease-in-out;
+}
+
+.share a.go{
+  background: #F34032 url(http://www.levontin7.com/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png) no-repeat center;
+  bottom: -200px;
+  transition: all 0.3s ease-in-out;
+}
+
+.share:hover a.fb{
+  top: 0;
+}
+
+.share:hover a.go{
+  bottom: 0;
+}
+
+
+#socialLogin{
+		width: 100% !important;
+}
+.ui.ribbon.label:after {
+	border-top-color: #9e9e9e;
+}
+
+.ui.ribbon.label:after:hover {
+	border-top-color: #9e9e9e;
+}
+
+
+
+.ui.bottom.attached.button {
+	opacity: 1;
+	-webkit-transition: opacity 0.5s ease;
+	-moz-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	-o-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+}

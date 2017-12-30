@@ -5,31 +5,36 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCountriesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 25);
             $table->string('code', 3)->unique();
-            $table->string('name', 52);
             $table->enum('continent', ['Asia', 'Europe', 'North America', 'Africa', 'Oceania', 'Antarctica', 'South America']);
-            $table->string('region', 26);
-            $table->string('mainphoto');
+            $table->integer('capital')->length(10)->unsigned();
+            $table->string('language');
+            $table->string('currency');
+            $table->decimal('gdp', 10, 2);
+            $table->integer('population')->length(10)->unsigned();
             $table->decimal('surface_area', 10, 2);
-            $table->integer('indep_year')->length(4);
-            $table->integer('population')->length(11)->unsigned();
-            $table->decimal('life_expectancy', 3, 1);
-            $table->decimal('gnp', 10, 2);
-            $table->decimal('gnp_old', 10, 2);
-            $table->string('local_name', 45);
-            $table->string('government_form', 45);
-            $table->string('head_of_state', 60);
-            $table->integer('capital')->length(11)->unsigned();
-            $table->string('code2', 2);
+            $table->decimal('life_exp', 3, 1);
+            $table->integer('num_of_airports')->length(3)->unsigned();
+            $table->string('calling_code', 10);
+            $table->integer('num_of_cities')->length(3)->unsigned();
+            $table->string('neighbers');
+            $table->string('mainpic');
+            $table->integer('num_of_clicks')->length(3)->unsigned();
+            $table->string('wiki_link');
+            $table->decimal('lng', 10, 10);
+            $table->decimal('lat', 10, 10);
+            $table->string('head_of_state');
+            $table->date('indep_date');
+            $table->string('flag_pic');
+            $table->string('religion');
+            $table->text('description');
+            $table->timestamps();
         });
     }
 

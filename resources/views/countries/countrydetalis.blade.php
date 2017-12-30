@@ -2,41 +2,9 @@
 
 @section('content')
 
-    <!--<div class="container">-->
-    <!--    <div class="row">-->
-    <!--        <div class="col-md-12">-->
-                
-    <!--            <div class="content1"></div>-->
-    <!--            <div class="box"></div>-->
-                
-    <!--            <div class="video-container single-video">-->
-    <!--                @if($country->name == 'Israel')-->
-    <!--                    <iframe width="560" height="315" src="https://www.youtube.com/embed/AoizSL-TEJQ" frameborder="0" allowfullscreen></iframe>-->
-    <!--                @elseif($country->name == 'Brazil')-->
-    <!--                    <iframe width="560" height="315" src="https://www.youtube.com/embed/EDSkaJEBlDU" frameborder="0" allowfullscreen></iframe>-->
-    <!--                @elseif($country->name == 'France')-->
-    <!--                    <iframe width="560" height="315" src="https://www.youtube.com/embed/_FYKIhJZdaI" frameborder="0" allowfullscreen></iframe>-->
-    <!--                @elseif($country->name == 'Italy')-->
-    <!--                    <iframe width="560" height="315" src="https://www.youtube.com/embed/G5cDcmnt-Ew" frameborder="0" allowfullscreen></iframe>-->
-    <!--                @elseif($country->name == 'Spain')-->
-    <!--                    <iframe width="560" height="315" src="https://www.youtube.com/embed/8ub4TzkAni8" frameborder="0" allowfullscreen></iframe>-->
-    <!--                @elseif($country->name == 'United States Of America')-->
-    <!--                    <iframe width="560" height="315" src="https://www.youtube.com/embed/MtCMtC50gwY" frameborder="0" allowfullscreen></iframe>-->
-    <!--                @else-->
-    <!--                    <iframe width="560" height="315" src="https://www.youtube.com/embed/OHAWwaYu2H0" frameborder="0" allowfullscreen></iframe>-->
-    <!--                @endif-->
-    <!--            </div>-->
-                
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
+   
 <div class="row carousel-part">
   <div class="col-md-12">
-    
-<div class="row carousel-part">
-  <div class="col-md-12">
-    
-
 <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
   <!-- Overlay -->
   <div class="overlay"></div>
@@ -91,35 +59,9 @@
 </div>
   </div>
 </div>
-<!--<div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-12">-->
-                
-<!--                <div class="content1"></div>-->
-<!--                <div class="box"></div>-->
-                
-<!--                <div class="video-container single-video">-->
-<!--                    @if($country->name == 'Israel')-->
-<!--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/AoizSL-TEJQ" frameborder="0" allowfullscreen></iframe>-->
-<!--                    @elseif($country->name == 'Brazil')-->
-<!--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/EDSkaJEBlDU" frameborder="0" allowfullscreen></iframe>-->
-<!--                    @elseif($country->name == 'France')-->
-<!--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/_FYKIhJZdaI" frameborder="0" allowfullscreen></iframe>-->
-<!--                    @elseif($country->name == 'Italy')-->
-<!--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/G5cDcmnt-Ew" frameborder="0" allowfullscreen></iframe>-->
-<!--                    @elseif($country->name == 'Spain')-->
-<!--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/8ub4TzkAni8" frameborder="0" allowfullscreen></iframe>-->
-<!--                    @elseif($country->name == 'United States Of America')-->
-<!--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/MtCMtC50gwY" frameborder="0" allowfullscreen></iframe>-->
-<!--                    @else-->
-<!--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/OHAWwaYu2H0" frameborder="0" allowfullscreen></iframe>-->
-<!--                    @endif-->
-<!--                </div>-->
-                
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
+<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" 
+src="http://forecast.io/embed/#lat=32.109333&lon=-34.855499&name={{$country->name}}&color=#0088ff&font=Helvetica&units=si">
+</iframe>  
     <div class="container">
         <div class="row">
 
@@ -152,6 +94,7 @@
         </div>
         <hr>
     </div>
+    
     <div class="container">
          <!--recent work start-->
         <div class="row">

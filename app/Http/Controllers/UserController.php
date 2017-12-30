@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests;
-use App\list_countries;
+use App\country;
 use App\User;
 use Image;
 use File;
@@ -16,21 +16,17 @@ class UserController extends Controller
     
     public function showprofile(){
         
-        return view('auth/profile',[
-            'countries' => list_countries::all(),
-        ]);
+        return view('auth/profile');
     }
     
     
     public function udpateprofile(Request $request){
         
         $user = Auth::user();
-        
+        // return $request->all();
         $user->update($request->all());
         
-        return view('auth/profile',[
-            'countries' => list_countries::all(),
-        ]);
+        return view('auth/profile');
     }
     
     public function changepassword(Request $request){

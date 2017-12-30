@@ -16,4 +16,9 @@ class HomeController extends Controller
             'countries' => country::take(6)->get(),
         ]);
     }
+    
+    public function terms()
+    {
+        return view('general/terms');
+    }
 }
