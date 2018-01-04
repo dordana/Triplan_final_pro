@@ -2,7 +2,7 @@
 
 @section('content')
 
-<script src="{!! asset('pages/register/register.js') !!}"></script>
+
 <link href="{!! asset('pages/register/register.css') !!}" rel="stylesheet" />
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css'>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js'></script>
@@ -124,8 +124,8 @@
         						</label>
         						
                                 <div class="ui action input">
-                                    <input class="profile_click" type="text" placeholder="File 1" readonly>
-                                    <input type="file" accept="image/png, image/jpeg" name="profile_phote_path">
+                                    <input class="profile_click" type="text" placeholder="Upload your profile photo" readonly>
+                                    <input id="uploadphotouser" type="file" accept="image/png, image/jpeg" name="profile_phote_path">
                                     <div class="ui icon button">
                                         <i class="attach icon"></i>
                                     </div>
@@ -153,7 +153,7 @@
     				</div>
     			</div>
     			</form>
-    			<div class='ui bottom attached large green button' onclick="submition()">
+    			<div class='ui bottom attached large orange button' onclick="submition()">
     				Create my account
     			</div>
     		</div>
@@ -162,16 +162,7 @@
 </div>
 </div>
 				</div>
-<script type="text/javascript" >
-    $(".profile_click").click(function() {
-  alert("dor");
-  $(this).parent().find("input:file").click();
-});
-
-$('input:file', '.ui.action.input')
-  .on('change', function(e) {
-    var name = e.target.files[0].name;
-    $('input:text', $(e.target).parent()).val(name);
-  });
-</script>
+				
+				
+				<script src="{!! asset('pages/register/register.js') !!}"></script>
 @endsection

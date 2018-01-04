@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index');
 Route::get('auth/facebook', ['as' => 'facebook', 'uses' => 'Auth\AuthController@redirectToProvider'] );
 Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
-Route::get('auth/google', ['as' => 'google', 'uses' => 'Auth\AuthController@redirectToProviderGoogle]'] );
+Route::get('auth/google', ['as' => 'google', 'uses' => 'Auth\AuthController@redirectToProviderGoogle'] );
 Route::get('auth/google/callback', 'Auth\AuthController@handleProviderCallbackGoogle');
 
 Route::get('auth/twitter', 'Auth\AuthController@redirectToProviderTwitter');
@@ -30,6 +30,7 @@ Route::post('/profile/changepassword', ['as' => 'change-password', 'uses' => 'Us
 Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserController@changephoto']);
 
 ///Country Routes
+Route::get('/countries', ['as' => 'showcountries', 'uses' => 'CountryController@showallcountries']);
 Route::get('/country/{country}', ['as' => 'show-countrydetalis', 'uses' => 'CountryController@showcountry']);
 
 ///General Routes

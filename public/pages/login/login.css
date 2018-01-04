@@ -126,3 +126,16 @@ body{
 	-o-transition: opacity 0.5s ease;
 	transition: opacity 0.5s ease;
 }
+.fh5co-section-gray{
+	background: linear-gradient(rgba(20,20,20, .3), rgba(20,20,20, .3)),url('http://epicwallpaperz.com/wallpaper-hd/usa-wallpaper-widescreen-On-wallpaper-hd.jpg');
+}
+
+.heading-section h3 {
+    font-size: 40px;
+    font-weight: 400;
+    position: relative;
+    color: white;
+}
+.heading-section p {
+    color: white;
+}

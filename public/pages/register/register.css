@@ -6,10 +6,7 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
-}
-
-body {
-	padding: 2rem 0rem;
+		padding: 2rem 0rem;
 	text-align: center;
 	-webkit-transform: translatez(0);
 	-moz-transform: translatez(0);
@@ -17,6 +14,20 @@ body {
 	-o-transform: translatez(0);
 	transform: translatez(0);
 }
+.fh5co-section-gray{
+	background: linear-gradient(rgba(20,20,20, .3), rgba(20,20,20, .3)),url('http://travelhdwallpapers.com/wp-content/uploads/2014/02/PisaTower-14.jpg');
+}
+
+.heading-section h3 {
+    font-size: 40px;
+    font-weight: 400;
+    position: relative;
+    color: white;
+}
+.heading-section p {
+    color: white;
+}
+
 .ui.action.input input[type="file"] {
   display: none;
 }
@@ -33,7 +44,9 @@ body {
 	padding-left: 20%;
 }
 
-
+.profile_click:hover{
+	cursor: pointer;
+}
 
 @media only screen and (max-width: 500px) {
     .ui.shape {

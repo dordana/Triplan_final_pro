@@ -1,4 +1,4 @@
-    
+/* global $ */    
 
     <script src="js/jquery.magnific-popup.js"></script>
     $('.image-caption a').tooltip();

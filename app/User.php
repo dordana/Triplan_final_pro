@@ -6,21 +6,39 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'firstname','lastname','age','username','gender','country','city', 'email', 'password','provider_id','provider','profile_phote_path'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function questions(){
+        return $this->hasMany('App\Question');
+    }
+    
+    public function answers(){
+        return $this->hasMany('App\Answer');
+    }
+    
+    public function reviews(){
+        return $this->hasMany('App\Review');
+    }
+    
+    public function paths(){
+        return $this->hasMany('App\Path');
+    }
+    
+    public function countryPhotos(){
+        return $this->hasMany('App\UserCountryPhoto');
+    }
+    
+    public function cityPhotos(){
+        return $this->hasMany('App\UserCityPhoto');
+    }
+    
+    public function attractionPhotos(){
+        return $this->hasMany('App\UserAttractionPhoto');
+    }
 }

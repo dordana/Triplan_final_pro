@@ -228,7 +228,7 @@
 								</div>
 							</div>
 							<div class="desc2 animate-box">
-								<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
+								<div class="desc1 col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
 									<p>HandCrafted by <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">FreeHTML5.co</a></p>
 									<h2>Exclusive Limited Time Offer</h2>
 									<h3>Fly to Hong Kong via Los Angeles, USA</h3>
@@ -403,7 +403,8 @@
 							<li class="one-forth text-center" style="background-image: url(images/place-3.jpg); ">
 								<a href="#">
 									<div class="case-studies-summary">
-										<h2>Italy</h2>
+										<h1 style="color:white;" >Italy</h1>
+										<h4 style="color:white;" >Italy</h4>
 									</div>
 								</a>
 							</li>

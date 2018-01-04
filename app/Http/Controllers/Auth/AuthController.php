@@ -11,16 +11,6 @@ use Socialite;
 use Image;
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
@@ -55,26 +45,17 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
             'gender' => $data['gender'],
             'country' => $data['country'],
+            'city' => $data['city']
             
         ]);
     }
     
     
-    /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @return Response
-     */
     public function redirectToProvider()
     {
         return Socialite::driver('facebook')->redirect();
     }
 
-    /**
-     * Obtain the user information from GitHub.
-     *
-     * @return Response
-     */
     public function handleProviderCallback()
     {
         try
@@ -122,11 +103,6 @@ class AuthController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    /**
-     * Obtain the user information from GitHub.
-     *
-     * @return Response
-     */
     public function handleProviderCallbackGoogle()
     {
         try
@@ -166,58 +142,4 @@ class AuthController extends Controller
         }
         return redirect('/')->with(['success' => 'You have successfully logged in']);
     }
-    
-    public function redirectToProviderTwitter()
-    {
-        return Socialite::driver('twitter')->redirect();
-    }
-
-    /**
-     * Obtain the user information from GitHub.
-     *
-     * @return Response
-     */
-    public function handleProviderCallbackTwitter()
-    {
-        try
-        {
-            $socialUser = Socialite::driver('twitter')->user();
-        }
-        catch (\Exception $e)
-        {
-            return redirect('/');
-        }
-        $user = User::where('provider_id',$socialUser->getId())->first();
-        if(!$user)
-        {
-            $tempUser = User::where('email',$socialUser->getEmail())->first();
-            if($tempUser)
-            {
-                return redirect('/login')->with(['errorform' => 'There is already a user with this email. please try another']);
-            }
-            $arrContextOptions=['ssl'=>['verify_peer'=>false,'verify_peer_name'=>false]];
-            
-            $id = $socialUser->getId();
-            $fbUrl = $socialUser->getAvatar();
-            $file = $id.'.jpg';
-            Image::make(file_get_contents($fbUrl, false, stream_context_create($arrContextOptions)))->save(public_path('uploads/user-photos/'.$file));
-            
-            
-            $newUser = User::create([
-               'provider_id' => $socialUser->getId(),
-                'firstname' => $socialUser->getName(),
-                'email' => $socialUser->getEmail(),
-                'provider' => 'twitter',
-                'profile_phote_path' => $file,
-            ]);
-            auth()->login($newUser);
-        }else{
-            auth()->login($user);
-        }
-        return redirect('/')->with(['success' => 'You have successfully logged in']);
-    }
-    
-    
-    
-    
 }

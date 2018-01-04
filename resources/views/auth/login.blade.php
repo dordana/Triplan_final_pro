@@ -20,7 +20,7 @@
 					<div class='ui top attached piled segment'>
 						<div class="share">
 						  <a href="{{ route('facebook') }}" class="fb">Facebook</a>
-						  <a href="{{ route('google')  }}" class="go">Google</a>
+						  <a href="{{ route('google') }}" class="go">Google</a>
 						</div>
 						<div class='ui horizontal divider'>OR</div>
 						<form class="form-signin wow fadeInUp" role="form" method="POST" action="{{ url('/login') }}" autocomplete="off">
@@ -75,6 +75,7 @@
 		                                            Create an account
 		                                        </a>
 		        							</label>
+		        							<br>
 		        							<label>
 		        								Forgot Your Password?
 		                                        <a class="" href="{{ url('/password/reset') }}">

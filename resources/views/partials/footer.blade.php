@@ -45,9 +45,9 @@
 							</ul>
 						</div>
 						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Affordable</h3>
+							<h3>About Triplan</h3>
 							<ul>
-								<li><a href="#">Food &amp; Drink</a></li>
+								<li><a href="{{route('show-terms')}}">Terms</a></li>
 								<li><a href="#">Fare Flights</a></li>
 							</ul>
 						</div>

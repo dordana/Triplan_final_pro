@@ -27,8 +27,8 @@ class CreateCountriesTable extends Migration
             $table->string('mainpic');
             $table->integer('num_of_clicks')->length(3)->unsigned();
             $table->string('wiki_link');
-            $table->decimal('lng', 10, 10);
-            $table->decimal('lat', 10, 10);
+            $table->string('lng');
+            $table->string('lat');
             $table->string('head_of_state');
             $table->date('indep_date');
             $table->string('flag_pic');

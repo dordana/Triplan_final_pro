@@ -10,7 +10,7 @@
 			<nav id="fh5co-menu-wrap" role="navigation">
 				<ul class="sf-menu" id="fh5co-primary-menu">
 					<li class="active"><a href="/">Home</a></li>
-					<li><a href="#">Countries</a></li>
+					<li><a href="{{route('showcountries')}}">Countries</a></li>
 					<li><a href="#">Cities</a></li>
 					<li><a href="#">Attractions</a></li>
 					@if (Auth::guest())
