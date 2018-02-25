@@ -1,248 +1,130 @@
 @extends('layouts.app')
 
 @section('content')
+
 <script src="{!! asset('pages/index/index.js') !!}"></script>
 <link href="{!! asset('pages/index/index.css') !!}" rel="stylesheet" />
+<style type="text/css">
+	.selectcss{
+		border: transparent;
+		background: rgba(0, 0, 0, 0.05);
+		cursor: pointer;
+		color: #f78536;
+		font-weight: bold;
+		padding: 10px 10px;
+		border-radius: 0px;
+		
+	}
+	option:hover{
+		
+		background: red;
+		cursor: pointer;
+		
+		
+	}
+	.selectcss > option{
+		color: #7D7E7E;
+		font-weight: bold;
+		padding: 10px 10px;
+		cursor: pointer;
+		background-color: white;
+	}
+	.selectcss > option:focus {
+    	background-color: #ddd;
+	}
+	#date-start,#date-end{
+		cursor: pointer;
+	}
+	.bgvid{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100vw;
+  height: 100%;
+}
+	
+	#tripsubmit:hover{
+		background-color:#F78536 !important; 
+	}
+</style>
 <p id="pageName" hidden >Home</p>
-
-		<div class="fh5co-hero">
+<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover"  style="background-image: url('/images/Homepage.jpg');">
+			<div class="fh5co-cover" data-stellar-background-ratio="0.5"style=" top: 0; width: 100%; height: 100%; z-index: -1;">
+				 <video class="bgvid" autoplay="autoplay" muted="muted" preload="auto" loop>
+      <source src="https://coverr.co/s3/mp4/Fire-_-Ice.mp4" type="video/webm">
+  </video>
 				<div class="desc">
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-5 col-md-5">
 								<div class="tabulation animate-box">
-
-								  <!-- Nav tabs -->
-								   <ul class="nav nav-tabs" role="tablist">
-								      <li role="presentation" class="active">
-								      	<a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">Flights</a>
-								      </li>
-								      <li role="presentation">
-								    	   <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">Hotels</a>
-								      </li>
-								      <li role="presentation">
-								    	   <a href="#packages" aria-controls="packages" role="tab" data-toggle="tab">Packages</a>
-								      </li>
-								   </ul>
-
 								   <!-- Tab panes -->
 									<div class="tab-content">
 									 <div role="tabpanel" class="tab-pane active" id="flights">
-										<div class="row">
-											<div class="col-xxs-12 col-xs-6 mt">
-												<div class="input-field">
-													<label for="from">From:</label>
-													<input type="text" class="form-control" id="from-place" placeholder="Los Angeles, USA"/>
+									 	<form id="formtrip" action="{{ url('/trip') }}" method="GET">
+									 		<input id="countryname" type="hidden" name="country" value="">
+									 		<input id="cityname" type="hidden" name="city" value="">
+									 		<input id="num_of_passengers" type="hidden" name="num_of_passengers" value="">
+											<div class="row">
+												<div class="col-xxs-12 col-xs-6 mt">
+													<div class="input-field">
+														<label for="from">Country:</label>
+														<select class="form-control selectcss" id="country-select" >
+														  <option value="1">select country</option>
+														  @foreach($countriesToTravel as $country)
+														  	<option value="{{$country->id}}">{{$country->name}}</option>
+														  @endforeach
+														</select>
+													</div>
+												</div>
+												<div class="col-xxs-12 col-xs-6 mt">
+													<div class="input-field">
+														<label for="from">City:</label>
+														<select class="form-control selectcss" id="city-select">
+														  <option value="">select city</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-xxs-12 col-xs-6 mt alternate">
+													<div class="input-field">
+														<label for="date-start">Check In:</label>
+														<input type="text" name="start" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
+													</div>
+												</div>
+												<div class="col-xxs-12 col-xs-6 mt alternate">
+													<div class="input-field">
+														<label for="date-end">Check Out:</label>
+														<input type="text" class="form-control" name="end" id="date-end" placeholder="mm/dd/yyyy"/>
+													</div>
+												</div>
+												<div class="col-xxs-12 col-xs-6 mt">
+													<section>
+														<label for="class">Passengers:</label>
+														<select class="cs-select cs-skin-border" id="passenger-select">
+															<option value="1" disabled selected>1</option>
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+														</select>
+													</section>
+												</div>
+												<div class="col-xs-12">
+													<input type="button" class="btn btn-primary btn-block" id="tripsubmit" value="Search Flight">
 												</div>
 											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<div class="input-field">
-													<label for="from">To:</label>
-													<input type="text" class="form-control" id="to-place" placeholder="Tokyo, Japan"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt alternate">
-												<div class="input-field">
-													<label for="date-start">Check In:</label>
-													<input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt alternate">
-												<div class="input-field">
-													<label for="date-end">Check Out:</label>
-													<input type="text" class="form-control" id="date-end" placeholder="mm/dd/yyyy"/>
-												</div>
-											</div>
-											<div class="col-sm-12 mt">
-												<section>
-													<label for="class">Class:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>Economy</option>
-														<option value="economy">Economy</option>
-														<option value="first">First</option>
-														<option value="business">Business</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<section>
-													<label for="class">Adult:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<section>
-													<label for="class">Children:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xs-12">
-												<input type="submit" class="btn btn-primary btn-block" value="Search Flight">
-											</div>
-										</div>
-									 </div>
-
-									 <div role="tabpanel" class="tab-pane" id="hotels">
-									 	<div class="row">
-											<div class="col-xxs-12 col-xs-12 mt">
-												<div class="input-field">
-													<label for="from">City:</label>
-													<input type="text" class="form-control" id="from-place" placeholder="Los Angeles, USA"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt alternate">
-												<div class="input-field">
-													<label for="date-start">Return:</label>
-													<input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt alternate">
-												<div class="input-field">
-													<label for="date-end">Check Out:</label>
-													<input type="text" class="form-control" id="date-end" placeholder="mm/dd/yyyy"/>
-												</div>
-											</div>
-											<div class="col-sm-12 mt">
-												<section>
-													<label for="class">Rooms:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="economy">1</option>
-														<option value="first">2</option>
-														<option value="business">3</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<section>
-													<label for="class">Adult:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<section>
-													<label for="class">Children:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xs-12">
-												<input type="submit" class="btn btn-primary btn-block" value="Search Hotel">
-											</div>
-										</div>
-									 </div>
-
-									 <div role="tabpanel" class="tab-pane" id="packages">
-									 	<div class="row">
-											<div class="col-xxs-12 col-xs-6 mt">
-												<div class="input-field">
-													<label for="from">City:</label>
-													<input type="text" class="form-control" id="from-place" placeholder="Los Angeles, USA"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<div class="input-field">
-													<label for="from">Destination:</label>
-													<input type="text" class="form-control" id="to-place" placeholder="Tokyo, Japan"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt alternate">
-												<div class="input-field">
-													<label for="date-start">Departs:</label>
-													<input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
-												</div>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt alternate">
-												<div class="input-field">
-													<label for="date-end">Return:</label>
-													<input type="text" class="form-control" id="date-end" placeholder="mm/dd/yyyy"/>
-												</div>
-											</div>
-											<div class="col-sm-12 mt">
-												<section>
-													<label for="class">Rooms:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="economy">1</option>
-														<option value="first">2</option>
-														<option value="business">3</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<section>
-													<label for="class">Adult:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xxs-12 col-xs-6 mt">
-												<section>
-													<label for="class">Children:</label>
-													<select class="cs-select cs-skin-border">
-														<option value="" disabled selected>1</option>
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-													</select>
-												</section>
-											</div>
-											<div class="col-xs-12">
-												<input type="submit" class="btn btn-primary btn-block" value="Search Packages">
-											</div>
-										</div>
+										</form>
 									 </div>
 									</div>
 
-								</div>
-							</div>
-							<div class="desc2 animate-box">
-								<div class="desc1 col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
-									<p>HandCrafted by <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">FreeHTML5.co</a></p>
-									<h2>Exclusive Limited Time Offer</h2>
-									<h3>Fly to Hong Kong via Los Angeles, USA</h3>
-									<span class="price">$599</span>
-									<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
-		
 		<div id="fh5co-tours" class="fh5co-section-gray">
 			<div class="container">
 				<div class="row">
@@ -403,8 +285,7 @@
 							<li class="one-forth text-center" style="background-image: url(images/place-3.jpg); ">
 								<a href="#">
 									<div class="case-studies-summary">
-										<h1 style="color:white;" >Italy</h1>
-										<h4 style="color:white;" >Italy</h4>
+										<h2>Italy</h2>
 									</div>
 								</a>
 							</li>
@@ -578,4 +459,31 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		var cities = JSON.parse('<?php echo json_encode($citiesToTravel) ?>');
+		$('#country-select').change(function(){
+			$("#city-select").find('option').remove();
+			var country_id = ($( "#country-select option:selected" ).val());
+			$.each(cities, function(key, value) {
+				if(country_id == value.country_id){
+		    		$('#city-select').append($('<option>', { value : key }).text(value.name));
+				}
+			});
+		});
+		
+		
+		
+$('#tripsubmit').click(function() {
+    var selected = $("#country-select").val();
+    $("#countryname").val(selected);
+    var selected1 = $("#city-select").val();
+    $("#cityname").val(selected1);
+    var selected2 = $("#passenger-select").val();
+    $("#num_of_passengers").val(selected2);
+    $("#formtrip").submit();
+})
+		
+		
+	</script>
 @endsection

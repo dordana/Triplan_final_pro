@@ -79,9 +79,6 @@ $( ".button--deny" ).click(function() {
   $( this ).siblings( '.button--approve' ).removeClass( "active" );
 });
 
-$( ".comment-trigger" ).click(function() {
-  $( this ).parent().parent().toggleClass( "post--commenting" );
-});
 
 $( ".button--flag" ).click(function() {
   $( this ).parent().parent().toggleClass( "post--commenting" );

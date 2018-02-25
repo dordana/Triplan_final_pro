@@ -3,7 +3,7 @@
 @section('content')
 
 <link href="{!! asset('pages/showcountry/showcountry.css') !!}" rel="stylesheet" />
-
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 <!-- bootstrap carousel -->
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
 		
@@ -12,7 +12,7 @@
 	    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 	    @for ($i = 1; $i < count($country->photos)+1; $i++)
           <li data-target="#carousel-example-generic" data-slide-to="{{$i}}"></li>
-      @endfor
+      	@endfor
 	    
 	  </ol>
 
@@ -262,73 +262,41 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 </div>
 
 
-<div class="container">
+
+
+
+	<br><br><br>
+
+
+
+
+<!--Q&A section-->
+<div class="containerqa">
   <div class="response-group">
     <header>
-      <h2>
-        <strong>Q&A</strong>
-      </h2>
+      	<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+						<h3>Q&A</h3>
+					</div>
     </header>
-    <div class="header-dropdown">
-      <div class="panel">
-        <ul>
-          <li>
-            <h2>
-              Activity Title
-            </h2>
-            <span>2/4</span>
-            <div class="progress">
-              <div class="progress__complete"></div>
-            </div>
-          </li>
-          <li>
-            <h2>
-              Activity Title
-            </h2>
-            <span>2/4</span>
-            <div class="progress">
-              <div class="progress__complete"></div>
-            </div>
-          </li>
-          <li>
-            <h2>
-              Activity Title
-            </h2>
-            <span>2/4</span>
-            <div class="progress">
-              <div class="progress__complete"></div>
-            </div>
-          </li>
-          <li>
-            <h2>
-              Activity Title
-            </h2>
-            <span>2/4</span>
-            <div class="progress">
-              <div class="progress__complete"></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <br><br><br>
     <div class="response">
-      <div class="response__number">
-        1
-      </div>
-      <h1 class="response__title">
-        Coffee emporium avondale humid german rivertown vine street findlay market historic architecture?
-      </h1>
       <div class="post-group">
+        @foreach ($country->questions as $q)
         <div class="post">
-          <div class="post__avatar"></div>
+          <div class="post__avatar">
+          	<img class="quephoto" src="{{ url('/uploads/user-photos') }}/{{App\User::find($q->user_id)->profile_phote_path}}"></img>
+          </div>
           <h3 class="post__author">
-            Lester McTester
+            {{App\User::find($q->user_id)->firstname}}
           </h3>
-          <h4 class="post__timestamp">
-            Oct 13 at 8:51pm 
+          <h4 class="post__author">
+            {{$q->title}} 
           </h4>
+          <h5 class="post__timestamp">
+            {{$q->created_at}} 
+          </h5>
           <p class="post__body">
-            Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+			{{$q->body}} 
           </p>
           <div class="post__actions">
             <div class="button button--approve">
@@ -338,191 +306,43 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
               <i class="fa fa-thumbs-o-down"></i><i class="fa fa-thumbs-down solid"></i>
             </div>
             <div class="button button--fill comment-trigger">
-              <span>Comment...</span>
+              <input id="addcommenttext" type="text" name="" placeholder="Add a comment..."/>
             </div>
             <div class="button button--flag">
-              <i class="fa fa-comment-o"></i><i class="fa fa-comment solid"></i>2
+              <i class="fa fa-comment-o"></i><i class="fa fa-comment solid"></i>{{count($q->answers)}}
             </div>
             <div class="post__comments">
               <div class="comment-group">
+              	 @foreach ($q->answers as $a)
                 <div class="post">
-                  <div class="post__avatar comment__avatar"></div>
+                  <div class="post__avatar comment__avatar">
+                  	<img class="ansphoto" src="{{ url('/uploads/user-photos') }}/{{App\User::find($a->user_id)->profile_phote_path}}"></img>
+                  </div>
                   <h3 class="post__author">
-                    Lester McTester
+                   {{App\User::find($a->user_id)->firstname}}
                   </h3>
                   <h4 class="post__timestamp">
-                    Oct 13 at 8:51pm 
+                     {{$a->created_at}}
                   </h4>
                   <p class="post__body">
-                    Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
+					{{$a->body}}
                   </p>
                 </div>
-                <div class="post">
-                  <div class="post__avatar comment__avatar"></div>
-                  <h3 class="post__author">
-                    Lester McTester
-                  </h3>
-                  <h4 class="post__timestamp">
-                    Oct 13 at 8:51pm 
-                  </h4>
-                  <p class="post__body">
-                    Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
-                  </p>
-                </div>
-              </div>
-              <div class="comment-form">
-                <div class="comment-form__avatar"></div>
-                <textarea></textarea>
-                <div class="comment-form__actions">
-                  <div class="button button--light cancel">
-                    Cancel
-                  </div>
-                  <div class="button button--confirm">
-                    Comment
-                  </div>
-                </div>
+                 @endforeach
               </div>
             </div>
           </div>
         </div>
-        <div class="post">
-          <div class="post__avatar"></div>
-          <h3 class="post__author">
-            Lester McTester
-          </h3>
-          <h4 class="post__timestamp">
-            Oct 13 at 8:51pm 
-          </h4>
-          <p class="post__body">
-            Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
-          </p>
-          <div class="post__actions">
-            <div class="button button--approve">
-              <i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up solid"></i>
-            </div>
-            <div class="button button--deny">
-              <i class="fa fa-thumbs-o-down"></i><i class="fa fa-thumbs-down solid"></i>
-            </div>
-            <div class="button button--fill comment-trigger">
-              <span>Comment...</span>
-            </div>
-            <div class="button button--flag">
-              <i class="fa fa-comment-o"></i><i class="fa fa-comment solid"></i>2
-            </div>
-            <div class="post__comments">
-              <div class="comment-group">
-                <div class="post">
-                  <div class="post__avatar comment__avatar"></div>
-                  <h3 class="post__author">
-                    Lester McTester
-                  </h3>
-                  <h4 class="post__timestamp">
-                    Oct 13 at 8:51pm 
-                  </h4>
-                  <p class="post__body">
-                    Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
-                  </p>
-                </div>
-                <div class="post">
-                  <div class="post__avatar comment__avatar"></div>
-                  <h3 class="post__author">
-                    Lester McTester
-                  </h3>
-                  <h4 class="post__timestamp">
-                    Oct 13 at 8:51pm 
-                  </h4>
-                  <p class="post__body">
-                    Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
-                  </p>
-                </div>
-              </div>
-              <div class="comment-form">
-                <div class="comment-form__avatar"></div>
-                <textarea></textarea>
-                <div class="comment-form__actions">
-                  <div class="button button--light cancel">
-                    Cancel
-                  </div>
-                  <div class="button button--confirm">
-                    Comment
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="post">
-          <div class="post__avatar"></div>
-          <h3 class="post__author">
-            Lester McTester
-          </h3>
-          <h4 class="post__timestamp">
-            Oct 13 at 8:51pm 
-          </h4>
-          <p class="post__body">
-            Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
-          </p>
-          <div class="post__actions">
-            <div class="button button--approve">
-              <i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up solid"></i>
-            </div>
-            <div class="button button--deny">
-              <i class="fa fa-thumbs-o-down"></i><i class="fa fa-thumbs-down solid"></i>
-            </div>
-            <div class="button button--fill comment-trigger">
-              <span>Comment...</span>
-            </div>
-            <div class="button button--flag">
-              <i class="fa fa-comment-o"></i><i class="fa fa-comment solid"></i>2
-            </div>
-            <div class="post__comments">
-              <div class="comment-group">
-                <div class="post">
-                  <div class="post__avatar comment__avatar"></div>
-                  <h3 class="post__author">
-                    Lester McTester
-                  </h3>
-                  <h4 class="post__timestamp">
-                    Oct 13 at 8:51pm 
-                  </h4>
-                  <p class="post__body">
-                    Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
-                  </p>
-                </div>
-                <div class="post">
-                  <div class="post__avatar comment__avatar"></div>
-                  <h3 class="post__author">
-                    Lester McTester
-                  </h3>
-                  <h4 class="post__timestamp">
-                    Oct 13 at 8:51pm 
-                  </h4>
-                  <p class="post__body">
-                    Hamilton county river front museum center washington park breweries walnut hills findlay market christian moerlein flying pig ohio valley jazz festival union terminal fifty west coffee emporium chili.
-                  </p>
-                </div>
-              </div>
-              <div class="comment-form">
-                <div class="comment-form__avatar"></div>
-                <textarea></textarea>
-                <div class="comment-form__actions">
-                  <div class="button button--light cancel">
-                    Cancel
-                  </div>
-                  <div class="button button--confirm">
-                    Comment
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
+        
+        
+        @endforeach
       </div>
     </div>
   </div>
 </div>
 
-
+<!--end Q&A section-->
 
 
 

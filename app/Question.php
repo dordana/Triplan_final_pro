@@ -14,4 +14,21 @@ class Question extends Model
     {
         return $this->belongsTo('App\User');
     }
+    
+    public function city()
+    {
+        return $this->belongsTo('App\City');
+    }
+    
+    public function country()
+    {
+        return $this->belongsTo('App\Country');
+    }
+    
+    public function attraction()
+    {
+        return $this->belongsTo('App\Attraction');
+    }
+    
+    
 }

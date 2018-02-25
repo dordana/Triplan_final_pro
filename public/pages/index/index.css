@@ -1,6 +1,14 @@
 .fh5co-cover .fh5co-overlay, .fh5co-hero .fh5co-overlay {
     position: static!important;
 }
-/*.desc1{*/
-/*        background-color: rgba(0,0,0,0.2);*/
-/*    }*/
+
+
+
+#fh5co-testimonial {
+    position: relative;
+    background: #F07E42;
+}
+
+#fh5co-testimonial .box-testimony blockquote .quote {
+    background: #3A3F46;
+}

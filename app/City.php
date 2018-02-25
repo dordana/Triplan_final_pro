@@ -22,7 +22,12 @@ class City extends Model
     public function photos(){
         return $this->hasMany('App\CityPhoto');
     }
+    
     public function airports(){
         return $this->hasMany('App\Airport');
+    }
+    
+    public function questions(){
+        return $this->hasMany('App\Question');
     }
 }

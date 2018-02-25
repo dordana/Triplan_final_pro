@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Country;
+use App\City;
 class HomeController extends Controller
 {
 
@@ -13,6 +14,8 @@ class HomeController extends Controller
     {
         return view('index',
         [
+            'citiesToTravel' => City::all()->sortBy('name'),
+            'countriesToTravel' => country::all()->sortBy('name'),
             'countries' => country::take(6)->get(),
         ]);
     }

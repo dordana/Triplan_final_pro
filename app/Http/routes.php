@@ -32,8 +32,10 @@ Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserCont
 ///Country Routes
 Route::get('/countries', ['as' => 'showcountries', 'uses' => 'CountryController@showallcountries']);
 Route::get('/country/{country}', ['as' => 'show-countrydetalis', 'uses' => 'CountryController@showcountry']);
+Route::get('/getCities','CountryController@getCitiesByCountry');
 
 ///General Routes
 Route::get('/general/terms', ['as' => 'show-terms', 'uses' => 'HomeController@terms']);
 
-
+///Trip Routes
+Route::get('/trip', 'TripController@initTrip');

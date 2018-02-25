@@ -12,7 +12,7 @@ class CreateCountriesTable extends Migration
             $table->increments('id');
             $table->string('name', 25);
             $table->string('code', 3)->unique();
-            $table->enum('continent', ['Asia', 'Europe', 'North America', 'Africa', 'Oceania', 'Antarctica', 'South America']);
+            $table->enum('continent', ['Asia', 'Europe', 'North America', 'Africa','Australia', 'South America']);
             $table->integer('capital')->length(10)->unsigned();
             $table->string('language');
             $table->string('currency');

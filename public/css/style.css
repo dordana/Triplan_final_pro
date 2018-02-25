@@ -1611,7 +1611,7 @@ div.cs-select span {
 }
 
 #footer {
-  background: #393e46;
+  background: #393E46;
   padding: 60px 0 40px;
 }
 #footer p {
@@ -1674,7 +1674,7 @@ div.cs-select span {
   color: #fff !important;
 }
 .btn:hover, .btn:active, .btn:focus {
-  background: #393e46 !important;
+  background: #393E46 !important;
   color: #fff;
   outline: none !important;
 }

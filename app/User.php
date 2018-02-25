@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     protected $fillable = [
-        'firstname','lastname','age','username','gender','country','city', 'email', 'password','provider_id','provider','profile_phote_path'
+        'firstname','lastname','age','username','gender','country', 'email', 'password','provider_id','provider','profile_phote_path'
     ];
 
     protected $hidden = [

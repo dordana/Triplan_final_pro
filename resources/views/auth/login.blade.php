@@ -27,21 +27,21 @@
 		                {{ csrf_field() }}
 		    				<div class='ui form'>
 		    				    @if ($errors->has('email'))
-		                            <script type="text/javascript">
-		                                var fade_out = function() {
-		                                  $("span.help-block").delay(3200).fadeOut(300);
-		                                }
-		                                setTimeout(fade_out, 5000);
-		                            </script>
 		                            <span class="help-block">
-		                                <strong>{{ $errors->first('email') }}</strong>
+		                                <strong style="color:red;text-align:center;">{{ $errors->first('email') }}</strong>
 		                            </span>
 		                        @endif
 		                        @if ($errors->has('password'))
 		                            <span class="help-block">
-		                                <strong>{{ $errors->first('password') }}</strong>
+		                                <strong style="color:red;text-align:center;">{{ $errors->first('password') }}</strong>
 		                            </span>
 		                        @endif
+								@if (Session::has('errorform'))
+									<span class="help-block">
+									    <strong style="color:red;text-align:center;">{{ Session::get('errorform')}}</strong>
+									 </span>
+								@endif
+
 		        					<div class='field required'>
 		        						<label>
 		        							Username/Email address
@@ -53,9 +53,7 @@
 		        							Password
 		        						</label>
 		        						<input id="password" type="password" value="" class="form-control" name="password" autocomplete="off">
-		                                @if (Session::has('errorform'))
-		                                    <h5 style="color:red;text-align:center;">{{ Session::get('errorform')}}</h5>
-		                                @endif
+		                               
 		        					</div>
 		        					<div class='inline field'>
 		        						<div class='ui toggle checkbox'>

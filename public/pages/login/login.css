@@ -86,14 +86,10 @@ body{
 
 .share a.fb{
   background: #3c5b9b url(https://cdn1.iconfinder.com/data/icons/social-media-icons-2/83/facebook_64x83.png) no-repeat center;
-  top: -200px;
-  transition: all 0.3s ease-in-out;
 }
 
 .share a.go{
   background: #F34032 url(http://www.levontin7.com/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png) no-repeat center;
-  bottom: -200px;
-  transition: all 0.3s ease-in-out;
 }
 
 .share:hover a.fb{
@@ -138,4 +134,11 @@ body{
 }
 .heading-section p {
     color: white;
+}
+
+.ui.primary.button {
+    background-color: #F2711C !important;
+}
+.ui.primary.button :hover{
+    background-color: #ce5f1a !important;
 }

@@ -34,20 +34,20 @@ ul.thumbnails-carousel li {
 }
 
 .left-sidebar{
-  border:#cecece solid 1px;
+  border:#393E46 solid 1px;
   height:600px;
   margin-right: 3px;
   width: 24%;
 }
 
 .right-sidebar{
-  border:#cecece solid 1px;
+  border:#393E46 solid 1px;
   height:600px;
   width: 24%;
 }
 
 .center_content{
-  border:#cecece solid 1px;
+  border:#393E46 solid 1px;
   height:600px;
   margin-right: 3px;
   width: 50%;
@@ -809,41 +809,6 @@ hr {
 /**/
 
 
-@charset "UTF-8";
-* {
-  box-sizing: border-box;
-}
-
-html {
-  color: #4d4d4d;
-  background-color: #ebeff1;
-  font-family: "Signika";
-  font-size: 16px;
-  font-weight: 300;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1 {
-  font-size: 26px;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 18px;
-  font-weight: 400;
-}
-
-h3 {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-h4 {
-  font-size: 12px;
-  font-weight: 400;
-  color: #89989c;
-}
 
 ul {
   list-style: none;
@@ -857,7 +822,6 @@ ul {
   left: 15px;
   height: 50px;
   width: 50px;
-  background-color: #89989c;
   border-radius: 50%;
 }
 
@@ -893,11 +857,6 @@ ul {
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
 }
 
-.container {
-  width: 90%;
-  max-width: 900px;
-  margin: 50px auto 100px;
-}
 
 .response-group {
   position: relative;
@@ -936,7 +895,6 @@ ul {
   margin-left: 5px;
 }
 .response-group > header .header-dropdown-trigger:hover, .response-group > header .header-dropdown-trigger.active {
-  border: 1px solid #cdd7dc;
 }
 .response-group > .header-dropdown {
   display: none;
@@ -1008,7 +966,6 @@ ul {
   font-weight: 700;
   text-align: center;
   color: #89989c;
-  border: 2px solid #cdd7dc;
   border-radius: 50%;
 }
 
@@ -1053,7 +1010,6 @@ ul {
   line-height: 40px;
   text-align: center;
   vertical-align: top;
-  border-right: 1px solid #cdd7dc;
 }
 .post__actions .button i.solid {
   display: none;
@@ -1087,7 +1043,6 @@ ul {
 }
 .post__actions .button--fill {
   width: calc(100% - 140px);
-  padding: 0 10px;
   text-align: left;
   font-size: 16px;
   font-weight: 400;
@@ -1121,7 +1076,6 @@ ul {
   height: 4em;
   margin-bottom: 10px;
   font-size: 16px;
-  border: 1px solid #cdd7dc;
   border-radius: 2px;
   box-shadow: 0 1px 1px #ebeff1 inset;
 }
@@ -1163,8 +1117,39 @@ ul {
 .post--commenting .button.comment-trigger span {
   display: none;
 }
+#addcommenttext{
+	width: 100%;
+	height: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+}
 .post--commenting .post__comments {
   display: block;
   margin-top: 40px;
-  border-top: 1px solid #cdd7dc;
+}
+.containerqa{
+	width: 60% !important;
+	display: block;
+  margin: auto;
+	
+}
+
+.quephoto{
+		width: 200%;
+		height: 200%;
+    text-align: center;
+    border: solid 1px white;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+}
+.ansphoto{
+		width: 150%;
+		height: 150%;
+    text-align: center;
+    border: solid px white;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+    
 }

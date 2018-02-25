@@ -28,3 +28,8 @@ $(document).ready(function() {
 
 		$('.shape').shape();
 });
+
+var fade_out = function() {
+  $("span.help-block").delay(3200).fadeOut(300);
+}
+setTimeout(fade_out, 5000);

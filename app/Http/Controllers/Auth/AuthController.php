@@ -44,9 +44,7 @@ class AuthController extends Controller
             'age' => $data['age'],
             'password' => bcrypt($data['password']),
             'gender' => $data['gender'],
-            'country' => $data['country'],
-            'city' => $data['city']
-            
+            'country' => $data['country']
         ]);
     }
     

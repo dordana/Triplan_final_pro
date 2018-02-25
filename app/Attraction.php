@@ -18,4 +18,8 @@ class Attraction extends Model
     public function userPhotos(){
         return $this->hasMany('App\UserAttractionPhoto');
     }
+    
+    public function questions(){
+        return $this->hasMany('App\Question');
+    }
 }
