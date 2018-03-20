@@ -8,13 +8,14 @@ use App\Country;
 use App\City;
 class HomeController extends Controller
 {
-
-
     public function index()
     {
+        $cities = City::all()->sortBy('name');
+        // return $cities;
         return view('index',
         [
-            'citiesToTravel' => City::all()->sortBy('name'),
+            'mainCountries' => country::orderBy('num_of_clicks', 'desc')->take(3)->get(),
+            'citiesToTravel' => $cities,
             'countriesToTravel' => country::all()->sortBy('name'),
             'countries' => country::take(6)->get(),
         ]);

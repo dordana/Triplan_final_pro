@@ -17,7 +17,7 @@ class CreateAttractionsTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('zip_code');
-            $table->integer('city')->length(10)->unsigned();
+            $table->integer('city_id')->length(10)->unsigned();
             $table->enum('type', ['restauant', 'sights', 'museum', 'tour', 'park','shopping', 'concert', 'nightlife', 'water sport', 'spa&wellness', 'zoo', 'airport', 'casino']);
             $table->integer('rate')->length(2)->unsigned();
             $table->text('description');

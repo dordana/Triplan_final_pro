@@ -19,8 +19,8 @@ class CreateCitiesTable extends Migration
             $table->string('mainpic');
             $table->string('wiki_link');
             $table->integer('num_of_clicks')->length(3)->unsigned();
-            $table->decimal('lng', 10, 10);
-            $table->decimal('lat', 10, 10);
+            $table->decimal('lng', 20, 20);
+            $table->decimal('lat', 20, 20);
             $table->text('description');
             $table->timestamps();
         });

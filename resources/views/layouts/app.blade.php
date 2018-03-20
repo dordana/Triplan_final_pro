@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-US">
     @include('partials.header')
+    <style type="text/css">
+        body{
+            font-family: 'Mina', sans-serif;
+        }
+    </style>
     <!-- START BODY -->
     <body>
         <div id="fh5co-wrapper">

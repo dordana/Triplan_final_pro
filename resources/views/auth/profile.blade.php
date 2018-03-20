@@ -4,6 +4,8 @@
 <link href="{!! asset('pages/profile/profile.css') !!}" rel="stylesheet" />
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<p id="pageName" hidden >Other</p>
+
 <div id="fh5co-car" class="fh5co-section-gray">
 			<div class="container">
 				<div class="row">
@@ -14,7 +16,7 @@
 	    {{ csrf_field() }}
 		<div id="form-left-wrapper">
 			<div id="form-tab-menu">
-				<div class="tab-menu-item current personal-tab">Personal</div>
+				<div class="tab-menu-item current personal-tab">Personal info</div>
 				<div class="tab-menu-item add-tab">Payment</div>
 				<div class="tab-menu-item other-tab">Confirmation</div>
 			</div>
@@ -160,27 +162,23 @@
 				<h1 class="text-center">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h1>
 			</div>
 			<div class="container-user-profile-photo">
-              <img src="{{ url('/uploads/user-photos') }}/{{Auth::user()->profile_phote_path}}" alt="" />
+              <img src="{{ url('/uploads/user-photos') }}/{{Auth::user()->profile_phote_path}}" alt="{{ url('/uploads/Icons/userprofile.png') }}" />
               <div class="overlay"></div>
                 <div class="button"><a class="" data-toggle="modal" data-target="#change-photo-modal" data-user-email="{{ Auth::user()->email }}">Change</a></div>
             </div>
             <br>
 			<table id="shopping-cart-menu">
 				<tr class='shopping-cart-item'>
-					<td class='cart-title'>Apply First Aid</td>
-					<td class='cart-price'>192.50</td>
+					<td class='cart-title'>Likes</td>
+					<td class='cart-price'>{{ Auth::user()->num_of_likes }}</td>
 				</tr>
 				<tr class='shopping-cart-item'>
-					<td class='cart-title'>Standard 11 (Generic Mining Induction)</td>
-					<td class='cart-price'>660.00</td>
+					<td class='cart-title'>Shares</td>
+					<td class='cart-price'>{{ Auth::user()->num_of_shares }}</td>
 				</tr>
 				<tr class='shopping-cart-item'>
-					<td class='cart-title'>Confined Space Entry</td>
-					<td class='cart-price'>302.50</td>
-				</tr>
-				<tr class='shopping-cart-item'>
-					<td class='cart-title'>Confined Space Entry</td>
-					<td class='cart-price'>302.50</td>
+					<td class='cart-title'>Paths</td>
+					<td class='cart-price'>{{ Auth::user()->num_of_paths }}</td>
 				</tr>
 			</table>
 		</div>

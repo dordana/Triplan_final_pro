@@ -20,7 +20,7 @@ html {
 }
 body {
 	background-color: #eee;
-	font-family: Roboto;
+	font-family: 'Mina', sans-serif;
 	font-weight: 400;
 	font-size: 1.6em;
 	line-height: 1.6;
@@ -104,7 +104,7 @@ h2 {
 	transition: all 0.5s ease;
 }
 	.card__article a:hover {
-		color: #2980b9;
+		/*color: #2980b9;*/
 	}
 
 /* card action */
@@ -214,9 +214,9 @@ h2 {
 	color: #eee;
 }
 
-  .container {
+  .cont {
        width: 100%; 
-       margin-left: 0 !important;
+       margin-left: 25px !important;
     margin-right: 0 !important;
   }
 
@@ -289,7 +289,7 @@ h2 {
   border-radius: 4px 4px 0 0;
 }
 .card .card-header:hover, .card .card-header:focus {
-  background-color: rgba(255, 255, 255, 0);
+  /*background-color: rgba(255, 255, 255, 0);*/
 }
 h3{
   color: white;
@@ -379,4 +379,23 @@ img {
 .nav-item{
   color: black !important;
 }
-  
+ 
+.heading{
+	text-align: center;
+	margin-bottom: 10px;
+	cursor: default;
+	font-size: 20px;
+}
+
+.list-group-item {
+
+     border: none !important; 
+}
+.item1:hover{
+	background: #F78536 !important;
+}
+
+.panel{
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}

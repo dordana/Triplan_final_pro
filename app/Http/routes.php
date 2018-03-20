@@ -33,9 +33,26 @@ Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserCont
 Route::get('/countries', ['as' => 'showcountries', 'uses' => 'CountryController@showallcountries']);
 Route::get('/country/{country}', ['as' => 'show-countrydetalis', 'uses' => 'CountryController@showcountry']);
 Route::get('/getCities','CountryController@getCitiesByCountry');
+Route::post('/addLike', ['as' => 'addlike', 'uses' => 'CountryController@addLike']);
+Route::post('/addQuestion', ['as' => 'addquestion', 'uses' => 'CountryController@addQuestion']);
+Route::post('/editQuestion', ['as' => 'editquestion', 'uses' => 'CountryController@addQuestion']);
+Route::post('/deleteQuestion', ['as' => 'deletequestion', 'uses' => 'CountryController@deleteQuestion']);
+Route::post('/addAnswerToQuestion', ['as' => 'addanswertoquestion', 'uses' => 'CountryController@addAnswerToQuestion']);
+
+
+// City Routes
+Route::get('/cities', ['as' => 'showcities', 'uses' => 'CitiesController@showcities']);
+Route::get('/cities/{city}', ['as' => 'show-citydetalis', 'uses' => 'CitiesController@showcity']);
+Route::post('/City_addLike', ['as' => 'City_addlike', 'uses' => 'CitiesController@addLike']);
+Route::post('/City_addQuestion', ['as' => 'City_addquestion', 'uses' => 'CitiesController@addQuestion']);
+Route::post('/City_editQuestion', ['as' => 'City_editquestion', 'uses' => 'CitiesController@editQuestion']);
+Route::post('/City_deleteQuestion', ['as' => 'City_deletequestion', 'uses' => 'CitiesController@deleteQuestion']);
+Route::post('/City_addAnswerToQuestion', ['as' => 'City_addanswertoquestion', 'uses' => 'CitiesController@addAnswerToQuestion']);
 
 ///General Routes
 Route::get('/general/terms', ['as' => 'show-terms', 'uses' => 'HomeController@terms']);
+Route::get('/404');
 
 ///Trip Routes
 Route::get('/trip', 'TripController@initTrip');
+Route::get('/tripbuilder', ['as' => 'tripbuilder', 'uses' => 'TripController@build']);

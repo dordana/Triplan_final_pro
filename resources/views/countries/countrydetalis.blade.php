@@ -5,6 +5,8 @@
 <link href="{!! asset('pages/showcountry/showcountry.css') !!}" rel="stylesheet" />
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 <!-- bootstrap carousel -->
+<p id="pageName" hidden >Other</p>
+
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
 		
 	  <!-- Indicators -->
@@ -65,10 +67,10 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 								<!-- Hover -->	
 								<div class="ui-hover">
 									<!-- Heading -->
-									<h4><a href="#">Voluptat</a></h4>
+									<h2>Currency</h2>
 									<!-- Paragraph -->
-									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>
-								</div>
+									<h5>{{$country->name}} uses {{$country->currency}} currency</h5>
+									</div>
 							</div>
 						</div>
 					</div>
@@ -262,96 +264,319 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 </div>
 
 
-
-
-
-	<br><br><br>
-
-
-
-
-<!--Q&A section-->
-<div class="containerqa">
-  <div class="response-group">
-    <header>
-      	<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
-						<h3>Q&A</h3>
-					</div>
-    </header>
-    <br><br><br>
-    <div class="response">
-      <div class="post-group">
-        @foreach ($country->questions as $q)
-        <div class="post">
-          <div class="post__avatar">
-          	<img class="quephoto" src="{{ url('/uploads/user-photos') }}/{{App\User::find($q->user_id)->profile_phote_path}}"></img>
-          </div>
-          <h3 class="post__author">
-            {{App\User::find($q->user_id)->firstname}}
-          </h3>
-          <h4 class="post__author">
-            {{$q->title}} 
-          </h4>
-          <h5 class="post__timestamp">
-            {{$q->created_at}} 
-          </h5>
-          <p class="post__body">
-			{{$q->body}} 
-          </p>
-          <div class="post__actions">
-            <div class="button button--approve">
-              <i class="fa fa-thumbs-o-up"></i><i class="fa fa-thumbs-up solid"></i>
-            </div>
-            <div class="button button--deny">
-              <i class="fa fa-thumbs-o-down"></i><i class="fa fa-thumbs-down solid"></i>
-            </div>
-            <div class="button button--fill comment-trigger">
-              <input id="addcommenttext" type="text" name="" placeholder="Add a comment..."/>
-            </div>
-            <div class="button button--flag">
-              <i class="fa fa-comment-o"></i><i class="fa fa-comment solid"></i>{{count($q->answers)}}
-            </div>
-            <div class="post__comments">
-              <div class="comment-group">
-              	 @foreach ($q->answers as $a)
-                <div class="post">
-                  <div class="post__avatar comment__avatar">
-                  	<img class="ansphoto" src="{{ url('/uploads/user-photos') }}/{{App\User::find($a->user_id)->profile_phote_path}}"></img>
-                  </div>
-                  <h3 class="post__author">
-                   {{App\User::find($a->user_id)->firstname}}
-                  </h3>
-                  <h4 class="post__timestamp">
-                     {{$a->created_at}}
-                  </h4>
-                  <p class="post__body">
-					{{$a->body}}
-                  </p>
-                </div>
-                 @endforeach
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        
-        
-        @endforeach
+<!--add a new comment modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  		<div class="form-group">
+            <label for="message-text" class="form-control-label">Title:</label>
+				<input class="form-control" type="text" name="title" id="textTitle"/>    
+			</div>
+		<div class="form-group">
+			<label for="message-text" class="form-control-label">Content:</label>
+			<textarea class="form-control" id="commentText"></textarea>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary saveComment">Save </button>
       </div>
     </div>
   </div>
 </div>
 
-<!--end Q&A section-->
+<!--edit comment modal-->
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <input type="text" hidden id="edit_qId_hidden"/>
+      <div class="modal-body">
+  		<div class="form-group">
+            <label for="message-text" class="form-control-label">Title:</label>
+				<input class="form-control" type="text" name="title" id="editTextTitle" value=""/>    
+			</div>
+		<div class="form-group">
+			<label for="message-text" class="form-control-label">Content:</label>
+			<textarea class="form-control" id="editCommentText" value=""></textarea>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary editComment">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--comment Inner Modal-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<input type="text" hidden id="qId_hidden"/>
+        <h5 class="modal-title" id="exampleModalLabel1">New answer to question</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="form-group">
+			<label for="message-text" class="form-control-label">Answer:</label>
+			<textarea class="form-control" id="commentText1"></textarea>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" data-dismiss="modal" class="btn btn-primary saveAnswer">Save </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!---->
 
 
+<div id="fh5co-tours" class="fh5co-section-gray">
+	<div class="container">
+				<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box fadeInUp animated">
+						<h3>Q&A</h3>
+					</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<!--comments section-->
+	<div class="comments-container">
+			@if (Auth::check())
+			<div class="newComment">
+				<div>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add a new commet</button>
+				</div>
+			</div>
+			@endif
+		<ul id="comments-list" class="comments-list">
+			@foreach ($country->questions as $q)
+			<li>
+				<div class="comment-main-level">
+					<div class="comment-avatar"><img src="{{ url('/uploads/user-photos') }}/{{App\User::find($q->user_id)->profile_phote_path}}" alt=""></div>
+					<div class="comment-box">
+						<div class="comment-head">
+							<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{App\User::find($q->user_id)->username}}</a></h6>
+							<span class="date">{{date("F jS, Y, g:i a", strtotime($q->created_at))}}</span>
+							@if (Auth::check())
+								@if ($user->id == $q->user_id)
+									<a class="showEditModal" data-toggle="modal" qTitle="{{$q->title}}" qBody="{{$q->body}}" qId="{{$q->id}}" data-target="#exampleModal3" data-whatever="@getbootstrap"><i title="Edit" qustionIdH="{{$q->id}}" class="fa fa-edit EHquestion{{$q->id}}"></i></a>
+									<i  title="Delete" qustionId="{{$q->id}}" class="fa fa-trash question{{$q->id}}"></i>
+								@endif
+							<a class="showAnswerModal" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap"><i class="fa fa-reply" qustionIdA="{{$q->id}}" title="Reply"></i></a>
+							<i title="Like" qustionIdH="{{$q->id}}" class="fa fa-heart Hquestion{{$q->id}}"> {{$q->num_of_likes}}</i>
+							 @endif
+						</div>
+						<div class="comment-content">
+							<b>{{$q->title}}</b><br>
+							{{$q->body}}
+						</div>
+						<div class="comment-content">
+							<input style="width:100%; background:#FFFFFF;" num_of_comments="{{count($q->answers)}}" qId="{{$q->id}}" value="{{count($q->answers)}} comments" type="button"  name="showC" class="showComments"/>
+						</div>
+					</div>
+				</div>
+				
+				<ul class="comments-list reply-list" id="{{$q->id}}" style="display:none;">
+					@foreach ($q->answers as $a)
+					<li>
+						<div class="comment-avatar"><img src="{{ url('/uploads/user-photos') }}/{{App\User::find($a->user_id)->profile_phote_path}}" alt="{{ url('/uploads/Icons/userprofile.png') }}"></div>
+						<div class="comment-box">
+							<div class="comment-head">
+								@if ($q->user_id == $a->user_id)
+								<h6 class="comment-name by-author"><a href="">{{App\User::find($a->user_id)->username}}</a></h6>
+								@else
+								<h6 class="comment-name"><a href="">{{App\User::find($a->user_id)->username}}</a></h6>
+								@endif
+								<span class="date">{{date("F jS, Y, g:i a", strtotime($a->created_at))}}</span>
+							</div>
+							<div class="comment-content">
+								{{$a->body}}
+							</div>
+						</div>
+					</li>
+					@endforeach
+				</ul>
+			</li>
+			@endforeach
+		</ul>
+	</div>
+	</div>
+				</div>
+			</div>
+		</div>
 
 
+<script type="text/javascript">
+	$(document).ready(function(){
+	    $(".showComments").click(function(){
+	    	if($(this).attr("num_of_comments") > 0){
+	    		var qId = $(this).attr("qId");
+		    	if($("#"+qId).css('display') == 'none')
+				{
+					$(this).val("close");
+					$("#"+qId).toggle();
+				}else
+				{
+					var numOfComments = $(this).attr("num_of_comments");
+					$(this).val(numOfComments + ' comments');
+					$("#"+qId).toggle();
+				}
+	    	}
+	    });
+	    
+	    $('.showEditModal').click(function(e) {
+	    	console.log($(this).attr('qTitle'));
+	    	console.log($(this).attr('qBody'));
+	    	$('#editTextTitle').val($(this).attr('qTitle'));
+	    	$('#editCommentText').val($(this).attr('qBody'));
+	    	$('#edit_qId_hidden').val($(this).attr('qId'));
+	    });
+	    
+	    $('.editComment').click(function(e) {
+			var title = $('#editTextTitle').val();
+			var body = $('#editCommentText').val();
+			var qId = $('#edit_qId_hidden').val();
+			var url = "{{route('editquestion')}}";
+			
+	    	e.preventDefault();
+	    	
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
 
+			$.ajax({
+				type:"POST",
+				url: url,
+				data : {qId: qId, body: body, title: title},
+				success: function(data) {
+					location.reload();
+				}
+			});
+	    	
+	    });
+	    
+	    
+	    $(".fa-heart").click(function(e)
+	    {
+	    	var url = "{{route('addlike')}}";
+	    	e.preventDefault();
+	    	var questionId = $(this).attr("qustionIdH");
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
 
+			$.ajax({
 
+				type:"POST",
+				url: url,
+				data : {qId: questionId},
+				success: function(data) {
+					var inc = parseInt($('.Hquestion'+questionId).text())+1;
+					$('.Hquestion'+questionId).text(" " + inc);
+					$('.Hquestion'+questionId).unbind( "click" );
+					$('.Hquestion'+questionId).css( "cursor", "auto" );
+				}
+			});
+			
+	    })
+	    
+	    $(".fa-trash").click(function(e)
+	    {
+	    	var url = "{{route('deletequestion')}}";
+	    	e.preventDefault();
+	    	var questionId = $(this).attr("qustionId");
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
 
+			$.ajax({
+				type:"POST",
+				url: url,
+				data : {qId: questionId},
+				success: function(data) {
+					location.reload();
+				}
+			});
+			
+	    })
+	    
+	    
+	    
+	    
+	    $('.saveComment').click(function(e){
+	    	var commentText = $('#commentText').val();
+	    	var textTitle = $('#textTitle').val();
+	    	var countryId = '{{$country->id}}';
+	    	var url = "{{route('addquestion')}}";
+	    	e.preventDefault();
+	    	
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
 
+			$.ajax({
+				type:"POST",
+				url: url,
+				data : {cId: countryId, data: commentText, title: textTitle },
+				success: function() {
+					location.reload();
+				}
+			});
+	    });
+	    
+	    
+	    $('.showAnswerModal').click(function(){
+	    	var qid = $(this).children().attr('qustionIdA');
+	    	$('#qId_hidden').val(qid);
+	    })
+	    $('.saveAnswer').click(function(e){
+	    	var commentText = $('#commentText1').val();
+	    	var questionId = $('#qId_hidden').val();
+	    	var url = "{{route('addanswertoquestion')}}";
+	    	e.preventDefault();
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+
+			$.ajax({
+				type:"POST",
+				url: url,
+				data : {qId: questionId, data: commentText},
+				success: function() {
+					location.reload();
+				}
+			});
+	    });
+	    
+	});
+</script>
 
 <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>

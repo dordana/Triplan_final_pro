@@ -1,6 +1,4 @@
 <link href="{!! asset('pages/navbar/navbar.css') !!}" rel="stylesheet" />
-
-
 <header id="fh5co-header-section" class="sticky-banner">
 	<div class="container">
 		<div class="nav-header">
@@ -11,7 +9,7 @@
 				<ul class="sf-menu" id="fh5co-primary-menu">
 					<li class="active"><a href="/">Home</a></li>
 					<li><a href="{{route('showcountries')}}">Countries</a></li>
-					<li><a href="#">Cities</a></li>
+					<li><a href="{{route('showcities')}}">Cities</a></li>
 					<li><a href="#">Attractions</a></li>
 					@if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -32,6 +30,4 @@
 </header>
 <script src="{!! asset('pages/navbar/navbar.js') !!}"></script>
 <script type="text/javascript">
-	
-	
 </script>

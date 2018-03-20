@@ -10,6 +10,7 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->length(10)->unsigned();
+            $table->integer('num_of_likes')->length(10)->unsigned();
             $table->string('title');
             $table->text('body');
             $table->integer('attraction_id')->length(10)->unsigned();

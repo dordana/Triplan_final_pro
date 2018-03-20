@@ -12,3 +12,11 @@
 #fh5co-testimonial .box-testimony blockquote .quote {
     background: #3A3F46;
 }
+.bgvid  {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    overflow: hidden;
+    height: 10em;
+}
