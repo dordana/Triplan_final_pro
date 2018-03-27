@@ -742,7 +742,7 @@ body.MakeFloatingCart div.floating-cart.moveToCart{
 }
 div.cart-icon-top{
 	position:absolute;
-	background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/cart.png") 0 -3px no-repeat;
+	/*background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/cart.png") 0 -3px no-repeat;*/
 	margin:0;
 	width:21px;
 	height:3px;
@@ -752,7 +752,7 @@ div.cart-icon-top{
 }
 div.cart-icon-bottom{
 	position:absolute;
-	background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/cart.png") 0 -3px no-repeat;
+	/*background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/cart.png") 0 -3px no-repeat;*/
 	margin:0;
 	width:21px;
 	height:19px;
@@ -809,7 +809,11 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
 	display:none;
 }
 .cart-item:hover .delete-item{display:block;cursor:pointer}
-
+.details{
+color: #676a74;
+padding-bottom:10px;
+font-size:14px;
+}
 
 #info{
 	position: absolute;
@@ -822,17 +826,24 @@ body.MakeFloatingCart div.cart-icon-bottom{z-index:300;}
 #info p{font-size:15px; padding:3px;color:#b1b1b3}
 #info a{text-decoration:none;} 
 #checkout{
-	border: 2px solid #f68546;
-	font-size: 13px;
-	font-weight: 700;
-	padding: 3px 9px;
-	position: absolute;
-	cursor: pointer;
-	top: 137px;
-	left: 181px;
-	color: #f68546;
+    border: 2px solid #f68546;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px 35px;
+    position: absolute;
+    cursor: pointer;
+    top: 115px;
+    left: 84px;
+    color: #f68546;
 	display:none;
 }
+
+#checkout:hover{
+    border: 2px solid white;
+    color: white;
+    background-color:#f68546; 
+}
+
 
 .product.large{
 	width:639px;
@@ -1016,43 +1027,43 @@ div.sku strong{
 /* Extra Small Devices, Phones */ 
 @media only screen and (min-width : 480px) {
  #grid{
- 	width:350px;
+ 	width:480px;
  }
  
  #grid-selector{
- 	width:350px;
+ 	width:77%;
  }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
 	#grid{
-	 	width:655px;
+	 	width:768px;
 	 }
 	 
 	 #grid-selector{
-	 	width:600px;
+	 	width:77%;
 	 }
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
 	#grid{
-	 	width:800px;
+	 	width:992px;
 	 }
 	 
 	 #grid-selector{
-	 	width:800px;
+	 	width:77%;
 	 }
 }
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
 	#grid{
-	 	width:930px;
+	 	width:1200px;
 	 }
 	 
 	 #grid-selector{
-	 	width:900px;
+	 	width:77%;
 	 }
 }

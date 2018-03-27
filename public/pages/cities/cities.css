@@ -403,3 +403,9 @@ img {
 	background-color: #EBEBEB !important;
 }
 
+@media screen and (max-width:900px){
+	.cont {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+	}	
+}

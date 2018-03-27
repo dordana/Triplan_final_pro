@@ -21,13 +21,13 @@
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner">
       <div class="item active srle">
-	      <img src="{{ url('/uploads/countries') }}/{{$country->mainpic}}" style="width:1600px ;height: 800px;" alt="1.jpg" class="img-responsive">
+	      <img src="{{ url('/uploads/countries') }}/{{$country->mainpic}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
 	      <div class="carousel-caption">
 	      </div>
 	    </div>
       @foreach ($country->photos as $photo)
 	    <div class="item">
-	      <img src="{{ url('/uploads/countries') }}/{{$photo->path}}" style="width:1600px ;height: 800px;" alt="1.jpg" class="img-responsive">
+	      <img src="{{ url('/uploads/countries') }}/{{$photo->path}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
 	      <div class="carousel-caption">
 	      </div>
 	    </div>

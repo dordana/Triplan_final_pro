@@ -41,4 +41,8 @@ class User extends Authenticatable
     public function attractionPhotos(){
         return $this->hasMany('App\UserAttractionPhoto');
     }
+    
+    public function reviewPhotos(){
+        return $this->hasMany('App\ReviewPhoto');
+    }
 }

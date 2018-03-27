@@ -11,6 +11,7 @@
 					<li><a href="{{route('showcountries')}}">Countries</a></li>
 					<li><a href="{{route('showcities')}}">Cities</a></li>
 					<li><a href="#">Attractions</a></li>
+					<li><a href="{{route('showreviews')}}">Reviews</a></li>
 					@if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
@@ -18,6 +19,9 @@
                         <li>
 						<a href="#" class="fh5co-sub-ddown">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</a>
 						<ul class="fh5co-sub-menu">
+							@if (Auth::user()->admin)
+							<li><a href="{{ url('/admin/dashboard') }}">Admin panel</a></li>
+							@endif
 							<li><a href="{{ url('/profile') }}">Profile</a></li>
 							<li><a href="{{ url('/logout') }}">Logout</a></li>
 						</ul>

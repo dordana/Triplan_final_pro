@@ -49,6 +49,12 @@ Route::post('/City_editQuestion', ['as' => 'City_editquestion', 'uses' => 'Citie
 Route::post('/City_deleteQuestion', ['as' => 'City_deletequestion', 'uses' => 'CitiesController@deleteQuestion']);
 Route::post('/City_addAnswerToQuestion', ['as' => 'City_addanswertoquestion', 'uses' => 'CitiesController@addAnswerToQuestion']);
 
+
+// Review Route
+Route::get('/reviews', ['as' => 'showreviews', 'uses' => 'ReviewController@showallreviews']);
+Route::get('/addreview', ['as' => 'addreviewpage', 'uses' => 'ReviewController@addreviewpage']);
+Route::post('/addreview', ['as' => 'addreview', 'uses' => 'ReviewController@addreview']);
+
 ///General Routes
 Route::get('/general/terms', ['as' => 'show-terms', 'uses' => 'HomeController@terms']);
 Route::get('/404');
@@ -56,3 +62,8 @@ Route::get('/404');
 ///Trip Routes
 Route::get('/trip', 'TripController@initTrip');
 Route::get('/tripbuilder', ['as' => 'tripbuilder', 'uses' => 'TripController@build']);
+
+
+// Admin Routes
+Route::get('/admin/dashboard', 'AdminController@index');
+Route::get('/admin/allusers', 'AdminController@showallusers');

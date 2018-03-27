@@ -12,8 +12,6 @@ use App\Http\Requests;
 class CountryController extends Controller
 {
     public function showcountry($name){
-        // $client = new Client();
-        // $currencies = $client->request('GET','https://www.oanda.com/rates/api/v2/rates/spot.json?base=EUR&quote=USD&date_time=2017-01-01&api_key=xuFV4D07XyuvB247FxN4MPe4');
         $country = country::where('name',$name)->first();
         $country->num_of_clicks += 1;
         $country->save();

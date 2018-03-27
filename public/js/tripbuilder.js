@@ -209,6 +209,7 @@ $(document).ready(function(){
 					$(el).find('.x').removeClass('animate');							
 				}, 50);	
 				$(this).removeClass('checked');
+				$( ".product" ).show();
 				return false;
 			}
 			$('.choise').each(function( index ) {
@@ -266,7 +267,6 @@ $(document).ready(function(){
 						}
 					})
 					var attraction_name_to_return = $(this).parent().attr('attraction_id');
-					console.log($(this).parent().attr('attraction_id'));
 					$( ".product" ).each(function( index ) {
 			          if ($(this).attr('attraction_id').trim() == attraction_name_to_return.trim() ){
 			              $(this).show();

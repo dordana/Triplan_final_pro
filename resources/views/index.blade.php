@@ -24,12 +24,12 @@
 		cursor: pointer;
 	}
 	.bgvid{
-  position:absolute;
-  left:0;
-  top:0;
-  width:100vw;
-  height: 100%;
-}
+	  position:absolute;
+	  left:0;
+	  top:0;
+	  width:100vw;
+	  height: 100%;
+	}
 select option:checked,
 select option:hover {
     box-shadow: 0 0 10px 100px #000 inset;
@@ -61,13 +61,12 @@ select option:hover {
 							 	<form id="formtrip" action="{{ url('/trip') }}" method="GET">
 							 		<input id="countryname" type="hidden" name="country" value="">
 							 		<input id="cityname" type="hidden" name="city" value="">
-							 		<input id="num_of_passengers" type="hidden" name="num_of_passengers" value="">
 									<div class="row">
 										<div class="col-xxs-12 col-xs-6 mt">
 											<div class="input-field">
 												<label for="from">Country:</label>
 												<select class="form-control custom-select sources" id="country-select" required >
-												  <option value="1">Select country</option>
+												  <option value="">Select country</option>
 												  @foreach($countriesToTravel as $country)
 												  	<option value="{{$country->id}}">{{$country->name}}</option>
 												  @endforeach
@@ -83,7 +82,7 @@ select option:hover {
 											</div>
 										</div>
 									
-										<p id="dateserror" style="text-align: center; color:red; display:none;"><b>Check out must be greater then check in</b></p>
+										<!--<p id="dateserror" style="text-align: center; color:red; display:none;"><b id="errorMsg">Check out must be greater then check in</b></p>-->
 										<div class="col-xxs-12 col-xs-6 mt">
 											<div class="input-field">
 												<label for="date-start">Check In:</label>
@@ -245,85 +244,32 @@ select option:hover {
 				<div class="row">
 					<div class="col-md-12">
 						<ul id="fh5co-destination-list" class="animate-box">
-							<li class="one-forth text-center" style="background-image: url(images/place-1.jpg); ">
-								<a href="#">
+							@for ($i = 0; $i < 5; $i++)
+							<li class="one-forth text-center" style="background-image: url({{ url('/uploads/cities') }}/{{$citiesToTravel[$i]->mainpic}});">
+								<a href="{{route('show-citydetalis', $citiesToTravel[$i]->name)}}">
 									<div class="case-studies-summary">
-										<h2>Los Angeles</h2>
+										<h2>{{$citiesToTravel[$i]->name}}</h2>
 									</div>
 								</a>
 							</li>
-							<li class="one-forth text-center" style="background-image: url(images/place-2.jpg); ">
-								<a href="#">
-									<div class="case-studies-summary">
-										<h2>Hongkong</h2>
-									</div>
-								</a>
-							</li>
-							<li class="one-forth text-center" style="background-image: url(images/place-3.jpg); ">
-								<a href="#">
-									<div class="case-studies-summary">
-										<h2>Italy</h2>
-									</div>
-								</a>
-							</li>
-							<li class="one-forth text-center" style="background-image: url(images/place-4.jpg); ">
-								<a href="#">
-									<div class="case-studies-summary">
-										<h2>Philippines</h2>
-									</div>
-								</a>
-							</li>
-
-							<li class="one-forth text-center" style="background-image: url(images/place-5.jpg); ">
-								<a href="#">
-									<div class="case-studies-summary">
-										<h2>Japan</h2>
-									</div>
-								</a>
-							</li>
+							@endfor
 							<li class="one-half text-center">
 								<div class="title-bg">
 									<div class="case-studies-summary">
-										<h2>Most Popular Destinations</h2>
-										<span><a href="#">View All Destinations</a></span>
+										<h2>Most Popular Cities</h2>
+										<span><a href="{{route('showcities')}}">View All Cities</a></span>
 									</div>
 								</div>
 							</li>
-							<li class="one-forth text-center" style="background-image: url(images/place-6.jpg); ">
-								<a href="#">
+							@for ($i = 5; $i < count($citiesToTravel); $i++)
+							<li class="one-forth text-center" style="background-image: url({{ url('/uploads/cities') }}/{{$citiesToTravel[$i]->mainpic}});">
+								<a href="{{route('show-citydetalis', $citiesToTravel[$i]->name)}}">
 									<div class="case-studies-summary">
-										<h2>Paris</h2>
+										<h2>{{$citiesToTravel[$i]->name}}</h2>
 									</div>
 								</a>
 							</li>
-							<li class="one-forth text-center" style="background-image: url(images/place-7.jpg); ">
-								<a href="#">
-									<div class="case-studies-summary">
-										<h2>Singapore</h2>
-									</div>
-								</a>
-							</li>
-							<li class="one-forth text-center" style="background-image: url(images/place-8.jpg); ">
-								<a href="#">
-									<div class="case-studies-summary">
-										<h2>Madagascar</h2>
-									</div>
-								</a>
-							</li>
-							<li class="one-forth text-center" style="background-image: url(images/place-9.jpg); ">
-								<a href="#">
-									<div class="case-studies-summary">
-										<h2>Egypt</h2>
-									</div>
-								</a>
-							</li>
-							<li class="one-forth text-center" style="background-image: url(images/place-10.jpg); ">
-								<a href="#">
-									<div class="case-studies-summary">
-										<h2>Indonesia</h2>
-									</div>
-								</a>
-							</li>
+							@endfor
 						</ul>		
 					</div>
 				</div>
@@ -478,22 +424,28 @@ function nonRegisteredUserAlert(){
 		
 		
 $('#tripsubmit').click(function() {
-    var selected = $("#country-select").val();
-    $("#countryname").val(selected);
-    var selected1 = $("#city-select").val();
-    
-    var start = $('#date-start').val();
-    var end = $('#date-end').val();
-    if (start > end) {
-    	$('#dateserror').css('display','block');
-    	errorTimer();
-    }else{
-    	$("#formtrip").submit();
-    }
-});
-	function errorTimer() {
-	    setTimeout(function(){ $('#dateserror').css('display','none'); }, 4000);
+	if ($("#country-select").val() == "" || $("#city-select").val() == "" || $('#date-start').val() == "" || $('#date-end').val() == ""){
+		  swal("Please fill in all the fields", {
+			  buttons: false,
+			  timer: 3000,
+			});
+	}else{
+	    var selected = $("#country-select").val();
+	    $("#countryname").val(selected);
+	    var selected1 = $("#city-select").val();
+	    $("#cityname").val(selected1);
+	    var start = $('#date-start').val();
+	    var end = $('#date-end').val();
+	    if (start > end) {
+	    	swal("Check out must be greater then check in", {
+			  buttons: false,
+			  timer: 3000,
+			});
+	    }else{
+	    	$("#formtrip").submit();
+	    }
 	}
+});
 		
 	</script>
 @endsection

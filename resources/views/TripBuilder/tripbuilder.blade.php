@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Add to cart interaction</title>
+  <title>Add to your trip interaction</title>
   
   
   
@@ -23,11 +23,12 @@
 </div>
 <form id="attractionForm" action="{{route('tripbuilder')}}" method="get">
     <input type="text" hidden name="attractionList" id="attractionList"/>
-    <div id="checkout">
-	CHECKOUT
-</div>
+    <input type="text" hidden name="pathName" id="pathName"/>
+    <input type="text" hidden name="cityname" id="cityname"/>
+    <input type="text" hidden name="startDate" id="startDate"/>
+    <input type="text" hidden name="endDate" id="endDate"/>
+    <div id="checkout">CHECKOUT</div>
 </form>
-
 
 
 <div id="header">	
@@ -37,9 +38,19 @@
 </div>
 
 <div id="sidebar">
-	<h3>CART</h3>
+    <br><br>
+    <h3>Path name</h3>
+    <input type="text" class="form-control" id="pathNameText">
+    
+    <h3>Path details</h3>
+    <p class="details">Country: {{$country->name}}</p>
+    <p class="details">City: {{$city->name}}</p>
+    <p class="details">Start date: {{$start}}</p>
+    <p class="details">End date: {{$end}}</p>
+    
+	<h3>attractions</h3>
     <div id="cart">
-    	<span class="empty">No items in cart.</span>       
+    	<span class="empty">No attractions in list.</span>       
     </div>
     
     <h3>TYPES</h3>
@@ -109,7 +120,7 @@
                 <span>XXL</span>
             </div>
             
-            <button class="add-cart-large">Add To Cart</button>                          
+            <button class="add-cart-large">Add To Your trip</button>                          
                          
         </div>
         <div class="make3D">
@@ -117,7 +128,7 @@
                 <div class="shadow"></div>
                 <img src="{{ url('/uploads/attractions') }}/{{$attraction->mainpic}}" alt="" />
                 <div class="image_overlay"></div>
-                <div class="add_to_cart">Add to cart</div>
+                <div class="add_to_cart">Add to your trip</div>
                 <div class="view_gallery">More Details</div>  
                 <div class="stats">        	
                     <div class="stats-container">
@@ -175,19 +186,21 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-    $('add-cart-large').click(function() {
-        console.log($(this).parent().parent());
-		$(this).parent().parent().hide();
-    });
-    
     $('#checkout').click(function(){
-       var attractionList = [];
-       $('.cart-item').each(function( index ) {
-            attractionList.push($(this).attr('attraction_id'));
-       });
-       attractionList = JSON.stringify(attractionList);
-       $('#attractionList').val(attractionList);
-       $('#attractionForm').submit();
+        if ($('#pathNameText').val() != "")
+        {
+           $('#pathName').val($('#pathNameText').val()); 
+           $('#cityname').val('{{$city->id}}');
+           $('#startDate').val('{{$start}}');
+           $('#endDate').val('{{$end}}');
+           var attractionList = [];
+           $('.cart-item').each(function( index ) {
+                attractionList.push($(this).attr('attraction_id'));
+           });
+           attractionList = JSON.stringify(attractionList);
+           $('#attractionList').val(attractionList);
+           $('#attractionForm').submit();
+        }
     });
     
     

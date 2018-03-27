@@ -24,7 +24,9 @@
      
       <div class="container cont">
         <div class="row">
-          <div class="panel sidebar-card col-sm-2 col-md-2 col-xs-2">
+         <div class="col-sm-2">
+         <br>
+      <div class="panel sidebar-card">
               <div class="list-group">
                 <div class="small">
                   <a href="javascript:void(0)" class="nav-item catSubFacet_0_1 list-group-item heading" data-update-url="#" data-facet-update="#main-page">Continents</a>
@@ -37,10 +39,12 @@
                 </div>
               </div>
           </div>
-          <div class="col-sm-10 col-md-10 col-xs-10">
+           </div>
+          <div class="col-sm-10">
+            <br>
                 <div class="row dddd">
                   @foreach ($countries as $country)
-                  <div class="col-lg-4 col-md-4 col-xs-4 countries">
+                  <div class="col-lg-4 col-md-4 countries">
                     <div class="cards">
                     <a class="card" href="{{route('show-countrydetalis', $country->name)}}">
                       <input id="continent" hidden value="{{$country->continent}}"/>

@@ -1,0 +1,9 @@
+.newReviewBtn{
+  margin: 40px auto;
+  display: block;
+  
+}
+
+.newReviewBtn:hover{
+  background-color: #F78536 !important;  
+}

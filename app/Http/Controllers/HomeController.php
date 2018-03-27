@@ -11,7 +11,6 @@ class HomeController extends Controller
     public function index()
     {
         $cities = City::all()->sortBy('name');
-        // return $cities;
         return view('index',
         [
             'mainCountries' => country::orderBy('num_of_clicks', 'desc')->take(3)->get(),
