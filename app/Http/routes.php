@@ -29,6 +29,9 @@ Route::post('/profile', 'UserController@udpateprofile');
 Route::post('/profile/changepassword', ['as' => 'change-password', 'uses' => 'UserController@changepassword']);
 Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserController@changephoto']);
 
+///Users Routes
+Route::get('/profile/{id}', ['as' => 'showuserprofile', 'uses' => 'UserController@userprofile_byid']);
+
 ///Country Routes
 Route::get('/countries', ['as' => 'showcountries', 'uses' => 'CountryController@showallcountries']);
 Route::get('/country/{country}', ['as' => 'show-countrydetalis', 'uses' => 'CountryController@showcountry']);
@@ -50,14 +53,25 @@ Route::post('/City_deleteQuestion', ['as' => 'City_deletequestion', 'uses' => 'C
 Route::post('/City_addAnswerToQuestion', ['as' => 'City_addanswertoquestion', 'uses' => 'CitiesController@addAnswerToQuestion']);
 
 
+// Attraction Routes
+Route::get('/attractions', ['as' => 'showattractions', 'uses' => 'AttractionController@showAllAttractions']);
+
 // Review Route
 Route::get('/reviews', ['as' => 'showreviews', 'uses' => 'ReviewController@showallreviews']);
 Route::get('/addreview', ['as' => 'addreviewpage', 'uses' => 'ReviewController@addreviewpage']);
 Route::post('/addreview', ['as' => 'addreview', 'uses' => 'ReviewController@addreview']);
+Route::get('/reviews/{review}', ['as' => 'show-review', 'uses' => 'ReviewController@showreview']);
+Route::post('/reviews/rating', 'ReviewController@rating');
 
 ///General Routes
+Route::get('/general/faq', ['as' => 'show-faq', 'uses' => 'HomeController@faq']);
+Route::get('/general/contact', ['as' => 'show-contact', 'uses' => 'HomeController@contact']);
 Route::get('/general/terms', ['as' => 'show-terms', 'uses' => 'HomeController@terms']);
+Route::get('/general/partners', ['as' => 'show-partners', 'uses' => 'HomeController@partners']);
+Route::get('/general/shareus', ['as' => 'show-shareus', 'uses' => 'HomeController@shareus']);
+Route::get('/general/aboutus', ['as' => 'show-aboutus', 'uses' => 'HomeController@aboutus']);
 Route::get('/404');
+Route::post('/general/contact', ['as' => 'usermsg', 'uses' => 'HomeController@userMsgEmail']);
 
 ///Trip Routes
 Route::get('/trip', 'TripController@initTrip');
@@ -67,3 +81,8 @@ Route::get('/tripbuilder', ['as' => 'tripbuilder', 'uses' => 'TripController@bui
 // Admin Routes
 Route::get('/admin/dashboard', 'AdminController@index');
 Route::get('/admin/allusers', 'AdminController@showallusers');
+Route::post('/admin/user/edit', 'AdminController@userEdit');
+Route::post('/admin/user/inactive', 'AdminController@userInactive');
+Route::post('/admin/user/active', 'AdminController@userActive');
+
+

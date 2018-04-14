@@ -5,6 +5,9 @@
 <script src="{!! asset('pages/index/index.js') !!}"></script>
 <link href="{!! asset('pages/index/index.css') !!}" rel="stylesheet" />
 <style type="text/css">
+.text-border{
+	text-shadow: -1px 0 #fc3f00, 0 1px #fc3f00, 1px 0 #fc3f00, 0 -1px #fc3f00;	
+}
 	select, option{
 		background: rgba(0, 0, 0, 0.05) !important;
     border: none !important;
@@ -19,7 +22,9 @@
     color: #F78536 !important;
     cursor: pointer !important;
 	}
-	
+	.contact-section {
+		background: #F07E42 !important;
+	}
 	#date-start,#date-end{
 		cursor: pointer;
 	}
@@ -44,6 +49,7 @@ select option:hover {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <p id="pageName" hidden >Home</p>
+
 <div class="fh5co-hero">
 	<div class="fh5co-overlay"></div>
 		<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-position: 0px 159px;">
@@ -97,9 +103,13 @@ select option:hover {
 										</div>
 										<div class="col-xs-12">
 											@if (Auth::guest())
-       											<input type="button" class="btn btn-primary btn-block" onClick="nonRegisteredUserAlert()" value="Trip Builder">
+       											<input type="button" class="btn btn-primary btn-block" onClick="nonRegisteredUserAlert();" value="Trip Builder">
 						                    @else
-       											<input type="button" class="btn btn-primary btn-block" id="tripsubmit" value="Trip Builder">
+						                    	@if (Auth::user()->active == "0")
+       												<input type="button" class="btn btn-primary btn-block" id="tripsubmit" onClick="inactiveAlert();" value="Trip Builder">
+       											@else
+       												<input type="button" class="btn btn-primary btn-block" id="tripsubmit" onClick="formSub();" value="Trip Builder">
+       											@endif
 						                    @endif
 										</div>
 									</div>
@@ -108,11 +118,11 @@ select option:hover {
 							</div>
 						</div>
 					</div>
-					<div class="desc2 animate-box fadeInUp animated">
+					<div class="desc2 animate-box fadeInUp animated" style="top:-150px;position: relative;">
 						<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
-							<h1 style="color:white; font-size:75px;"><b>Welcome to Triplan</b></h1>
-							<h2 style="color:white;">The best site ever</h2>
-							<h3 style="color:white;">600 Attractions</h3>
+							<h1 class="text-border" style="color:white; font-size:75px;"><b>Welcome to Triplan</b></h1>
+							<h2 class="text-border" style="color:white;">Make your dream come true</h2>
+							<h3 class="text-border" style="color:white;">100 Paths, 500 Attractions and 1 Great site</h3>
 							<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
 						</div>
 					</div>
@@ -280,61 +290,34 @@ select option:hover {
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Recent From Blog</h3>
+						<h3>Recent From Reviews</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
 					</div>
 				</div>
 			</div>
 			<div class="container">
 				<div class="row row-bottom-padded-md">
+					@foreach($reviews as $review)
 					<div class="col-lg-4 col-md-4 col-sm-6">
 						<div class="fh5co-blog animate-box">
-							<a href="#"><img class="img-responsive" src="images/place-1.jpg" alt=""></a>
+							<a href="#"><img class="img-responsive" src="{{ url('/uploads/reviews')}}/{{$review->mainpic}}" alt=""></a>
 							<div class="blog-text">
 								<div class="prod-title">
-									<h3><a href="#">30% Discount to Travel All Around the World</a></h3>
-									<span class="posted_by">Sep. 15th</span>
-									<span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<p><a href="#">Learn More...</a></p>
-								</div>
-							</div> 
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-6">
-						<div class="fh5co-blog animate-box">
-							<a href="#"><img class="img-responsive" src="images/place-2.jpg" alt=""></a>
-							<div class="blog-text">
-								<div class="prod-title">
-									<h3><a href="#">Planning for Vacation</a></h3>
-									<span class="posted_by">Sep. 15th</span>
-									<span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<p><a href="#">Learn More...</a></p>
-								</div>
-							</div> 
-						</div>
-					</div>
-					<div class="clearfix visible-sm-block"></div>
-					<div class="col-lg-4 col-md-4 col-sm-6">
-						<div class="fh5co-blog animate-box">
-							<a href="#"><img class="img-responsive" src="images/place-3.jpg" alt=""></a>
-							<div class="blog-text">
-								<div class="prod-title">
-									<h3><a href="#">Visit Tokyo Japan</a></h3>
-									<span class="posted_by">Sep. 15th</span>
-									<span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+									<h2><a href="#">{{$review->title}}</a></h2>
+									<span class="posted_by">{{$review->created_at}}</span>
+									<span class="comment">{{App\User::find($review->user_id)->username}}</span>
+									<p>{{substr($review->body, 0,40)}}...</p>
 									<p><a href="#">Learn More...</a></p>
 								</div>
 							</div> 
 						</div>
 					</div>
 					<div class="clearfix visible-md-block"></div>
+					@endforeach
 				</div>
 
 				<div class="col-md-12 text-center animate-box">
-					<p><a class="btn btn-primary btn-outline btn-lg" href="#">See All Post <i class="icon-arrow-right22"></i></a></p>
+					<p><a class="btn btn-primary btn-outline btn-lg" href="{{route('showreviews')}}">See All Review <i class="icon-arrow-right22"></i></a></p>
 				</div>
 
 			</div>
@@ -383,6 +366,67 @@ select option:hover {
 		</div>
 	</div>
 	
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+		<div id="fh5co-contact" class="fh5co-section-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+						<h3>Our Address</h3>
+					</div>
+				</div>
+				<form method="POST" action="{{ route('usermsg') }}" autocomplete="off">
+		                {{ csrf_field() }}
+					<div class="row animate-box">
+						<div class="col-md-12">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.94470319847!2d34.791500584625325!3d31.249954067570997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1502666cc7f87775%3A0xaf5e654731053ad8!2z15TXnteb15zXnNeUINeU15DXp9eT157XmdeqINec15TXoNeT16HXlCDXoiLXqSDXodee15kg16nXntei15XXnw!5e0!3m2!1siw!2sfr!4v1523278282217" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+						</div>
+					</div>
+						<div class="row">
+							<br><br><br>
+							<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+								<h3>Contact Information</h3>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							</div>
+						</div>
+					<div class="row animate-box">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input name="name" type="text" class="form-control" placeholder="Name">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input name="email" type="text" class="form-control" placeholder="Email">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<textarea  name="msg" name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group text-center">
+										<input type="submit" style="width:350px;" value="Send Message" class="btn btn-primary send">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<script>
 		var cities = {!! json_encode($citiesToTravel->toArray()) !!};
 		console.log(cities);
@@ -421,31 +465,37 @@ function nonRegisteredUserAlert(){
   }
 });
 }		
+		function inactiveAlert(){
+			swal("Thank you for choosing Triplan."+"\nPlease waiting for Admin Approval", {
+					  buttons: false,
+					  timer: 5000,
+					});
+		}
 		
-		
-$('#tripsubmit').click(function() {
-	if ($("#country-select").val() == "" || $("#city-select").val() == "" || $('#date-start').val() == "" || $('#date-end').val() == ""){
-		  swal("Please fill in all the fields", {
-			  buttons: false,
-			  timer: 3000,
-			});
-	}else{
-	    var selected = $("#country-select").val();
-	    $("#countryname").val(selected);
-	    var selected1 = $("#city-select").val();
-	    $("#cityname").val(selected1);
-	    var start = $('#date-start').val();
-	    var end = $('#date-end').val();
-	    if (start > end) {
-	    	swal("Check out must be greater then check in", {
-			  buttons: false,
-			  timer: 3000,
-			});
-	    }else{
-	    	$("#formtrip").submit();
-	    }
-	}
-});
+		function formSub(){
+			if ($("#country-select").val() == "" || $("#city-select").val() == "" || $('#date-start').val() == "" || $('#date-end').val() == ""){
+				  swal("Please fill in all the fields", {
+					  buttons: false,
+					  timer: 3000,
+					});
+			}else{
+			    var selected = $("#country-select").val();
+			    $("#countryname").val(selected);
+			    var selected1 = $("#city-select").val();
+			    $("#cityname").val(selected1);
+			    var start = $('#date-start').val();
+			    var end = $('#date-end').val();
+			    if (start > end) {
+			    	swal("Check out must be greater then check in", {
+					  buttons: false,
+					  timer: 3000,
+					});
+			    }else{
+			    	$("#formtrip").submit();
+			    }
+			}
+		}
+	
 		
 	</script>
 @endsection

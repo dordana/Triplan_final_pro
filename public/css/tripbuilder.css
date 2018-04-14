@@ -1067,3 +1067,9 @@ div.sku strong{
 	 	width:77%;
 	 }
 }
+
+
+#txtLocation , #pathNameText{
+	width: 200px;
+	height: 25px;
+}

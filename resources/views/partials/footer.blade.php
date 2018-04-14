@@ -2,66 +2,60 @@
 			<div id="footer">
 				<div class="container">
 					<div class="row row-bottom-padded-md">
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>About Travel</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Top Flights Routes</h3>
+						<div class="col-md-3 col-sm-3 col-xs-12 fh5co-footer-link">
+							<h3>Top 5 Routes</h3>
 							<ul>
-								<li><a href="#">Manila flights</a></li>
-								<li><a href="#">Dubai flights</a></li>
-								<li><a href="#">Bangkok flights</a></li>
-								<li><a href="#">Tokyo Flight</a></li>
-								<li><a href="#">New York Flights</a></li>
+								<li><a href="#">test</a></li>
+								<li><a href="#">test</a></li>
+								<li><a href="#">test</a></li>
+								<li><a href="#">test</a></li>
+								<li><a href="#">test</a></li>
 							</ul>
 						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Top Hotels</h3>
+						<div class="col-md-3 col-sm-3 col-xs-12 fh5co-footer-link">
+							<h3>Top 5 Countries</h3>
 							<ul>
-								<li><a href="#">Boracay Hotel</a></li>
-								<li><a href="#">Dubai Hotel</a></li>
-								<li><a href="#">Singapore Hotel</a></li>
-								<li><a href="#">Manila Hotel</a></li>
+								<li><a href="{{route('show-countrydetalis', 'Israel')}}">Israel</a></li>
+								<li><a href="{{route('show-countrydetalis', 'Spain')}}">Spain</a></li>
+								<li><a href="{{route('show-countrydetalis', 'France')}}">France</a></li>
+								<li><a href="{{route('show-countrydetalis', 'Germany')}}">Germany</a></li>
+								<li><a href="{{route('show-countrydetalis', 'Italy')}}">Italy</a></li>
 							</ul>
 						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Interest</h3>
+						<div class="col-md-3 col-sm-3 col-xs-12 fh5co-footer-link">
+							<h3>Top 5 Cities</h3>
 							<ul>
-								<li><a href="#">Beaches</a></li>
-								<li><a href="#">Family Travel</a></li>
-								<li><a href="#">Budget Travel</a></li>
-								<li><a href="#">Food &amp; Drink</a></li>
-								<li><a href="#">Honeymoon and Romance</a></li>
+								<li><a href="{{route('show-citydetalis', 'Barcelona')}}">Barcelona</a></li>
+								<li><a href="{{route('show-citydetalis', 'Ofakim')}}">Ofakim</a></li>
+								<li><a href="{{route('show-citydetalis', 'Tel Aviv')}}">Tel Aviv</a></li>
+								<li><a href="{{route('show-citydetalis', 'Haifa')}}">Haifa</a></li>
+								<li><a href="{{route('show-citydetalis', 'Lyon')}}">Lyon</a></li>
 							</ul>
 						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Best Places</h3>
-							<ul>
-								<li><a href="#">Boracay Beach</a></li>
-								<li><a href="#">Dubai</a></li>
-								<li><a href="#">Singapore</a></li>
-								<li><a href="#">Hongkong</a></li>
-							</ul>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
+						<div class="col-md-3 col-sm-3 col-xs-12 fh5co-footer-link">
 							<h3>About Triplan</h3>
 							<ul>
 								<li><a href="{{route('show-terms')}}">Terms</a></li>
-								<li><a href="#">Fare Flights</a></li>
+								<li><a href="{{route('show-faq')}}">FAQ</a></li>
+								<li><a href="{{route('show-contact')}}">Contact Us</a></li>
+								<li><a href="{{route('show-partners')}}">Partners</a></li>
+								<li><a href="{{route('show-shareus')}}">Share Us</a></li>
+								<li><a href="{{route('show-aboutus')}}">About Us</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 text-center">
 							<p class="fh5co-social-icons">
-								<a href="#"><i class="icon-twitter2"></i></a>
-								<a href="#"><i class="icon-facebook2"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-								<a href="#"><i class="icon-dribbble2"></i></a>
-								<a href="#"><i class="icon-youtube"></i></a>
+								<a href="http://twitter.com/share?text=Triplan&url=http://triplan1-dordana1191.c9users.io/"><i class="icon-twitter2"></i></a>
+								<a href="http://www.facebook.com/sharer.php?u=http://triplan1-dordana1191.c9users.io/"><i class="icon-facebook2"></i></a>
+								<a href="mailto:?subject=Welcome to Triplan&body=Check out this site http://triplan1-dordana1191.c9users.io/"><i class="icon-email"></i></a>
+								<a href="https://plus.google.com/share?url=http://triplan1-dordana1191.c9users.io/"><i class="icon-google"></i></a>
+								<a href="http://pinterest.com/pin/create/button/?url=http://triplan1-dordana1191.c9users.io/"><i class="icon-pinterest"></i></a>
+								<a href="http://www.reddit.com/submit?url=http://triplan1-dordana1191.c9users.io/"><i class="icon-reddit"></i></a>
+								<a href="http://www.linkedin.com/shareArticle?mini=true&url=http://triplan1-dordana1191.c9users.io/"><i class="icon-linkedin"></i></a>
 							</p>
-							<p>Copyright 2016 Free Html5 <a href="#">Module</a>. All Rights Reserved. <br>Made with <i class="icon-heart3"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+							<p>Copyright 2018 Triplan. All Rights Reserved. <br>Created by Dor Dana & Amit Yahav</p>
 						</div>
 					</div>
 				</div>

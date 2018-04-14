@@ -151,9 +151,16 @@ input::-webkit-calendar-picker-indicator{
 .file-upload-input:hover{
 	color: white !important;
 }
+
+
+.container-contact100{
+	background-image: url(https://redrockwealth.com/wp-content/uploads/2017/02/website-background.png);
+	background-repeat: no-repeat;
+	background-position: cover;
+}
 </style>
 
-
+<p id="pageName" hidden >Reviews</p>
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" enctype="multipart/form-data" method="POST" action="{{ url('/addreview') }}" autocomplete="off">
@@ -163,7 +170,7 @@ input::-webkit-calendar-picker-indicator{
 				</span>
 
                 <div class="wrap-input100 input100-select bg0">
-					<span class="label-input100">Type: </span>
+					<span class="label-input100">Type: <span style="color:red;">(required)</span> </span>
 					<div>
 						<select class="js-select2" name="type_of_R">
 							<option value="review">Review</option>
@@ -174,17 +181,17 @@ input::-webkit-calendar-picker-indicator{
 				</div>
 				
 				<div class="wrap-input100 validate-input bg0" data-validate="Please Type Your title">
-					<span class="label-input100">Title:</span>
+					<span class="label-input100">Title: <span style="color:red;">(required)</span></span>
 					<input class="input100" type="text" name="title" placeholder="Enter Your title">
 				</div>
                 
                 <div class="wrap-input100 validate-input bg0 rs1-alert-validate" data-validate = "Please Type Your body">
-					<span class="label-input100">Body:</span>
+					<span class="label-input100">Body: <span style="color:red;">(required)</span></span>
 					<textarea class="input100" name="body" placeholder="Enter Your body"></textarea>
 				</div>
 				
 				<div class="wrap-input100 input100-select bg0">
-					<span class="label-input100">About: </span>
+					<span class="label-input100">About: <span style="color:red;">(required)</span></span>
 					<div>
 						<select class="js-select2 selectCountry" name="kind_of">
 						    <option>---</option>
@@ -196,7 +203,7 @@ input::-webkit-calendar-picker-indicator{
 					</div>
 				</div>
                 <div hidden class="wrap-input100 input100-select bg0 optionsDiv">
-					<span class="label-input100">About: </span>
+					<span class="label-input100">About: <span style="color:red;">(required)</span> </span>
 					<div>
 						<select class="js-select2 options" name="kind_id">
 						</select>
@@ -205,11 +212,11 @@ input::-webkit-calendar-picker-indicator{
 				</div>
 			
 				<div class="wrap-input100 validate-input bg0" data-validate="Please Type Your title">
-					<span class="label-input100">Start date:</span>
+					<span class="label-input100">Start date: <span style="color:red;">(required)</span></span>
 					<input class="input100" type="date" name="startDate">
 				</div>
 				<div class="wrap-input100 validate-input bg0" data-validate="Please Type Your title">
-					<span class="label-input100">End date:</span>
+					<span class="label-input100">End date: <span style="color:red;">(required)</span></span>
 					<input class="input100" type="date" name="endDate">
 				</div>
 				
@@ -224,7 +231,7 @@ input::-webkit-calendar-picker-indicator{
 
 				<div class="w-full js-show-service">
 					<div class="wrap-contact100-form-radio">
-						<span class="label-input100">Type of visit:</span>
+						<span class="label-input100">Type of visit: <span style="color:red;">(required)</span></span>
 						
 						<div class="contact100-form-radio m-t-15">
 							<input class="input-radio100" id="radio1" type="radio" name="type" value="couple">

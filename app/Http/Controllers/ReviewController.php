@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Country;
 use App\Question;
 use App\Answer;
@@ -25,12 +26,34 @@ class ReviewController extends Controller
         ]);
     }
     
+    public function rating(Request $request){
+        $rate = $request->rate;
+        $user = Auth::user();
+        $id = $request->id;
+        $review = Review::where('id',$id)->first();
+        if($review->rate == 0){
+            $avgRate = intval($rate);
+        }else{
+            $avgRate = (floatval($review->rate) + intval($rate))/2;
+        }
+        $review->rate = $avgRate;
+        $review->save();
+        
+        return $review;
+    }
     
     public function addreviewpage(){
         return view('reviews/addReview',[
             'countries' => Country::orderBy('name', 'ASC')->get(),
             'cities' => City::orderBy('name', 'ASC')->get(),
             'attractions' => Attraction::orderBy('name', 'ASC')->get(),
+        ]);
+    }
+    
+    public function showreview($review_id){
+        $review = Review::where('id',$review_id)->first();
+        return view('reviews/showReview',[
+            'review' => $review,
         ]);
     }
     

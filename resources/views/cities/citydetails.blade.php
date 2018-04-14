@@ -59,148 +59,6 @@
 <iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" 
 	src="http://forecast.io/embed/#lat={{$city->lat}}&lon={{$city->lng}}&name={{$city->name}}&color=#f49a66&font=Helvetica&units=si">
 </iframe>  
-<!--<div class="ui-235">-->
-<!--			<div class="container-fluid">-->
-<!--				<div class="row">-->
-<!--					<div class="col-md-3 col-sm-4 col-xs-6 col-mob">-->
-						<!-- Item -->
-<!--						<div class="ui-item">-->
-							<!-- flip -->
-<!--							<div class="ui-flip front bg-orange">-->
-								<!-- Heading -->
-<!--								<h3><a href="#">Currency</a></h3>-->
-								<!-- Hover -->	
-<!--								<div class="ui-hover">-->
-									<!-- Heading -->
-<!--									<h4><a href="#">Voluptat</a></h4>-->
-									<!-- Paragraph -->
-<!--									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="col-md-3 col-sm-4 col-xs-6 col-mob">-->
-						<!-- Item -->
-<!--						<div class="ui-item">-->
-							<!-- Flip -->
-<!--							<div class="ui-flip">-->
-								<!-- Heading -->
-<!--								<h3><a href="#">continent</a></h3>-->
-								<!-- Hover -->
-<!--								<div class="ui-hover bg-orange">-->
-									<!-- Heading -->
-<!--									<h4><a href="#">Deserunt</a></h4>-->
-									<!-- Paragraph -->
-<!--									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="col-md-3 col-sm-4 col-xs-6 col-mob">-->
-						<!-- Item -->
-<!--						<div class="ui-item">-->
-							<!-- Flip -->
-<!--							<div class="ui-flip front bg-orange">-->
-								<!-- Heading -->
-<!--								<h3><a href="#">language</a></h3>-->
-								<!-- Hover -->
-<!--								<div class="ui-hover">-->
-									<!-- Heading -->
-<!--									<h4><a href="#">Righteous</a></h4>-->
-									<!-- Paragraph -->
-<!--									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="col-md-3 col-sm-4 col-xs-6 col-mob">-->
-						<!-- Item -->
-<!--						<div class="ui-item">-->
-							<!-- Flip -->
-<!--							<div class="ui-flip">-->
-								<!-- Heading -->
-<!--								<h3><a href="#">population</a></h3>-->
-								<!-- Hover -->
-<!--								<div class="ui-hover bg-orange">-->
-									<!-- Heading -->
-<!--									<h4><a href="#">Pursue</a></h4>-->
-									<!-- Paragraph -->
-<!--									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="col-md-3 col-sm-4 col-xs-6 col-mob">-->
-						<!-- Item -->
-<!--						<div class="ui-item">-->
-							<!-- Flip -->
-<!--							<div class="ui-flip">-->
-								<!-- Heading -->
-<!--								<h3><a href="#">surface area</a></h3>-->
-								<!-- Hover -->
-<!--								<div class="ui-hover bg-orange">-->
-									<!-- Heading -->
-<!--									<h4><a href="#">Denounc</a></h4>-->
-									<!-- Paragraph -->
-<!--									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="col-md-3 col-sm-4 col-xs-6 col-mob">-->
-						<!-- Item -->
-<!--						<div class="ui-item">-->
-							<!-- Flip -->
-<!--							<div class="ui-flip front bg-orange">-->
-								<!-- Heading -->
-<!--								<h3><a href="#">religion</a></h3>-->
-								<!-- Hover -->
-<!--								<div class="ui-hover">-->
-									<!-- Heading -->
-<!--									<h4><a href="#">Corporis</a></h4>-->
-									<!-- Paragraph -->
-<!--									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>-->
-<!--								</div> -->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div> -->
-<!--					<div class="col-md-3 col-sm-4 col-xs-6 col-mob">-->
-						<!-- Item -->
-<!--						<div class="ui-item">-->
-							<!-- Flip -->
-<!--							<div class="ui-flip">-->
-								<!-- Heading -->
-<!--								<h3><a href="#">calling code</a></h3>-->
-								<!-- Hover -->
-<!--								<div class="ui-hover bg-orange">-->
-									<!-- Heading -->
-<!--									<h4><a href="#">Dolorem</a></h4>-->
-									<!-- Paragraph -->
-<!--									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="col-md-3 col-sm-4 col-xs-6 col-mob">-->
-						<!-- Item -->
-<!--						<div class="ui-item">-->
-							<!-- Flip -->
-<!--							<div class="ui-flip front bg-orange">-->
-								<!-- Heading -->
-<!--								<h3><a href="#">neighbers</a></h3>-->
-								<!-- Hover -->
-<!--								<div class="ui-hover">-->
-									<!-- Heading -->
-<!--									<h4><a href="#">Finibus</a></h4>-->
-									<!-- Paragraph -->
-<!--									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
 		<br><br><br>
 <div class="container">
 				<div class="row">
@@ -255,10 +113,11 @@
 	@foreach ($city->attractions as $attraction)
   <div class="item1">
     <div class="item-image1">
-      <img src="https://new.goisrael.com/sites/default/files/styles/1397x735_article_full/public/Tel%20Aviv%201397X735.jpg?itok=lbqTrLtj" alt="" />
+      <img src="{{ url('/uploads/attractions') }}/{{$attraction->mainpic}}" alt="" />
     </div>
     <div class="item-text1">
       <div class="item-text-wrapper1">
+      	<br>
         <p class="item-text-dek1">{{$attraction->name}}</p>
         <h2 class="item-text-title1"</h2>
       </div>

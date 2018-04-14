@@ -23,7 +23,6 @@ class UserController extends Controller
     public function udpateprofile(Request $request){
         
         $user = Auth::user();
-        // return $request->all();
         $user->update($request->all());
         
         return view('auth/profile');
@@ -66,4 +65,12 @@ class UserController extends Controller
         return redirect()->back()->with(['success' => 'Your photo has been changed']);
     }
     
+    
+    
+    public function userprofile_byid($id){
+       
+         return view('users/profile',[
+            'user' => User::find($id),
+        ]);
+    }
 }

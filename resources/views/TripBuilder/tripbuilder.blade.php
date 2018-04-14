@@ -14,7 +14,9 @@
 
 <body>
 
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYUrj824we7Ae73T3khwyy_epnUlgudSM&libraries=places"></script>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <div id="wrapper">
 <div class="cart-icon-top">
 </div>
@@ -27,6 +29,7 @@
     <input type="text" hidden name="cityname" id="cityname"/>
     <input type="text" hidden name="startDate" id="startDate"/>
     <input type="text" hidden name="endDate" id="endDate"/>
+    <input type="text" hidden name="startLocation" id="startLocation"/>
     <div id="checkout">CHECKOUT</div>
 </form>
 
@@ -39,15 +42,23 @@
 
 <div id="sidebar">
     <br><br>
+    
+    <h3>Start Point</h3>
+    <input id="txtLocation" type="text" />
+    
     <h3>Path name</h3>
     <input type="text" class="form-control" id="pathNameText">
+    
+    
+    
+    
     
     <h3>Path details</h3>
     <p class="details">Country: {{$country->name}}</p>
     <p class="details">City: {{$city->name}}</p>
-    <p class="details">Start date: {{$start}}</p>
-    <p class="details">End date: {{$end}}</p>
-    
+    <p class="details">Start date: {{ Carbon\Carbon::parse( $start)->format('d/m/Y') }}</p>
+    <p class="details">End date: {{ Carbon\Carbon::parse( $end)->format('d/m/Y') }}</p>
+    <h4>Max attractions to pick: <span id="num_of_attractions" style="color:red;font-size:24px;">{{$num_of_attractions}}</span></h4>
 	<h3>attractions</h3>
     <div id="cart">
     	<span class="empty">No attractions in list.</span>       
@@ -183,26 +194,57 @@
 
     <script  src="js/tripbuilder.js"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
     $('#checkout').click(function(){
         if ($('#pathNameText').val() != "")
         {
-           $('#pathName').val($('#pathNameText').val()); 
-           $('#cityname').val('{{$city->id}}');
-           $('#startDate').val('{{$start}}');
-           $('#endDate').val('{{$end}}');
-           var attractionList = [];
-           $('.cart-item').each(function( index ) {
-                attractionList.push($(this).attr('attraction_id'));
-           });
-           attractionList = JSON.stringify(attractionList);
-           $('#attractionList').val(attractionList);
-           $('#attractionForm').submit();
+            if(parseInt($("#num_of_attractions").text()) > 0){
+                swal({
+                  title: "Are you sure?",
+                  text: "You can still add "+ parseInt($("#num_of_attractions").text()) +" attractions to your trip!",
+                  icon: "info",
+                  buttons: true,
+                })
+                .then((ok) => {
+                  if (ok) {
+                      
+                      
+                      
+                       $('#pathName').val($('#pathNameText').val()); 
+                       $('#cityname').val('{{$city->id}}');
+                       $('#startDate').val('{{$start}}');
+                       $('#endDate').val('{{$end}}');
+                       
+                       geocoder = new google.maps.Geocoder();
+                        geocoder.geocode( { 'address' : $("#txtLocation").val() }, function( results, status ) {
+                            if( status == google.maps.GeocoderStatus.OK ) {
+                                alert(results[0].geometry.location);
+                                $("#startLocation").val(results[0].geometry.location);
+                                var attractionList = [];
+                               $('.cart-item').each(function( index ) {
+                                    attractionList.push($(this).attr('attraction_id'));
+                               });
+                               attractionList = JSON.stringify(attractionList);
+                               $('#attractionList').val(attractionList);
+                               alert($("#startLocation").val());
+                               $('#attractionForm').submit();
+                            }
+                        } );
+                        
+                        
+                       
+                  } 
+                });
+            }
+           
         }
     });
     
+
+autoComplete = new google.maps.places.Autocomplete(document.getElementById("txtLocation"));    
     
 });
 </script>

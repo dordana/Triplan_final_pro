@@ -1,62 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-
+<p id="pageName" hidden >General</p>
 <div class="breadcrumbs">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-sm-12 text-center">
-                <h1>Introduction</h1>
+                <h1>Terms</h1>
             </div>
         </div>
     </div>
 </div>
+<div class="container">
+    <p>
+        <h3 class="text-center">Introduction</h3>
 
+These Website Standard Terms And Conditions (these “Terms” or these “Website Standard Terms And Conditions”) contained herein on this webpage, shall govern your use of this website, including all pages within this website (collectively referred to herein below as this “Website”). These Terms apply in full force and effect to your use of this Website and by using this Website, you expressly accept all terms and conditions contained herein in full. You must not use this Website, if you have any objection to any of these Website Standard Terms And Conditions.
 
-These terms and conditions govern your use of this website; by using this website, you accept these terms and conditions in full.   If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website. 
+This Website is not for use by any minors (defined as those who are not at least 18 years of age), and you must not use this Website if you a minor.
 
-[You must be at least [18] years of age to use this website.  By using this website [and by agreeing to these terms and conditions] you warrant and represent that you are at least [18] years of age.]
+Intellectual Property Rights.
 
-[This website uses cookies.  By using this website and agreeing to these terms and conditions, you consent to our [NAME]'s use of cookies in accordance with the terms of [NAME]'s [privacy policy / cookies policy].]
+Other than content you own, which you may have opted to include on this Website, under these Terms, TRIPLAN and/or its licensors own all rights to the intellectual property and material contained in this Website, and all such rights are reserved.
 
-License to use website
+You are granted a limited license only, subject to the restrictions provided in these Terms, for purposes of viewing the material contained on this Website,
 
-Unless otherwise stated, [NAME] and/or its licensors own the intellectual property rights in the website and material on the website.  Subject to the license below, all these intellectual property rights are reserved.
+PandaTip: If the website is only for viewing, then you might be able to stop where we left off above. That said, you will likely need to provide more in the way of descriptive language around what users may use the website to do/for.
 
-You may view, download for caching purposes only, and print pages [or [OTHER CONTENT]] from the website for your own personal use, subject to the restrictions set out below and elsewhere in these terms and conditions.  
+<h3 class="text-center">Restrictions</h3>
 
-You must not:
+You are expressly and emphatically restricted from all of the following:
 
-•	republish material from this website (including republication on another website);
-•	sell, rent or sub-license material from the website;
-•	show any material from the website in public;
-•	reproduce, duplicate, copy or otherwise exploit material on this website for a commercial purpose;]
-•	[edit or otherwise modify any material on the website; or]
-•	[redistribute material from this website [except for content specifically and expressly made available for redistribution].]
+publishing any Website material in any media;
 
-[Where content is specifically made available for redistribution, it may only be redistributed [within your organisation].]
+selling, sublicensing and/or otherwise commercializing any Website material;
 
-Acceptable use
+publicly performing and/or showing any Website material;
 
-You must not use this website in any way that causes, or may cause, damage to the website or impairment of the availability or accessibility of the website; or in any way which is unlawful, illegal, fraudulent or harmful, or in connection with any unlawful, illegal, fraudulent or harmful purpose or activity.
+using this Website in any way that is, or may be, damaging to this Website;
 
-You must not use this website to copy, store, host, transmit, send, use, publish or distribute any material which consists of (or is linked to) any spyware, computer virus, Trojan horse, worm, keystroke logger, rootkit or other malicious computer software.
+using this Website in any way that impacts user access to this Website;
 
-You must not conduct any systematic or automated data collection activities (including without limitation scraping, data mining, data extraction and data harvesting) on or in relation to this website without [NAME'S] express written consent.
+using this Website contrary to applicable laws and regulations, or in a way that causes, or may cause, harm to the Website, or to any person or business entity;
 
-[You must not use this website to transmit or send unsolicited commercial communications.]
+engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this Website, or while using this Website;
 
-[You must not use this website for any purposes related to marketing without [NAME'S] express written consent.]  
+using this Website to engage in any advertising or marketing;
 
-[Restricted access
+Certain areas of this Website are restricted from access by you and TRIPLAN may further restrict access by you to any areas of this Website, at any time, in its sole and absolute discretion.  Any user ID and password you may have for this Website are confidential and you must maintain confidentiality of such information.
 
-[Access to certain areas of this website is restricted.]  [NAME] reserves the right to restrict access to [other] areas of this website, or indeed this entire website, at [NAME'S] discretion.
+<h3 class="text-center">Your Content</h3>
 
-If [NAME] provides you with a user ID and password to enable you to access restricted areas of this website or other content or services, you must ensure that the user ID and password are kept confidential.  
+In these Website Standard Terms And Conditions, “Your Content” shall mean any audio, video, text, images or other material you choose to display on this Website. With respect to Your Content, by displaying it, you grant TRIPLAN a non-exclusive, worldwide, irrevocable, royalty-free, sublicensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.
 
-[[NAME] may disable your user ID and password in [NAME'S] sole discretion without notice or explanation.]
+Your Content must be your own and must not be infringing on any third party’s rights. TRIPLAN reserves the right to remove any of Your Content from this Website at any time, and for any reason, without notice.
 
-[User content
+<h3 class="text-center">No warranties</h3>
 
-In these terms and conditions, “your user content” means material (including without limitation text, images, audio material, video material and audio-visual material) that you submit to this website, for whatever purpose.
+This Website is provided “as is,” with all faults, and TRIPLAN makes no express or implied representations or warranties, of any kind related to this Website or the materials contained on this Website. Additionally, nothing contained on this Website shall be construed as providing consult or advice to you.
+
+<h3 class="text-center">Limitation of liability</h3>
+
+In no event shall TRIPLAN, nor any of its officers, directors and employees, be liable to you for anything arising out of or in any way connected with your use of this Website, whether such liability is under contract, tort or otherwise, and TRIPLAN, including its officers, directors and employees shall not be liable for any indirect, consequential or special liability arising out of or in any way related to your use of this Website.
+
+    </p>
+</div>
 @endsection

@@ -1,6 +1,60 @@
- @extends('layouts.app')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@extends('layouts.app')
 
 @section('content')
+
+
+
+
+
 
 <link href="{!! asset('pages/showcountry/showcountry.css') !!}" rel="stylesheet" />
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
@@ -69,7 +123,7 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 									<!-- Heading -->
 									<h2>Currency</h2>
 									<!-- Paragraph -->
-									<h5>{{$country->name}} uses {{$country->currency}} currency</h5>
+									<h5>{{$country->name}} uses <em><span class="boldValue">{{$country->currency}}</span></em> currency</h5>
 									</div>
 							</div>
 						</div>
@@ -84,9 +138,9 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 								<!-- Hover -->
 								<div class="ui-hover bg-orange">
 									<!-- Heading -->
-									<h4><a href="#">Deserunt</a></h4>
+									<h4><a href="#">continent</a></h4>
 									<!-- Paragraph -->
-									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>
+									<h5 class="evenFlip">{{ $country->name }} is located in <em><span class="boldValue">{{ $country->continent }}.</span></em></h5>
 								</div>
 							</div>
 						</div>
@@ -101,9 +155,9 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 								<!-- Hover -->
 								<div class="ui-hover">
 									<!-- Heading -->
-									<h4><a href="#">Righteous</a></h4>
+									<h4><a href="#">language</a></h4>
 									<!-- Paragraph -->
-									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>
+									<h5>The official languages in {{ $country->name }} are: <em><span class="boldValue">{{ $country->language }}</span></em>.</h5>
 								</div>
 							</div>
 						</div>
@@ -118,9 +172,9 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 								<!-- Hover -->
 								<div class="ui-hover bg-orange">
 									<!-- Heading -->
-									<h4><a href="#">Pursue</a></h4>
+									<h4><a href="#">population</a></h4>
 									<!-- Paragraph -->
-									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>
+									<h5 class="evenFlip">in {{ $country->name }} live around <em><span class="boldValue">{{ $country->population }}</span></em> peoples.</h5>
 								</div>
 							</div>
 						</div>
@@ -135,9 +189,9 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 								<!-- Hover -->
 								<div class="ui-hover bg-orange">
 									<!-- Heading -->
-									<h4><a href="#">Denounc</a></h4>
+									<h4><a href="#">surface area</a></h4>
 									<!-- Paragraph -->
-									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>
+									<h5 class="evenFlip">the surface area of {{ $country->name }} is about <em><span class="boldValue">{{ $country->surface }}</span></em> km2.</h5>
 								</div>
 							</div>
 						</div>
@@ -152,9 +206,9 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 								<!-- Hover -->
 								<div class="ui-hover">
 									<!-- Heading -->
-									<h4><a href="#">Corporis</a></h4>
+									<h4><a href="#">religion</a></h4>
 									<!-- Paragraph -->
-									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>
+									<h5>the religions in {{ $country->name }} are: <em><span class="boldValue">{{ $country->religion }}.</span></em></h5>
 								</div> 
 							</div>
 						</div>
@@ -169,9 +223,9 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 								<!-- Hover -->
 								<div class="ui-hover bg-orange">
 									<!-- Heading -->
-									<h4><a href="#">Dolorem</a></h4>
+									<h4><a href="#">calling code</a></h4>
 									<!-- Paragraph -->
-									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>
+									<h5 class="evenFlip">the calling code of {{ $country->name }} is <em><span class="boldValue">{{ $country->calling_code }}.</span></em></h5>
 								</div>
 							</div>
 						</div>
@@ -182,13 +236,13 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 							<!-- Flip -->
 							<div class="ui-flip front bg-orange">
 								<!-- Heading -->
-								<h3><a href="#">neighbers</a></h3>
+								<h3><a href="#">neighbors</a></h3>
 								<!-- Hover -->
 								<div class="ui-hover">
 									<!-- Heading -->
-									<h4><a href="#">Finibus</a></h4>
+									<h4><a href="#">neighbors</a></h4>
 									<!-- Paragraph -->
-									<p>Sed ut perspic iatis unde omnis iste natus error unde omnis iste natus error sit volupt atem.</p>
+									<h5>the countries that border {{ $country->name }} are: <em><span class="boldValue">{{ $country->neighbers }}.</span></em></h5>
 								</div>
 							</div>
 						</div>
@@ -250,15 +304,16 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 	@foreach ($country->cities as $city)
   <div class="item1">
     <div class="item-image1">
-      <img src="https://new.goisrael.com/sites/default/files/styles/1397x735_article_full/public/Tel%20Aviv%201397X735.jpg?itok=lbqTrLtj" alt="" />
+      <img src="{{ url('/uploads/cities') }}/{{$city->mainpic}}" alt="" />
     </div>
     <div class="item-text1">
       <div class="item-text-wrapper1">
         <p class="item-text-dek1">{{$city->name}}</p>
+        <br>
         <h2 class="item-text-title1">Facebook in material design</h2>
       </div>
     </div>
-    <a class="item-link1" href="https://dribbble.com/shots/2958133-Facebook-in-material-design">Facebook in material design</a>
+    <a class="item-link1" href="{{route('show-citydetalis', $city->name)}}">Facebook in material design</a>
   </div>
   @endforeach
 </div>
@@ -361,7 +416,7 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 			@if (Auth::check())
 			<div class="newComment">
 				<div>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add a new commet</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add a new question</button>
 				</div>
 			</div>
 			@endif
@@ -372,7 +427,7 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 					<div class="comment-avatar"><img src="{{ url('/uploads/user-photos') }}/{{App\User::find($q->user_id)->profile_phote_path}}" alt=""></div>
 					<div class="comment-box">
 						<div class="comment-head">
-							<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{App\User::find($q->user_id)->username}}</a></h6>
+							<h6 class="comment-name by-author"><a href="{{route('showuserprofile', $q->user_id)}}">{{App\User::find($q->user_id)->username}}</a></h6>
 							<span class="date">{{date("F jS, Y, g:i a", strtotime($q->created_at))}}</span>
 							@if (Auth::check())
 								@if ($user->id == $q->user_id)
@@ -400,9 +455,9 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 						<div class="comment-box">
 							<div class="comment-head">
 								@if ($q->user_id == $a->user_id)
-								<h6 class="comment-name by-author"><a href="">{{App\User::find($a->user_id)->username}}</a></h6>
+								<h6 class="comment-name by-author"><a href="{{route('showuserprofile', $a->user_id)}}">{{App\User::find($a->user_id)->username}}</a></h6>
 								@else
-								<h6 class="comment-name"><a href="">{{App\User::find($a->user_id)->username}}</a></h6>
+								<h6 class="comment-name"><a href="{{route('showuserprofile', $a->user_id)}}">{{App\User::find($a->user_id)->username}}</a></h6>
 								@endif
 								<span class="date">{{date("F jS, Y, g:i a", strtotime($a->created_at))}}</span>
 							</div>

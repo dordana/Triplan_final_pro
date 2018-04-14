@@ -1,14 +1,11 @@
 <?php
 return array(
-  "driver" => "smtp",
-  "host" => "smtp.mailtrap.io",
-  "port" => 2525,
-  "from" => array(
-      "address" => "from@example.com",
-      "name" => "Example"
-  ),
-  "username" => "6eb2674474af83",
-  "password" => "bfd0b8f89865e2",
-  "sendmail" => "/usr/sbin/sendmail -bs",
-  "pretend" => false
+'driver' => env('MAIL_DRIVER', 'smtp'),
+'host' =>env('MAIL_HOST', 'smtp.gmail.com'),
+'port' =>env('MAIL_PORT', 587),
+'from' => ['address' =>'triplan2018@gmail.com', 'name' => 'Email_Subject'],
+'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+'username' =>env('MAIL_USERNAME','triplan2018@gmail.com'),
+'password' =>env('MAIL_PASSWORD','Trip2018'),
+'sendmail' =>'/usr/sbin/sendmail -bs',
 );
