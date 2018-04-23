@@ -143,7 +143,7 @@ select option:hover {
 				<div class="row">
 					 @foreach($mainCountries as $country)
 					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="{{ url('/uploads/countries') }}/{{$country->mainpic}}" class="img-responsive">
+						<div href="#"><img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$country->mainpic}}" class="img-responsive">
 							<div class="desc">
 								<span></span>
 								<h3>{{$country->name}}</h3>
@@ -163,6 +163,7 @@ select option:hover {
 		<div id="fh5co-features">
 			<div class="container">
 				<div class="row">
+					
 					<div class="col-md-4 animate-box">
 
 						<div class="feature-left">

@@ -15,6 +15,10 @@ class Attraction extends Model
         return $this->hasMany('App\AttractionPhoto');
     }
     
+    public function reviews(){
+        return $this->hasMany('App\Review');
+    }
+    
     public function userPhotos(){
         return $this->hasMany('App\UserAttractionPhoto');
     }

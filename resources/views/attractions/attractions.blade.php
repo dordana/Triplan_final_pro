@@ -183,7 +183,7 @@ p{
     <figcaption>
       <h2><B>{{$attraction->name}}</B><span><a href="{{route('show-citydetalis', App\City::find($attraction->city_id)->name)}}">{{App\City::find($attraction->city_id)->name}}</a></span></h2>
       <p>{{substr($attraction->description, 0,80)}}</p>
-      <a href="#" class="info">More Info</a>
+      <a href="{{route('showattraction', $attraction->id)}}" class="info">More Info</a>
     </figcaption>
   </figure>
   </div>

@@ -4,7 +4,12 @@
 
 <link href="{!! asset('pages/countries/countries.css') !!}" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" />
-
+<style type="text/css">
+  .card{
+    width: 100%;
+    height:400px;
+  }
+</style>
 
 <p id="pageName" hidden >Countries</p>
 
@@ -48,7 +53,7 @@
                     <div class="cards">
                     <a class="card" href="{{route('show-countrydetalis', $country->name)}}">
                       <input id="continent" hidden value="{{$country->continent}}"/>
-                			<span class="card-header" style="background-image: url({{ url('/uploads/countries') }}/{{$country->mainpic}});">
+                			<span class="card-header" style="background-image: url({{ url('/uploads/countries') }}/{{$country->name}}/{{$country->mainpic}});">
                 				<span class="card-title">
                 					<h3 class="text-center countryName">{{$country->name}}</h3>
                 				</span>

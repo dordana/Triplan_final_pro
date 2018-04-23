@@ -1,15 +1,16 @@
+
+
 /* global $ */
 var directionsRenderer;
 var autoComplete;
 var googleMap;
 var marker;
 
-$(document).ready(function () {
+function initializeMap() {
     
-
-    $('#btnDisplayDirections').click(function () {
-
-        // Clear previous directions, if any.
+    
+    
+    // Clear previous directions, if any.
         if (directionsRenderer) {
             directionsRenderer.setMap(null);
         }
@@ -23,27 +24,7 @@ $(document).ready(function () {
             draggable: true
         });
 
-
-
-
-        // Add way points to array.
-        var wayPoints = [];
-        $('#ddlSource > option').each(function () {
-            if ($(this).val() != '' && $(this).val() != $('#ddlSource').val() && $(this).val() != $('#ddlDestination').val()) {
-                var wayPoint = {
-                    location: $(this).val(),
-                    stopover: true
-                };
-                wayPoints.push(wayPoint);
-            }
-        });
-
-
-
-
-
-
-        // Create directions request.
+    // Create directions request.
         if($('#ddlTravelMode').val() == "BUS"){
             var directionsRequest = {
                 origin: $('#ddlSource').val(),
@@ -75,7 +56,7 @@ $(document).ready(function () {
                 travelMode: google.maps.TravelMode["TRANSIT"],
                 waypoints: wayPoints,
                 transitOptions: {
-                    modes: ['RAIL'],
+                    modes: ['TRAIN'],
                     routingPreference: 'FEWER_TRANSFERS'
                   },
                 optimizeWaypoints: $('#chkOptimizePath').is(':checked')
@@ -99,11 +80,19 @@ $(document).ready(function () {
                 alert('We could not find any result for your search.');
             }
         });
-    });
-});
 
-function initializeMap() {
 
+        // Add way points to array.
+        var wayPoints = [];
+        $('#ddlSource > option').each(function () {
+            if ($(this).val() != '' && $(this).val() != $('#ddlSource').val() && $(this).val() != $('#ddlDestination').val()) {
+                var wayPoint = {
+                    location: $(this).val(),
+                    stopover: true
+                };
+                wayPoints.push(wayPoint);
+            }
+        });
 
     var latLng = new google.maps.LatLng(33.7294, 73.0931);
 
@@ -138,6 +127,23 @@ function initializeMap() {
         });
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Add window load event.
 google.maps.event.addDomListener(window, "load", initializeMap);

@@ -47,7 +47,7 @@
                     <div class="cards">
                     <a class="card" href="{{route('show-citydetalis', $city->name)}}">
                       <input id="country" hidden value="{{$city->country_id}}"/>
-                			<span class="card-header" style="background-image: url({{ url('/uploads/cities') }}/{{$city->mainpic}});">
+                			<span class="card-header" style="background-image: url({{ url('/uploads/cities') }}/{{$city->name}}/{{$city->mainpic}});">
                 				<span class="card-title">
                 					<h3 class="text-center cityName">{{$city->name}}</h3>
                 				</span>

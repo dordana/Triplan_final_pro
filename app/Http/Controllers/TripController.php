@@ -13,19 +13,57 @@ use \Datetime;
 
 class TripController extends Controller
 {
+    public function loading(Request $request){
+        
+        return view('general/loading',[
+            'request' => $request->all(),
+            ]);
+    }
+    
+    
+    
     public function initTrip(Request $request){
         $date = new DateTime($request->start);
         $dateEnd = new DateTime($request->end);
         $interval = $date->diff($dateEnd);
         $num_of_days = intval($interval->format('%a')) +1;
         $num_of_attractions = $num_of_days*4;
+        $attractions = Attraction::where("city_id",$request->city)->get();
+        $typesArr = array('restauant'=> 0,
+                        'sights'=> 0,
+                        'museum'=> 0,
+                        'tour'=> 0,
+                        'park'=> 0,
+                        'shopping'=> 0,
+                        'concert'=> 0,
+                        'nightlife'=> 0,
+                        'water sport'=> 0,
+                        'spa&wellness'=> 0,
+                        'zoo'=> 0,
+                        'airport'=> 0,
+                        'casino'=> 0,
+                        'beaches'=> 0,
+                        'other'=> 0
+                        );
+                        
+        for($i = 0; $i < count($attractions);$i++) {
+          $val = ($attractions[$i]["type"]);
+          $typesArr[$val]++;
+        }
+
+        
+        
+        
+        
+        
         return view('TripBuilder/tripbuilder',[
-            'attractions' => Attraction::where("city_id",$request->city)->get(),
+            'attractions' => $attractions,
             'country' => country::where('id',$request->country)->first(),
             'city' => City::where('id',$request->city)->first(),
             'start' => $request->start,
             'end' => $request->end,
-            'num_of_attractions' => $num_of_attractions
+            'num_of_attractions' => $num_of_attractions,
+            'types' => $typesArr
             ]);
     }
     
@@ -44,7 +82,6 @@ class TripController extends Controller
         $tempString = str_replace(")","",$tempString);
         $tempString = str_replace(" ","",$tempString);
         $startLocation = explode(",",$tempString);
-  
         foreach ($attractionsListById as $id) {
             array_push($attractionsListByLatLng,
             array(
@@ -53,21 +90,22 @@ class TripController extends Controller
             ));
             
         }
-        
-        
-        
-        
-        
-        
         // Array of dates
         $step = '+1 day';
-        $output_format = 'd/m/Y';
+        $output_format = 'Y-m-d';
         $dates = array();
+        $weekDays = array();
         $current = strtotime($dateStart->format('Y-m-d'));
         $last = strtotime($dateEnd->format('Y-m-d'));
 
         while( $current <= $last ) {
-            $dates[] = date($output_format, $current);
+            $dateN = date($output_format, $current);
+            $dates[] = $dateN;
+            //Convert the date string into a unix timestamp.
+            $unixTimestamp = strtotime($dateN);
+            //Get the day of the week using PHP's date function.
+            $dayOfWeek = date("l", $unixTimestamp);
+            array_push($weekDays,$dayOfWeek);
             $current = strtotime($step, $current);
         }
         
@@ -76,17 +114,21 @@ class TripController extends Controller
         
         
         $i = 0;
+        $day = 0;
         $num_of_iterations = 0;
         $num_of_iterations_outsite_for = 1;
-        $attractionsListPerDay = array();
+        $attractionsListPerDay = [];
         if (intval($num_of_attractions) >= intval($num_of_days)){
             $avg = intval(ceil(intval($num_of_attractions) / intval($num_of_days)));
             
             foreach ($dates as $date) {
                 $oneDate = array(
                     "date"=> $date,
+                    "weekDay" => array_shift($weekDays),
+                    "pic"=> Attraction::where("lat",$attractionsListByLatLng[$i]["lat"])->first()->mainpic,
                     "attractions" => array
                         (
+                            
                             "0" => array(
                                 "lat" => $startLocation[0],
                                 "lng" => $startLocation[1]
@@ -111,11 +153,17 @@ class TripController extends Controller
             }
         }else{
            foreach ($dates as $date) {
-                $oneDate = array("date"=> $date,"attractions" => []);
+                $oneDate = array(
+                    "date"=> $date,
+                    "weekDay" => array_shift($weekDays),
+                    "pic"=> Attraction::where("lat",$attractionsListByLatLng[$i]["lat"])->first()->mainpic,
+                    "attractions" => []
+                    );
                 if($i < $num_of_attractions){
                     $attr = $attractionsListByLatLng[$i++];
                     $oneDate["attractions"] = array
                     (
+                        
                         "0" => array(
                             "lat" => $startLocation[0],
                             "lng" => $startLocation[1]
@@ -127,38 +175,11 @@ class TripController extends Controller
             } 
         }
         
-        
-        
-        
-        
-        
         return view('TripBuilder/showTrip',[
             "attractionList" => $attractionsListPerDay,
             "num_of_days" => count($attractionsListPerDay)
             ]);
     }
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    function distance($lat1, $lon1, $lat2, $lon2) {
-      $theta = $lon1 - $lon2;
-      $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-      $dist = acos($dist);
-      $dist = rad2deg($dist);
-      $miles = $dist * 60 * 1.1515;
-      $unit = strtoupper("K");
-      return ($miles * 1.609344);
-    }
-    
-    
-    
+
     
 }

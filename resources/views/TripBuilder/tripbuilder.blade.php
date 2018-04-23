@@ -23,7 +23,7 @@
 
 <div class="cart-icon-bottom">
 </div>
-<form id="attractionForm" action="{{route('tripbuilder')}}" method="get">
+<form id="attractionForm" action="{{route('loading')}}" method="get">
     <input type="text" hidden name="attractionList" id="attractionList"/>
     <input type="text" hidden name="pathName" id="pathName"/>
     <input type="text" hidden name="cityname" id="cityname"/>
@@ -44,7 +44,7 @@
     <br><br>
     
     <h3>Start Point</h3>
-    <input id="txtLocation" type="text" />
+    <input id="txtLocation" type="text" value=""/>
     
     <h3>Path name</h3>
     <input type="text" class="form-control" id="pathNameText">
@@ -61,27 +61,15 @@
     <h4>Max attractions to pick: <span id="num_of_attractions" style="color:red;font-size:24px;">{{$num_of_attractions}}</span></h4>
 	<h3>attractions</h3>
     <div id="cart">
-    	<span class="empty">No attractions in list.</span>       
+    	<span class="empty">No attractions in list</span>       
     </div>
     
     <h3>TYPES</h3>
     <div class="checklist categories">
     	<ul>
-        	<li><a class="choise" href="" type="restauant"><span></span>Restauants</a></li>
-            <li><a class="choise" href="" type="sights"><span></span>Sights</a></li>
-            <li><a class="choise" href="" type="museum"><span></span>Museums</a></li>
-            <li><a class="choise" href="" type="tour"><span></span>Tours</a></li>
-            <li><a class="choise" href="" type="park"><span></span>Parks</a></li>
-            <li><a class="choise" href="" type="shopping"><span></span>Shopping</a></li>
-            <li><a class="choise" href="" type="nightlife"><span></span>Nightlife</a></li>
-            <li><a class="choise" href="" type="concert"><span></span>Concerts</a></li>
-            <li><a class="choise" href="" type="water sport"><span></span>Water sports</a></li>
-            <li><a class="choise" href="" type="spa&wellness"><span></span>Spa & Wellness</a></li>
-            <li><a class="choise" href="" type="zoo"><span></span>Zoos</a></li>
-            <li><a class="choise" href="" type="airport"><span></span>Airports</a></li>
-            <li><a class="choise" href="" type="casino"><span></span>Casinos</a></li>
-            <li><a class="choise" href="" type="beaches"><span></span>Beaches</a></li>
-            <li><a class="choise" href="" type="other"><span></span>Other</a></li>
+    	    @foreach($types as $key => $val)
+    		<li><a class="choise" href="javascript:void(0)" type="{{$key}}"><span></span>{{$key}} ({{$val}})</a></li>
+    		@endforeach
         </ul>
     </div>
 </div>
@@ -197,7 +185,11 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
+
+
+
 $(document).ready(function(){
+    $(".choise").css("text-transform", "capitalize ");
     $('#checkout').click(function(){
         if ($('#pathNameText').val() != "")
         {
@@ -243,7 +235,6 @@ $(document).ready(function(){
         }
     });
     
-
 autoComplete = new google.maps.places.Autocomplete(document.getElementById("txtLocation"));    
     
 });

@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+@extends('layouts.empty')
+@section('content')
 <html>
 <head>
     <meta charset="utf-8">
@@ -9,286 +10,473 @@
     <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="/scripts/ie10-viewport-bug-workaround.js" type="text/javascript"></script>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYUrj824we7Ae73T3khwyy_epnUlgudSM&libraries=places"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-    <script type="text/javascript" src="/scripts/googleMap.js"></script>
-    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANCJz6VCN08LgrmIuFXA612KyffxWyqec&libraries=places&language=en"></script>
+    <link rel="styleshehttps://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.csset" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" type="text/css" />
+
     <style type="text/css">
       #googleMap{
         height: 100%;
-        width: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;   
-        z-index: -1;
+        z-index:0;
+        position:relative;
       }
+.goBack{
+    margin: 0 auto;
+    display:block;
+    background:#ff7847;
+    border:none;
+    color:white !important;
+       position: absolute;
+    top: 3%;
+    left: 40%;
+    z-index: 99;
+    width: 300px;
+}
+.goBack:hover{
+    background:#ff7847;
+}
+.v-centered {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 0px;
+    position: absolute;
+    top: 85%;
+    left: 10px;
+    z-index: 99;
+}
 .carousel {
-  display: block;
-  position: absolute;
-  -webkit-transform: translateZ(0);
-  /*  for demo only */
-  top: 0;
-  right: 0;
-  bottom: -75%;
-  left: 0;
-  width: 75%;
-  height: 150px !important;
-  margin: auto;
-  font-size: 0;
-  padding: 8px;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px #000;
-  /********************/
-  -webkit-overflow-scrolling: touch;
-  /* for tablets */
+	position: absolute;
+	overflow: hidden;
+	width: 839px;
 }
-.touch .carousel {
-  overflow: auto;
+.roll {
+	position: relative;
+	white-space: nowrap;
+	font-size: 0;
+	left:  0px;
 }
-.carousel:before, .carousel:after {
-  content: '';
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 2;
-  width: 50px;
-  font-size: 80px;
-  line-height: 190px;
-  font-family: arial;
-  color: #555;
-  font-weight: bold;
-  pointer-events: none;
-  transition: 0.2s ease-out;
+.project {
+	width: 200px;
+    height: 225px;
+	background-color: #FFF;
+	-webkit-box-shadow: 5px 5px 5px 1px rgba(0,0,0,0.5); 
+    -moz-box-shadow: 5px 5px 5px 1px rgba(0,0,0,0.5); 
+	box-shadow: 5px 5px 5px 1px rgba(0,0,0,0.5); 
+	text-align: center;
+	margin: 0 10px 15px 0;
+	display: inline-block;
+	font-size: 18px;
+	cursor: pointer;
 }
-.carousel:before {
-  content: '\2039';
-  left: 0;
-  text-align: left;
-  text-indent: -20px;
+.project img {
+	margin-top: 10px;
+	    width: 185px;
+    height: 150px;
 }
-.carousel:after {
-  content: '\203A';
-  right: 0;
-  text-align: right;
-  text-indent: 40px;
+.project p {
+	margin: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 200;
+	text-align: left;
+	white-space: normal;
 }
-.carousel.right:after, .carousel.left:before {
-  opacity: 1;
+
+.sections {
+	text-align: center;
+	color: #b4fdc0;
+	font-size: 12px;
 }
-.carousel.right:after {
-  right: 0;
-  text-indent: 60px;
+
+.sections i {
+	margin: 0 2px;
+	cursor: pointer;
 }
-.carousel.left:before {
-  left: 0;
-  text-indent: -40px;
+
+.navigation {
+	position:  absolute;
+	border: none;
+	padding: 0;
+	background-color: rgba(35,35,35,0.8);
+	height: 34px;
+	width: 34px;
+	color:  #FFF;
+	font-size: 20px;
+	text-align: center;
+	top: 176px;
+	z-index: 10;
+	cursor: pointer;
 }
-.carousel.right:before {
-  right: 0;
-  text-indent: -40px;
+.navigation:visited  {
+	text-decoration: none;
 }
-.carousel > a {
-  position: absolute;
-  margin: 0;
-  top: 0;
-  bottom: 0;
-  color: #CCC;
-  font-size: 1.5em;
-  transition: 0.1s;
+.navigation-hover {
+	height: 50px;
+	width: 50px;
+	top:  168px;
 }
-.carousel > a:hover {
-  color: #FFF;
+.navigation:active {
+	text-decoration: none;
 }
-.carousel > a.prev {
-  left: -20px;
+.navigation:focus {
+	outline: none;
 }
-.carousel > a.next {
-  right: -20px;
+.navigation:first-of-type {
+	left: 0px;
 }
-.carousel > .indicator {
-  pointer-events: none;
-  position: absolute;
-  z-index: 4;
-  bottom: 0;
-  left: 0;
-  height: 4px;
-  border-radius: 10px;
-  opacity: 0;
-  transition: opacity 0.2s, bottom 0.2s;
+.navigation:last-of-type {
+	right: 10px;
 }
-.carousel:hover > .indicator {
-  opacity: 1;
-  bottom: -10px;
+
+
+@media screen and (max-width: 950px) {
+    .carousel {
+		position: relative;
+		overflow: hidden;
+		width: 620px;
+	}
 }
-.carousel > .wrap {
-  overflow: hidden;
-  border-radius: 5px;
-  padding: 0px;
+@media screen and (max-width: 655px) {
+    .carousel {
+		position: relative;
+		overflow: hidden;
+		width: 310px;
+	}
 }
-.carousel > .wrap > ul {
-  list-style: none;
-  white-space: nowrap;
-  height: 150px;
-  margin: 0px;
-   padding: 0px;
+h4{
+  font-family: 'Muli', sans-serif;
+      margin-top: 8px;
 }
-.carousel > .wrap > ul > li {
-  display: inline-block;
-  vertical-align: middle;
-  height: 100%;
-  margin: 0 0 0 5px;
-  position: relative;
-  overflow: hidden;
-  transition: 0.25s ease-out;
+.days{
+ opacity: 0.3;
 }
-.carousel > .wrap > ul > li:first-child {
-  margin: 0;
-}
-.carousel > .wrap > ul > li > img {
-  display: block;
-  height: 100%;
-  margin: auto;
-  vertical-align: bottom;
-  position: relative;
-  z-index: 1;
-  transition: 1s ease;
-}
-img{
-  width: 225px;
+.days:hover{
+ opacity: 1;
 }
     </style>
 </head>
 
 <body>
-  <div id="googleMap"></div>
-  <h1>{{count($attractionList)}}</h1>
-<div class="carousel right">
-  <div class="indicator"></div>
-  <div class="wrap">
-    <ul>
-      @foreach($attractionList as $attrDate)
-        <li>
-          <img src="http://ppcdn.500px.org/23718959/f216a69d1cb7667436a1e6a33c7e4b2894d0fe18/4.jpg"/>
-          <h3>djshf</h3>
-        </li>
-      @endforeach
-    </ul>
+  <div id="map" class="tab-pane fad in active">
+    <div id="googleMap"></div>
+      <div id="infoPanel" class="tab-pane fad">
+          <div id="panel" class="col-md-12 panel"></div>
+      </div>
   </div>
-</div>
+  <a href="/" class="btn btn-primary goBack">Back to home page</a>
+<div class="v-centered">
+		<div class="carousel days" >
+		    
+			<div class="roll">
+			  @for($i=0;$i < count($attractionList); $i++)
+  				<div class="project" indexAttr="{{$i}}">
+  					<img   src="{{ url('/uploads/attractions') }}/{{$attractionList[$i]['pic']}}" alt="Project img 1">
+  					<h4>{{$attractionList[$i]["weekDay"]}}<br>{{ Carbon\Carbon::parse( $attractionList[$i]["date"])->format('d/m/Y') }}</h4>
+  				</div>
+				@endfor
+				
+			</div>
+			<div class="sections">
+			</div>
+			<button class="navigation" id="nav-left"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+			<button class="navigation" id="nav-right"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+		</div>
+	</div>
+<!-- Load scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
+    
+
+
+
+
+
+
+
 <script type="text/javascript">
-
-var num_of_days = parseInt('{!!$num_of_days!!}');
-alert(num_of_days);
-
-if(num_of_days == 1){
-  $(".carousel").css("width","14%" )
-}else if(num_of_days == 2){
-  $(".carousel").css("width","29%" )
-}else if(num_of_days == 3){
-  $(".carousel").css("width","43.6%" )
-}else if(num_of_days == 4){
-  $(".carousel").css("width","58%" )
+var num_of_days = parseInt('{{$num_of_days}}');
+if (num_of_days > 5){
+  $(".carousel").css("width","1240px");
+  $(".navigation").show();
 }else{
-  $(".carousel").css("width","65%" )
+  var px = 210;
+  $(".carousel").css("width",(px*num_of_days)+"px");
+  $(".navigation").hide();
 }
 
 
 
+	var attractionList = {!! json_encode($attractionList) !!};
+  $(".project").click(function(){
+    var dayIndex = $(this).attr("indexAttr");
+    var attractionsPerDay = attractionList[dayIndex];
+    initializeMap(attractionsPerDay);
+});
 
 
 
 
 
 
-;(function($){
-    "use strict";
-
-    var bindToClass      = 'carousel',
-        containerWidth   = 0,
-        scrollWidth      = 0,
-        posFromLeft      = 0,    // Stripe position from the left of the screen
-        stripePos        = 0,    // When relative mouse position inside the thumbs stripe
-        animated         = null,
-        $indicator, $carousel, el, $el, ratio, scrollPos, nextMore, prevMore, pos, padding;
-
-    // calculate the thumbs container width
-    function calc(e){
-        $el = $(this).find(' > .wrap');
-        el  = $el[0];
-        $carousel = $el.parent();
-        $indicator = $el.prev('.indicator');
-
-        nextMore = prevMore  = false; // reset
-
-        containerWidth       = el.clientWidth;
-        scrollWidth          = el.scrollWidth; // the "<ul>"" width
-        padding              = 0.2 * containerWidth; // padding in percentage of the area which the mouse movement affects
-        posFromLeft          = $el.offset().left;
-        stripePos            = e.pageX - padding - posFromLeft;
-        pos                  = stripePos / (containerWidth - padding*2);
-        scrollPos            = (scrollWidth - containerWidth ) * pos;
+/* global $ */
+var directionsRenderer;
+var autoComplete;
+var googleMap;
+var marker;
+var geocoder = new google.maps.Geocoder;
+function initializeMap(attractions) {
+  if(attractions.attractions != undefined){
+      console.log(attractions.attractions)
+     // Add way points to array.
+    
+        var locationList = [];
+        var wayPoints = [];
+        for(var i = 1 ; i < attractions.attractions.length; i++){
+          var wayPoint =
+          {
+              location:  new google.maps.LatLng(parseFloat(attractions.attractions[i].lat),parseFloat(attractions.attractions[i].lng)),
+              stopover: true,
+          };
+          var obj = {lat : parseFloat(attractions.attractions[i].lat),
+                    lng : parseFloat(attractions.attractions[i].lng)};
+            locationList.push(obj);  
+            wayPoints.push(wayPoint);                
+        }
         
-        if( scrollPos < 0 )
-          scrollPos = 0;
-        if( scrollPos > (scrollWidth - containerWidth) )
-          scrollPos = scrollWidth - containerWidth;
+    // Clear previous directions, if any.
+        if (directionsRenderer) {
+            directionsRenderer.setMap(null);
+        }
+        var directionsService = new google.maps.DirectionsService;
+        directionsRenderer = new google.maps.DirectionsRenderer({
+            map: googleMap,
+            draggable: true
+        });
+        
+    if(wayPoints.length > 1){
+        //origin and destination lat lng to address
+        var directionsRequest = {
+            origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+            destination: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+            travelMode: google.maps.TravelMode["DRIVING"],
+            waypoints: wayPoints,
+            optimizeWaypoints: true
+        }
       
-        $el.animate({scrollLeft:scrollPos}, 200, 'swing');
-        
-        if( $indicator.length )
-            $indicator.css({
-                width: (containerWidth / scrollWidth) * 100 + '%',
-                left: (scrollPos / scrollWidth ) * 100 + '%'
+        var x;
+        // Send request to the directions service.
+        directionsService.route(directionsRequest, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsRenderer.setDirections(response);
+                console.log(response.routes[0].waypoint_order);
+                x = response.routes[0].waypoint_order.pop();
+                var destinationLat = attractions.attractions[x+1].lat;
+                var destinationLng= attractions.attractions[x+1].lng;
+                console.log("x: " +x);
+                var wayPoints2 = [];
+                for(var i = 0 ; i < wayPoints.length; i++){
+                    if(i != x){
+                        wayPoints2.push(wayPoints[i]); 
+                    }
+                }
+                var directionsRequest = {
+                    origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                    destination: new google.maps.LatLng(parseFloat(destinationLat),parseFloat(destinationLng)),
+                    travelMode: google.maps.TravelMode["DRIVING"],
+                    waypoints: wayPoints2,
+                    optimizeWaypoints: true
+                }
+            
+            
+                // Send request to the directions service.
+                directionsService.route(directionsRequest, function (response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        directionsRenderer.setDirections(response);
+                    } else {
+                        console.log(google.maps.DirectionsStatus);
+                        console.log(status);
+                    }
+                });
+            }
             });
-
-        clearTimeout(animated);
-        animated = setTimeout(function(){
-            animated = null;
-        }, 200);
-
-        return this;
+        }else{
+            var directionsRequest = {
+            origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+            destination: new google.maps.LatLng(parseFloat(attractions.attractions[1].lat),parseFloat(attractions.attractions[1].lng)),
+            travelMode: google.maps.TravelMode["DRIVING"],
+            optimizeWaypoints: true
+        }
+        
+        directionsService.route(directionsRequest, function (response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            directionsRenderer.setDirections(response);
+        }else{
+            console.log(google.maps.DirectionsStatus);
+            console.log(status);
+        }
+    });
+        
+        
+        
+        
     }
 
-    // move the stripe left or right according to mouse position
-    function move(e){
-        // don't move anything until inital movement on 'mouseenter' has finished
-        if( animated ) return;
+    
+  }else{
+    var latLng = new google.maps.LatLng(attractionList[0].attractions[0].lat, attractionList[0].attractions[0].lng);
 
-        ratio     = scrollWidth / containerWidth;
-        stripePos = e.pageX - padding - posFromLeft; // the mouse X position, "normalized" to the carousel position
-
-        if( stripePos < 0)
-            stripePos = 0;
-
-        pos = stripePos / (containerWidth - padding*2); // calculated position between 0 to 1
-        // calculate the percentage of the mouse position within the carousel
-        scrollPos = (scrollWidth - containerWidth ) * pos;   
-
-        el.scrollLeft = scrollPos;
-        if( $indicator[0] && scrollPos < (scrollWidth - containerWidth) )
-          $indicator[0].style.left = (scrollPos / scrollWidth ) * 100 + '%';
-
-        // check if element has reached an edge
-        prevMore = el.scrollLeft > 0;
-        nextMore = el.scrollLeft < (scrollWidth - containerWidth);
-
-        $carousel.toggleClass('left', prevMore);
-        $carousel.toggleClass('right', nextMore);
-    }
-
-    $.fn.carousel = function(options){
-        $(document)
-            .on('mouseenter.carousel', '.' + bindToClass, calc)
-            .on('mousemove.carousel', '.' + bindToClass, move);
+    var mapOptions = {
+        center: latLng,
+        zoom: 7
     };
 
-    // automatic binding to all elements which have the class that is assigned to "bindToClass"
-    $.fn.carousel();
+    googleMap = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
 
-})(jQuery);
+    google.maps.event.addListener(googleMap, 'click', function (e) {
+        // Remove previous marker, if any.
+        if (marker) {
+            marker.setMap(null);
+        }
+
+        // Get address by lat/lng.
+        var geocoder = new google.maps.Geocoder();
+        
+        geocoder.geocode({ 'latLng': e.latLng }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var address = results[0].formatted_address;
+
+                    marker = new google.maps.Marker({
+                        position: e.latLng,
+                        map: googleMap,
+                        title: address
+                    });
+                }
+            }
+        });
+    });
+  }
+}
+
+
+// Add window load event.
+google.maps.event.addDomListener(window, "load", initializeMap);
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">    
+var currentSection = 1;
+var sections;
+
+$('document').ready(function () {
+	setCurrentSection();
+	setSectionIndicator(1);
+	$('.navigation').click(function () {
+		if (this.id == "nav-left") { 
+			if (currentSection != 1) {
+				scrollToSection(currentSection - 1);
+				$('#nav-left').prop('disabled', true);
+			}
+		}
+		else  {
+			if (currentSection+1 <= sections) {
+				scrollToSection(currentSection + 1);
+				$('#nav-right').prop('disabled', true);
+			}
+		}
+	});
+
+	$('.navigation').on('mouseover', function() {
+		if (this.id == 'nav-left') {
+			if (currentSection != 1) $(this).addClass('navigation-hover');
+		} else {
+			if (currentSection+1 <= sections) $(this).addClass('navigation-hover');
+		}
+	}).on('mouseout', function () {
+		$(this).removeClass('navigation-hover');
+	});
+
+	$(window).resize(function() {
+		setCurrentSection();
+		setSectionIndicator(currentSection);
+	});
+
+});
+
+function setCurrentSection() {
+	var carouselWidth = $('.carousel').width();
+	var projectWidth = $('.project').width() + parseInt($('.project').css('margin-right').replace('px',''));
+	var projectsQtt = $('.project').size();
+	var projectsPerSection = carouselWidth / projectWidth;
+	sections = Math.round(projectsQtt / projectsPerSection);
+	var rollLeft = Math.abs(parseInt($('.roll').css('left').replace('px','')));
+	if (rollLeft == 0) currentSection = 1;
+	else {
+		currentSection = Math.round((rollLeft / carouselWidth) + 1);
+	}
+	$('#nav-left').prop('disabled', false);
+	$('#nav-left').removeClass('navigation-hover');
+	$('#nav-right').prop('disabled', false);
+	$('#nav-right').removeClass('navigation-hover');
+}
+
+function scrollToSection(section) {
+	var width = $('.carousel').width() * (Math.abs(currentSection - section));
+	if (section < currentSection) {
+		$('.roll').animate({left: '+='+width}, "slow", setCurrentSection);
+	} else {
+		$('.roll').animate({left: '-='+width}, "slow", setCurrentSection);
+	}
+	setSectionIndicator(section);
+}
+
+function setSectionIndicator(section) {
+	$('.sections').html('');
+	for (var i = 1; i <= sections; i++) {
+		if (i == section) circleClass = 'fa fa-circle';
+		else circleClass = 'fa fa-circle-thin';
+		$('.sections').html($('.sections').html() + '<i class="'+circleClass+' indicator" data-id="'+i+'" aria-hidden="true"></i>');
+	}
+	$('.indicator').click(function() {
+		scrollToSection($(this).attr('data-id'));
+	});
+}
+
+
+</script>
+
 </html>
+@endsection

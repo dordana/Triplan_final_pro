@@ -1,52 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @extends('layouts.app')
 
 @section('content')
@@ -75,13 +27,13 @@
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner">
       <div class="item active srle">
-	      <img src="{{ url('/uploads/countries') }}/{{$country->mainpic}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
+	      <img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$country->mainpic}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
 	      <div class="carousel-caption">
 	      </div>
 	    </div>
       @foreach ($country->photos as $photo)
 	    <div class="item">
-	      <img src="{{ url('/uploads/countries') }}/{{$photo->path}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
+	      <img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$photo->path}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
 	      <div class="carousel-caption">
 	      </div>
 	    </div>
@@ -98,9 +50,9 @@
 
 	  <!-- Thumbnails --> 
 	  <ul class="thumbnails-carousel clearfix">
-	  	<li><img src="{{ url('/uploads/countries') }}/{{$country->mainpic}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
+	  	<li><img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$country->mainpic}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
 	    @foreach ($country->photos as $photo)
-	  	<li><img src="{{ url('/uploads/countries') }}/{{$photo->path}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
+	  	<li><img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$photo->path}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
 	    @endforeach
 	  </ul>
 	</div>

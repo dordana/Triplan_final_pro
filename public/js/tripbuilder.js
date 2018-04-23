@@ -108,59 +108,74 @@ $(document).ready(function(){
 	
 	$('.add-cart-large').each(function(i, el){
 		$(el).click(function(){
-			subNumOfattractions();
-			var productCard = $(this).parent().parent();
-			var carousel = $(this).parent().parent().find(".carousel-container");
-			var img = carousel.find('img').eq(carousel.attr("rel"))[0];						
-			var position = $(img).offset();	
-			var productId = $(productCard).find('.product_id').get(0).innerHTML;
-			var productName = $(this).parent().find('h4').get(0).innerHTML;				
-			
-			$("body").append('<div class="floating-cart"></div>');		
-			var cart = $('div.floating-cart');		
-			$("<img src='"+img.src+"' class='floating-image-large' />").appendTo(cart);
-			
-			$(cart).css({'top' : position.top + 'px', "left" : position.left + 'px'}).fadeIn("slow").addClass('moveToCart');		
-			setTimeout(function(){$("body").addClass("MakeFloatingCart");}, 800);
-			
-			setTimeout(function(){
-			$('div.floating-cart').remove();
-			$("body").removeClass("MakeFloatingCart");
-
-
-			var cartItem = "<div attraction_id="+productId+" class='cart-item'><div class='img-wrap'><img src='"+img.src+"' alt='' /></div><span>"+productName+"</span><strong>$39</strong><div class='cart-item-border'></div><div class='delete-item'></div></div>";			
-
-			$("#cart .empty").hide();			
-			$("#cart").append(cartItem);
-			$("#checkout").fadeIn(500);
-			
-			$("#cart .cart-item").last()
-				.addClass("flash")
-				.find(".delete-item").click(function(){
-					addbNumOfattractions();
-					$(this).parent().fadeOut(300, function(){
-						$(this).remove();
-						if($("#cart .cart-item").size() == 0){
-							$("#cart .empty").fadeIn(500);
-							$("#checkout").fadeOut(500);
-						}
-					})
-					var attraction_name_to_return = $(this).parent().attr('attraction_id');
-					$( ".product" ).each(function( index ) {
-			          if ($(this).attr('attraction_id').trim() == attraction_name_to_return.trim() ){
-			              $(this).fadeIn("slow");
-			          }
-			        });
-				});
- 		    setTimeout(function(){
-				$("#cart .cart-item").last().removeClass("flash");
-			}, 10 );
-			
-		}, 1000);
-			$(this).parent().parent().fadeOut("slow");
+			if(parseInt($("#num_of_attractions").text()) > 0){
+				subNumOfattractions();
+				var productCard = $(this).parent().parent();
+				var carousel = $(this).parent().parent().find(".carousel-container");
+				var img = carousel.find('img').eq(carousel.attr("rel"))[0];						
+				var position = $(img).offset();	
+				var productId = $(productCard).find('.product_id').get(0).innerHTML;
+				var productName = $(this).parent().find('h4').get(0).innerHTML;				
+				
+				$("body").append('<div class="floating-cart"></div>');		
+				var cart = $('div.floating-cart');		
+				$("<img src='"+img.src+"' class='floating-image-large' />").appendTo(cart);
+				
+				$(cart).css({'top' : position.top + 'px', "left" : position.left + 'px'}).fadeIn("slow").addClass('moveToCart');		
+				setTimeout(function(){$("body").addClass("MakeFloatingCart");}, 800);
+				
+				setTimeout(function(){
+				$('div.floating-cart').remove();
+				$("body").removeClass("MakeFloatingCart");
+	
+	
+				var cartItem = "<div attraction_id="+productId+" class='cart-item'><div class='img-wrap'><img src='"+img.src+"' alt='' /></div><span>"+productName+"</span><div class='cart-item-border'></div><div class='delete-item'></div></div>";			
+	
+				$("#cart .empty").hide();			
+				$("#cart").append(cartItem);
+				$("#checkout").fadeIn(500);
+				
+				$("#cart .cart-item").last()
+					.addClass("flash")
+					.find(".delete-item").click(function(){
+						addbNumOfattractions();
+						$(this).parent().fadeOut(300, function(){
+							$(this).remove();
+							if($("#cart .cart-item").size() == 0){
+								$("#cart .empty").fadeIn(500);
+								$("#checkout").fadeOut(500);
+							}
+						})
+						var attraction_name_to_return = $(this).parent().attr('attraction_id');
+						$( ".product" ).each(function( index ) {
+				          if ($(this).attr('attraction_id').trim() == attraction_name_to_return.trim() ){
+				              $(this).fadeIn("slow");
+				          }
+				        });
+					});
+	 		    setTimeout(function(){
+					$("#cart .cart-item").last().removeClass("flash");
+				}, 10 );
+				
+			}, 1000);
+				$(this).parent().parent().fadeOut("slow");
+		}else{
+			 swal({
+                  title: "Alert",
+                  text: "Sorry, you have completed the quota of attractions for your trip",
+                  icon: "info",
+                }) 
+		}
+				
+				
+				
+				
+				
+			});
 		});
-		
-	})
+	
+	
+	
 	$(".delete-item").delegate( "click", function() {
 	  addbNumOfattractions();
 	});
@@ -246,6 +261,7 @@ $(document).ready(function(){
 	});
 	
 	$('.add_to_cart').click(function(){
+		if(parseInt($("#num_of_attractions").text()) > 0){
 		subNumOfattractions();
 		var productCard = $(this).parent();
 		var position = productCard.offset();
@@ -262,7 +278,7 @@ $(document).ready(function(){
 			$("body").removeClass("MakeFloatingCart");
 
 
-			var cartItem = "<div attraction_id="+productId+" class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><strong>$39</strong><div class='cart-item-border'></div><div class='delete-item'></div></div>";			
+			var cartItem = "<div attraction_id="+productId+" class='cart-item'><div class='img-wrap'><img src='"+productImage+"' alt='' /></div><span>"+productName+"</span><div class='cart-item-border'></div><div class='delete-item'></div></div>";			
 
 			$("#cart .empty").hide();			
 			$("#cart").append(cartItem);
@@ -292,6 +308,14 @@ $(document).ready(function(){
 			
 		}, 1000);
 		$(this).parent().parent().parent().fadeOut("slow");
+		}else{
+			 swal({
+                  title: "Alert",
+                  text: "Sorry, you have completed the quota of attractions for your trip",
+                  icon: "info",
+                }) 
+		}
+		
 	});
 });
 

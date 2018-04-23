@@ -55,6 +55,12 @@ Route::post('/City_addAnswerToQuestion', ['as' => 'City_addanswertoquestion', 'u
 
 // Attraction Routes
 Route::get('/attractions', ['as' => 'showattractions', 'uses' => 'AttractionController@showAllAttractions']);
+Route::get('/attractions/{id}', ['as' => 'showattraction', 'uses' => 'AttractionController@showAttraction']);
+Route::post('/Attraction_addLike', ['as' => 'Attraction_addlike', 'uses' => 'AttractionController@addLike']);
+Route::post('/Attraction_addQuestion', ['as' => 'Attraction_addquestion', 'uses' => 'AttractionController@addQuestion']);
+Route::post('/Attraction_editQuestion', ['as' => 'Attraction_editquestion', 'uses' => 'AttractionController@editQuestion']);
+Route::post('/Attraction_deleteQuestion', ['as' => 'Attraction_deletequestion', 'uses' => 'AttractionController@deleteQuestion']);
+Route::post('/Attraction_addAnswerToQuestion', ['as' => 'Attraction_addanswertoquestion', 'uses' => 'AttractionController@addAnswerToQuestion']);
 
 // Review Route
 Route::get('/reviews', ['as' => 'showreviews', 'uses' => 'ReviewController@showallreviews']);
@@ -76,7 +82,7 @@ Route::post('/general/contact', ['as' => 'usermsg', 'uses' => 'HomeController@us
 ///Trip Routes
 Route::get('/trip', 'TripController@initTrip');
 Route::get('/tripbuilder', ['as' => 'tripbuilder', 'uses' => 'TripController@build']);
-
+Route::get('/loading', ['as' => 'loading', 'uses' => 'TripController@loading']);
 
 // Admin Routes
 Route::get('/admin/dashboard', 'AdminController@index');

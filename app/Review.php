@@ -11,6 +11,11 @@ class Review extends Model
         return $this->belongsTo('App\User');
     }
     
+    public function attraction()
+    {
+        return $this->belongsTo('App\Attraction');
+    }
+    
     public function photos(){
         return $this->hasMany('App\ReviewPhoto');
     }
