@@ -51,6 +51,10 @@ class HomeController extends Controller
     
     
      //General functions
+     public function test()
+    {
+        return view('test');
+    }
     public function terms()
     {
         return view('general/terms');

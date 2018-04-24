@@ -14,7 +14,6 @@ use \Datetime;
 class TripController extends Controller
 {
     public function loading(Request $request){
-        
         return view('general/loading',[
             'request' => $request->all(),
             ]);
@@ -86,7 +85,8 @@ class TripController extends Controller
             array_push($attractionsListByLatLng,
             array(
                 "lat" => Attraction::find($id)->lat,
-                "lng" => Attraction::find($id)->lng
+                "lng" => Attraction::find($id)->lng,
+                "id" => $id
             ));
             
         }
@@ -125,7 +125,6 @@ class TripController extends Controller
                 $oneDate = array(
                     "date"=> $date,
                     "weekDay" => array_shift($weekDays),
-                    "pic"=> Attraction::where("lat",$attractionsListByLatLng[$i]["lat"])->first()->mainpic,
                     "attractions" => array
                         (
                             
@@ -141,7 +140,8 @@ class TripController extends Controller
                         array_push($oneDate["attractions"],
                             array(
                                 "lat" => $attractionsListByLatLng[$i]["lat"],
-                                "lng" => $attractionsListByLatLng[$i]["lng"]
+                                "lng" => $attractionsListByLatLng[$i]["lng"],
+                                "id" => $attractionsListByLatLng[$i]["id"]
                             ));
                         $num_of_iterations++;
                     }else{
@@ -156,7 +156,6 @@ class TripController extends Controller
                 $oneDate = array(
                     "date"=> $date,
                     "weekDay" => array_shift($weekDays),
-                    "pic"=> Attraction::where("lat",$attractionsListByLatLng[$i]["lat"])->first()->mainpic,
                     "attractions" => []
                     );
                 if($i < $num_of_attractions){
@@ -175,11 +174,27 @@ class TripController extends Controller
             } 
         }
         
+        
         return view('TripBuilder/showTrip',[
             "attractionList" => $attractionsListPerDay,
-            "num_of_days" => count($attractionsListPerDay)
+            "num_of_days" => count($attractionsListPerDay),
+            "request" => $request->all(),
             ]);
     }
 
-    
+    public function saveTrip(Request $request){
+        $newPath = new Path;
+        $user = Auth::user();
+        $newPath->user_id = $user->id;
+    	$newPath->city_id = $request->req["cityname"];
+        $newPath->startLocation = $request->req["startLocation"];
+        $newPath->startLocationString = $request->req["startLocationString"];
+        $newPath->countryName = $request->req["countryName"];
+        $newPath->attraction_list = $request->req["attractionList"];
+        $newPath->title = $request->req["pathName"];	
+        $newPath->start_date = $request->req["startDate"];	
+        $newPath->end_date = $request->req["endDate"];
+        $newPath->save();
+        return $newPath;
+    }
 }

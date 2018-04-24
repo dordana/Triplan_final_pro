@@ -83,6 +83,7 @@ Route::post('/general/contact', ['as' => 'usermsg', 'uses' => 'HomeController@us
 Route::get('/trip', 'TripController@initTrip');
 Route::get('/tripbuilder', ['as' => 'tripbuilder', 'uses' => 'TripController@build']);
 Route::get('/loading', ['as' => 'loading', 'uses' => 'TripController@loading']);
+Route::post('/savetrip', ['as' => 'savetrip', 'uses' => 'TripController@saveTrip']);
 
 // Admin Routes
 Route::get('/admin/dashboard', 'AdminController@index');
@@ -91,4 +92,4 @@ Route::post('/admin/user/edit', 'AdminController@userEdit');
 Route::post('/admin/user/inactive', 'AdminController@userInactive');
 Route::post('/admin/user/active', 'AdminController@userActive');
 
-
+Route::get('/test', 'HomeController@test');

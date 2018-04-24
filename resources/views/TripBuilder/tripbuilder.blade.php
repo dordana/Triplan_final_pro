@@ -3,13 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Add to your trip interaction</title>
-  
-  
-  
+  <title>Trip Builder</title>
       <link rel="stylesheet" href="css/tripbuilder.css">
-
-  
 </head>
 
 <body>
@@ -30,6 +25,8 @@
     <input type="text" hidden name="startDate" id="startDate"/>
     <input type="text" hidden name="endDate" id="endDate"/>
     <input type="text" hidden name="startLocation" id="startLocation"/>
+    <input type="text" hidden name="startLocationString" id="startLocationString"/>
+    <input type="text" hidden name="countryName" value="{{$country->name}}"/>
     <div id="checkout">CHECKOUT</div>
 </form>
 
@@ -185,58 +182,47 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
-
+$.getJSON("http://freegeoip.net/json/", function(data) {
+    var city = data.city;
+    var country = data.country_name;
+    $('#txtLocation').val(city +", "+ country); 
+});
 
 
 $(document).ready(function(){
     $(".choise").css("text-transform", "capitalize ");
     $('#checkout').click(function(){
-        if ($('#pathNameText').val() != "")
+        if ($('#pathNameText').val() != "" && $('#txtLocation').val() != "")
         {
-            if(parseInt($("#num_of_attractions").text()) > 0){
-                swal({
-                  title: "Are you sure?",
-                  text: "You can still add "+ parseInt($("#num_of_attractions").text()) +" attractions to your trip!",
-                  icon: "info",
-                  buttons: true,
-                })
-                .then((ok) => {
-                  if (ok) {
-                      
-                      
-                      
-                       $('#pathName').val($('#pathNameText').val()); 
-                       $('#cityname').val('{{$city->id}}');
-                       $('#startDate').val('{{$start}}');
-                       $('#endDate').val('{{$end}}');
-                       
-                       geocoder = new google.maps.Geocoder();
-                        geocoder.geocode( { 'address' : $("#txtLocation").val() }, function( results, status ) {
-                            if( status == google.maps.GeocoderStatus.OK ) {
-                                alert(results[0].geometry.location);
-                                $("#startLocation").val(results[0].geometry.location);
-                                var attractionList = [];
-                               $('.cart-item').each(function( index ) {
-                                    attractionList.push($(this).attr('attraction_id'));
-                               });
-                               attractionList = JSON.stringify(attractionList);
-                               $('#attractionList').val(attractionList);
-                               alert($("#startLocation").val());
-                               $('#attractionForm').submit();
-                            }
-                        } );
-                        
-                        
-                       
-                  } 
-                });
-            }
+           $('#pathName').val($('#pathNameText').val()); 
+           $('#cityname').val('{{$city->id}}');
+           $('#startDate').val('{{$start}}');
+           $('#endDate').val('{{$end}}');
+           $("#startLocationString").val($("#txtLocation").val());
            
-        }
+           geocoder = new google.maps.Geocoder();
+            geocoder.geocode( { 'address' : $("#txtLocation").val() }, function( results, status ) {
+                if( status == google.maps.GeocoderStatus.OK ) {
+                    $("#startLocation").val(results[0].geometry.location);
+                    var attractionList = [];
+                   $('.cart-item').each(function( index ) {
+                        attractionList.push($(this).attr('attraction_id'));
+                   });
+                   attractionList = JSON.stringify(attractionList);
+                   $('#attractionList').val(attractionList);
+                   $('#attractionForm').submit();
+                }
+            } );
+    }else{
+        swal({
+              title: "Alert",
+              text: "You must to fill in the start location and the path name",
+              icon: "warning",
+              dangerMode: true,
+            })
+    }
     });
-    
 autoComplete = new google.maps.places.Autocomplete(document.getElementById("txtLocation"));    
-    
 });
 </script>
 
