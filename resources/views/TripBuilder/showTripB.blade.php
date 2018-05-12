@@ -634,7 +634,7 @@ var req = {!! json_encode($request) !!};
 			$.ajax({
 				type: "POST",
 				url: url,
-				data : {req},
+				data : {req,type:"budget"},
 				success: function(data) {
 				    $("#saveText").html("<i class='fa fa-circle-o-notch fa-spin' style='font-size:35px'></i>Saving");
 				    setTimeout(function(){

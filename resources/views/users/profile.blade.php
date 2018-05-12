@@ -131,7 +131,7 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 .row2tab li {
     list-style: none;
     float: left;
-    width: 25%;
+    width: 33%;
     padding: 15px;
     font-size: 14px;
     text-align: center;
@@ -478,6 +478,7 @@ a:hover, a:focus {
 
 .snip1493 img {
   max-width: 100%;
+  height: 230px;
   vertical-align: top;
   position: relative;
 }
@@ -574,7 +575,7 @@ a:hover, a:focus {
 </style>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
+<p id="pageName" hidden >Home</p>
 
 <div class="container fullcont">
 	<div class="innerwrap">
@@ -585,17 +586,26 @@ a:hover, a:focus {
 						<img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
 						<h1>{{ $user->firstname }} {{ $user->lastname}}</h1>
 						<p>{{$user->age}} years old {{$user->gender}} from {{$user->city}},{{$user->country}}</p>
-						<span>Add as friend</span>
+						@if (Auth::check())
+							@if (Auth::user()->id != $user->id)
+								@if(in_array($user->id,$userFriends))
+									<span style="background:orange"><i class='fas fa-user-friends'></i> Friends</span>
+								@else
+									<span class="friends"><i class="fas fa-user-plus"></i>  Add as friend</span>
+								@endif
+							@endif
+						@endif
+						
 					</div>
 					<div class="col2 last">
 						<div class="grid clearfix">
 							<div class="col3 first">
-								<h1>{{ $user->num_of_likes }}</h1>
-								<span>Likes</span>
+								<h1>{{ count($user->friends) }}</h1>
+								<span>Friends</span>
 							</div>
-							<div class="col3"><h1>{{ $user->num_of_shares }}</h1>
-							<span>Shares</span></div>
-							<div class="col3 last"><h1>{{ $user->num_of_paths }}</h1>
+							<div class="col3"><h1>{{ count($user->reviews) }}</h1>
+							<span>Reviews</span></div>
+							<div class="col3 last"><h1>{{ count($user->paths)}}</h1>
 							<span>Paths</span></div>
 						</div>
 					</div>
@@ -604,8 +614,7 @@ a:hover, a:focus {
 					<ul class="row2tab clearfix">
 						<li class="alltab tab_1 active-tab"><i class="fa fa-image"></i> Photos </li>
 						<li class="alltab tab_2"><i class="fa fa-newspaper"></i> Reviews </li>
-						<li class="alltab tab_3"><i class="fas fa-check"></i> Following </li>
-						<li class="alltab tab_4"><i class="fa fa-thumbs-o-up "></i> Suggestions </li>
+						<li class="alltab tab_3"><i class="fas fa-suitcase"></i> Paths </li>
 					</ul>
 				</div>
 			</div>
@@ -642,7 +651,7 @@ a:hover, a:focus {
 				
 				
 				@foreach($user->reviews as $review)
-        <div class="row">
+        <div class="row" style="border: solid 2px #efefef">
         	<div class="Review">
 					  <div class="Review-details">
 					    <img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}">
@@ -661,7 +670,7 @@ a:hover, a:focus {
 					    </div>
 					  </div>
 					  <div class="Review-body">
-					    <h3 class="Review-title">{{ $review->title}}</h3>
+					    <h3 class="Review-title"><a href="{{route('show-review', $review->id)}}">{{ $review->title}}</a></h3>
 					    <p>{{ $review->body}}</p>
 					  </div>
 					</div>
@@ -688,19 +697,16 @@ a:hover, a:focus {
 					<figure class="snip1493">
 					  <div class="image"><img src="{{ url('/uploads/cities') }}/{{str_replace(' ', '', App\City::find($path->city_id)->name)}}/{{App\City::find($path->city_id)->mainpic}}" alt="ls-sample1" /></div>
 					  <figcaption>
-					    <div class="date"><span class="day">28</span><span class="month">Oct</span></div>
-					    <h3>The World Ended Yesterday</h3>
-					    <p>
-					
-					      You know what we need, Hobbes? We need an attitude. Yeah, you can't be cool if you don't have an attitude.
+					    <div class="date"><span class="day">{{ Carbon\Carbon::parse($path->start_date)->format('d') }}</span><span class="month">{{ date("F", mktime(0, 0, 0, Carbon\Carbon::parse($path->start_date)->format('m'), 1)) }}</span></div>
+					    <h3 style="text-align: center;display: block;">{{ $path->pathName }}</h3>
+					    <p style="text-align:center">
+									Dates: {{ $path->startDate }} - {{ $path->endDate }} <br>
+									Country: {{ $path->countryName }} <br>
+									City: {{ App\City::find($path->city_id)->name }}<br>
+									Type: {{ $path->type }}
 					    </p>
-					    <footer>
-					      <div class="views"><i class="ion-eye"></i>2,907</div>
-					      <div class="love"><i class="ion-heart"></i>623</div>
-					      <div class="comments"><i class="ion-chatboxes"></i>23</div>
-					    </footer>
 					  </figcaption>
-					  <a href="#"></a>
+					  <a href="{{route('tripbuilder', $path->toArray())}}"></a>
 					</figure>
 				@endforeach
 	    </div>	
@@ -758,6 +764,38 @@ a:hover, a:focus {
 
 <script type="text/javascript">
 	$(document).ready(function() {
+		$(".friends").click(function() {
+				var userId = "{{$user->id}}";
+				var url = "{{route('addfriend')}}";
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+			
+				$.ajax({
+			    	type: 'ajax',
+			    	method: 'post',
+			    	url: url,
+			    	data: {id:userId},
+			    	async: false,
+			    	dataType: 'json',
+			    	success: function(data){
+			    	   $(".friends").html("<i class='fas fa-user-friends'></i> Friends")
+			    	   $(".friends").css("background","orange");
+			    	   $( ".friends" ).unbind( "click" );
+			    	},
+			    	error: function(data){
+			    		console.log(data)
+			    	}
+			    });
+		})
+		
+		
+		
+		
+		
+		
 		$(".alltab").removeClass("active");
 		$(".tab_1").click(function(){
 			$(".section2").hide();

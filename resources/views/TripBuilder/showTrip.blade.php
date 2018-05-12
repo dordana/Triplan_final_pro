@@ -465,6 +465,7 @@ b:hover{
 <!--left sidebar-->
 <div id='social-sidebar'>
     <ul>
+        @if (Auth::user()->id == $request["user_id"])
         <li id="saveTrip">
         	<a class='entypo-twitter opt' href='javascript:void(0)' target='_blank' id="saveText">
         		<span>Save</span>
@@ -472,6 +473,7 @@ b:hover{
         		Save my trip
         	</a>
         </li>
+        @endif
         <li>
         	<a class='entypo-gplus opt' href='javascript:void(0)' target='_blank' id="sendEmail">
         		<span>Email</span>
@@ -493,6 +495,7 @@ b:hover{
         	    Show list view
         	</a>
         </li>
+        @if (Auth::user()->id == $request["user_id"])
         <li>
         	<a class='entypo-rss opt' href='javascript:void(0)' target='_blank' id="backToBuilder" >
         		<span>Builder</span>
@@ -500,6 +503,7 @@ b:hover{
         	    Back to trip builder
         	</a>
         </li>
+        @endif
         <li>
         	<a class='entypo-facebook opt' href='/'>
         		<span>Homepage</span>
@@ -543,7 +547,7 @@ b:hover{
   <div class="navbar__area">
     <nav role="navigation">
       <ul class="navbar__list">
-        <li class="navbar__item"><span class="titles">City: </span>{{App\City::find($request["cityname"])->name}}, {{$request["countryName"]}}</li>
+        <li class="navbar__item"><span class="titles">City: </span>{{$request["cityname"]}}, {{$request["countryName"]}}</li>
         <li class="navbar__item"><span class="titles">Trip name: </span>{{$request["pathName"]}}</li>
         <li class="navbar__item"><span class="titles">Duration: </span><span class="duration">0 hours 0 minutes 0 seconds</span></li>
         <li onClick="document.location.href = '/'" class="navbar__item navbar--link navbar--ad" id="cityNameNavBar">TRIPLAN</li>
@@ -593,7 +597,7 @@ var req = {!! json_encode($request) !!};
 			$.ajax({
 				type: "POST",
 				url: url,
-				data : {req},
+				data : {req,type:"normal"},
 				success: function(data) {
 				    $("#saveText").html("<i class='fa fa-circle-o-notch fa-spin' style='font-size:35px'></i>Saving");
 				    setTimeout(function(){

@@ -29,6 +29,8 @@ Route::post('/profile', 'UserController@udpateprofile');
 Route::post('/profile/changepassword', ['as' => 'change-password', 'uses' => 'UserController@changepassword']);
 Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserController@changephoto']);
 Route::get('/profile/{id}', ['as' => 'showuserprofile', 'uses' => 'UserController@userprofile_byid']);
+Route::get('/showfriends', ['as' => 'showfriends', 'uses' => 'UserController@showfriends']);
+Route::post('/addfriend', ['as' => 'addfriend', 'uses' => 'UserController@addfriend_byid']);
 Route::post('/deletefriend', ['as' => 'deletefriend', 'uses' => 'UserController@deletefriend_byid']);
 Route::post('/addfavorite', ['as' => 'addfavorite', 'uses' => 'UserController@addfavorite']);
 Route::post('/delfavorite', ['as' => 'delfavorite', 'uses' => 'UserController@delfavorite']);
@@ -81,7 +83,7 @@ Route::get('/404');
 Route::post('/general/contact', ['as' => 'usermsg', 'uses' => 'HomeController@userMsgEmail']);
 
 ///Trip Routes
-Route::get('/trip', 'TripController@initTrip');
+Route::get('/trip', ['as' => 'trip', 'uses' => 'TripController@initTrip']);
 Route::get('/tripbuilder', ['as' => 'tripbuilder', 'uses' => 'TripController@build']);
 Route::get('/loading', ['as' => 'loading', 'uses' => 'TripController@loading']);
 Route::post('/savetrip', ['as' => 'savetrip', 'uses' => 'TripController@saveTrip']);

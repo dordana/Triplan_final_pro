@@ -24,6 +24,7 @@
 					<li><a href="{{route('showcities')}}">Cities</a></li>
 					<li><a href="{{route('showattractions')}}">Attractions</a></li>
 					<li><a href="{{route('showreviews')}}">Reviews</a></li>
+					<li><a href="{{route('showfriends')}}">Friends</a></li>
 					<li class="">
 						<a href="javascript:void(0);" class="fh5co-sub-ddown sf-with-ul">General</a>
 						<ul class="fh5co-sub-menu" style="display: none;">

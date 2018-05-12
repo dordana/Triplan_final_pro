@@ -74,9 +74,34 @@ class UserController extends Controller
     }
     
     public function userprofile_byid($id){
-         return view('users/profile',[
+        $user = Auth::user();
+        $userFriends = [];
+        $userArrayFriends = $user->friends;
+        for($i = 0 ; $i < count($userArrayFriends) ; $i++){
+            array_push($userFriends,$userArrayFriends[$i]->user_friend_id);
+        }
+        return view('users/profile',[
             'user' => User::find($id),
+            'userFriends' => $userFriends,
         ]);
+    }
+    
+    public function showfriends(){
+        return view('users/users',[
+            'user' => Auth::user(),
+            'users' => User::all(),
+        ]);
+        
+        
+    }
+    
+    public function addfriend_byid(Request $request){
+      $user = Auth::user();
+      $friend = new friend;
+      $friend->user_id = $user->id;
+      $friend->user_friend_id = $request->id;
+      $friend->save();
+      return $friend;
     }
     
     public function addfavorite(Request $request){

@@ -397,13 +397,15 @@ class TripController extends Controller
         $user = Auth::user();
         $newPath->user_id = $user->id;
     	$newPath->city_id = $request->req["cityname"];
+    	$newPath->cityname = City::find($request->req["cityname"])->name;
         $newPath->startLocation = $request->req["startLocation"];
         $newPath->startLocationString = $request->req["startLocationString"];
         $newPath->countryName = $request->req["countryName"];
-        $newPath->attraction_list = $request->req["attractionList"];
-        $newPath->title = $request->req["pathName"];	
-        $newPath->start_date = $request->req["startDate"];	
-        $newPath->end_date = $request->req["endDate"];
+        $newPath->attractionList = $request->req["attractionList"];
+        $newPath->pathName = $request->req["pathName"];	
+        $newPath->startDate = $request->req["startDate"];	
+        $newPath->endDate = $request->req["endDate"];
+        $newPath->type = $request->type;
         $newPath->save();
         return $newPath;
     }
