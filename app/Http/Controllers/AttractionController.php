@@ -21,11 +21,19 @@ class AttractionController extends Controller
     }
     
     public function showAttraction($id){
+        $user = Auth::user();
+        $fav_arr = [];
+        $userFavorites = $user->favorites;
+        for($i = 0 ; $i < count($userFavorites) ; $i++){
+            array_push($fav_arr,$userFavorites[$i]->attraction_id);
+        }
+
         $attraction = Attraction::find($id);
         $reviews = Review::where('kind', "attraction")->where('id_type', $id)->get();
         return view('attractions/showattraction', [
             'attraction' => $attraction,
-            'user' =>  $user = Auth::user(),
+            'user' =>  $user,
+            'userFavorites' => $fav_arr,
             'reviews' => $reviews,
             'attractions' => Attraction::where('id', '!=', $id)->take(3)->get()
             ]);

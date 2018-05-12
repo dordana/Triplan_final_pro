@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-US">
     @include('partials.header')
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <style type="text/css">
-        body{
-            font-family: 'Mina', sans-serif;
-        }
+    
+    body{
+        font-family: 'Montserrat', sans-serif !important;
+    }
     </style>
     <!-- START BODY -->
     <body>

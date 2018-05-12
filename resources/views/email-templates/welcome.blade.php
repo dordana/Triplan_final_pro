@@ -278,7 +278,7 @@
 
 
                                         <div style="line-height: 26px;">
-                                            <a href="http://triplan1-dordana1191.c9users.io/login" style="color: #ffffff; text-decoration: none;">VISIT US</a>
+                                            <a href="http://triplan1-dordana1191.c9users.io/activeuser/{{$newUserid}}" style="color: #ffffff; text-decoration: none;">Active your account</a>
                                         </div>
                                     </td>
                                 </tr>

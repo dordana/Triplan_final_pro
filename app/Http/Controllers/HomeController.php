@@ -8,8 +8,10 @@ use App\Country;
 use Mail;
 use Config;
 use App\City;
+use App\User;
 use App\Review;
 use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     public function index()
@@ -19,7 +21,6 @@ class HomeController extends Controller
                 $user = Auth::user();
                 $user->first_login = "1";
                 $user->save();
-                //Here
             }
         }
         
@@ -29,12 +30,27 @@ class HomeController extends Controller
             'citiesToTravel' => City::all()->sortBy('name'),
             'countriesToTravel' => country::all()->sortBy('name'),
             'countries' => country::take(6)->get(),
-            'reviews' => Review::take(3)->get()
+            'reviews' => Review::take(3)->get(),
+            'cities' => City::take(10)->get(),
         ]);
     }
    
     
-    
+    public function activeuser($id){
+        $user = User::find($id);
+        $user->active = 1;
+        $user->save();
+        
+        return view('index',
+            [
+                'mainCountries' => country::orderBy('num_of_clicks', 'desc')->take(3)->get(),
+                'citiesToTravel' => City::all()->sortBy('name'),
+                'countriesToTravel' => country::all()->sortBy('name'),
+                'countries' => country::take(6)->get(),
+                'reviews' => Review::take(3)->get(),
+                'cities' => City::take(10)->get(),
+            ]);
+    }
     public function userMsgEmail(Request $request)
     {
          $data = array(

@@ -703,7 +703,15 @@ ul.thumbnails-carousel li {
 									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><h6>Address: </h6> <span>{{ $attraction->address.", ".$attraction->zip_code }}</span></a></li>
 									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><h6>Telephone: </h6> <span>{{ $attraction->telephone }}</span></a></li>
 									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><h6>Opening Hours: </h6> <span>{{ $attraction->opening_hours }}</span></a></li>
-									<li><a style="width:250px;height:auto;"class="btn btn-primary" href="{{ $attraction->website }}" class="justify-content-between align-items-center d-flex">Website<span></span></a></li>
+									<li><a style="width:250px;height:auto;" class="btn btn-primary" href="{{ $attraction->website }}" class="justify-content-between align-items-center d-flex">Website<span></span></a></li>
+									
+									@if (Auth::check())
+										@if(in_array($attraction->id,$userFavorites))
+											<li id="exist_fav"><a style="width:250px;height:auto;color: black;font-size: 16px; background-color: white;" class="btn btn-primary del_fav" attractionId="{{ $attraction->id }}" class="justify-content-between align-items-center d-flex"><i style="font-size: 16px; color: red;" class="fab fa-gratipay"></i> Remove from favorites<span></span></a></li>
+										@else
+											<li id="new_fav"><a style="width:250px;height:auto;color: black;font-size: 16px; background-color: white;" class="btn btn-primary add_fav" attractionId="{{ $attraction->id }}" class="justify-content-between align-items-center d-flex"><i style="font-size: 16px; color: red;" class="fab fa-gratipay"></i> Add to favorites<span></span></a></li>
+										@endif
+									@endif
 								</ul>
 							</div>
 
@@ -861,7 +869,65 @@ $( ".button.cancel" ).click(function() {
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function(){
+$(document).ready(function(){
+	$(".add_fav").click(function(){
+		var attractionId = $(this).attr("attractionId");
+		var url = "{{route('addfavorite')}}";
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+	
+		$.ajax({
+	    	type: 'ajax',
+	    	method: 'post',
+	    	url: url,
+	    	data: {id:attractionId},
+	    	async: false,
+	    	dataType: 'json',
+	    	success: function(data){
+	    		console.log(data);
+	    		location.reload();
+	    	},
+	    	error: function(data){
+	    		console.log(data)
+	    		location.reload();
+	    	}
+	    });
+	});
+	
+	$(".del_fav").click(function(){
+		var attractionId = $(this).attr("attractionId");
+		var url = "{{route('delfavorite')}}";
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+	
+		$.ajax({
+	    	type: 'ajax',
+	    	method: 'post',
+	    	url: url,
+	    	data: {id:attractionId},
+	    	async: false,
+	    	dataType: 'json',
+	    	success: function(data){
+	    		console.log(data);
+	    		location.reload();
+	    	},
+	    	error: function(data){
+	    		console.log(data)
+	    		location.reload();
+	    	}
+	    });
+	});
+		
+		
+		
+		
+		
 	    $(".showComments").click(function(){
 	    	if($(this).attr("num_of_comments") > 0){
 	    		var qId = $(this).attr("qId");

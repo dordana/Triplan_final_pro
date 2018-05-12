@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use App\Country;
 use App\Question;
 use App\Answer;
+use Image;
 use App\City;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -71,13 +72,15 @@ class CitiesController extends Controller
         $question->body = $request->data;
         $question->title = $request->title;
         $question->city_id = $request->cId;
-        $question->save();
-        $response = array(
-            'status' => 'success',
-            'msg' => 'Setting created successfully',
-        );
         
-        return \Response::json($response);
+         if($request->hasFile('image_path')){
+    		$photo= $request->file('image_path');
+            $filename = time().rand(0,10000) . '.' . $photo->getClientOriginalExtension();
+		    Image::make($photo)->resize(700, 500)->save( public_path('/uploads/questions/' . $filename ) );
+		    $question->img_path = $filename;
+    	}
+        $question->save();
+        return redirect()->back();
     }
     
      public function addAnswerToQuestion(Request $request){
@@ -86,12 +89,14 @@ class CitiesController extends Controller
         $answer->user_id = $user->id;
         $answer->body = $request->data;
         $answer->question_id = $request->qId;
+         if($request->hasFile('image_path')){
+    		$photo= $request->file('image_path');
+            $filename = time().rand(0,10000) . '.' . $photo->getClientOriginalExtension();
+		    Image::make($photo)->resize(700, 500)->save( public_path('/uploads/answers/' . $filename ) );
+		    $answer->img_path = $filename;
+    	}
         $answer->save();
-        $response = array(
-            'status' => 'success',
-            'msg' => 'Setting created successfully',
-        );
-        return \Response::json($response);
+        return redirect()->back();
     }
 
 }

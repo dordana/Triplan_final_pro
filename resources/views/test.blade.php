@@ -1,16 +1,21 @@
 @extends('layouts.empty')
 @section('content')
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <meta name="viewport" content="width=600,initial-scale = 2.3,user-scalable=no">
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-<style class="cp-pen-styles">
-body {
-  color: #444;
-  font-size: 1em;
- font-family: 'Poppins', sans-serif;
-
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<style type="text/css">
+    
+body{
+    font-family: 'Montserrat', sans-serif !important;
 }
-.container {
+.container1 {
   padding: 15px;
   width:70%;
   margin:0 auto;
@@ -32,7 +37,6 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 25px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  font-size: 0.9em;
   transition: all 0.2s ease-in-out;
   text-align: center;
   width: 100%;
@@ -47,7 +51,7 @@ body {
   display: inline-block;
   width: 100%;
   height: auto;
-  max-width: 200px;
+  max-width: 330px;
   float: left;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
   transition: all 0.5s ease-in-out;
@@ -155,72 +159,64 @@ h1{
     margin-top: 30px;
     font-size: 35px;
 }
-header{
-    margin: 0 auto;
-    display:block;
-    width: 500px;
-    height: 250px;
-    color:orange;
-    font-size: 70px !important; 
+.head_li{
+      width: 50% !important;
+    margin: 0 auto!important;
+    font-size: 24px;
+}
+.det{
+  float:none !important;
+}
+.pathname{
+  text-align:center;
+  font-size:50px;
+  color: orange ;
+}
+.button{
+  top: 3% !important;
+    position: absolute !important;
+    left: 2% !important;
 }
 </style>
-<header>
-    Triplan
-</header>
-
-<div class="container">
-    <h1>Day1</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+</head>
+<body>
+  <a class="btn btn-primary back" href="#"></a>
+<h1 class="pathname">{{$array[0]->pathname}}</h1>
+<button class="ui orange basic button" onClick="history.go(-1);">Back</button>
+@foreach($array as $day)
+<div class="container1">
   <ul class="cards day">
-    <li><img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=1cd7edb2ed25c1de4908db807e545988&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Emilia Jacobs</span><span class="title">UI/UX Designer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:emilia.jacobs@email.com">emilia.jacobs@email.com</a></div>
+     <li class="head_li">
+      <div class="details det">
+        <h2 class="daytitle" style="text-align:center">{{$day->day}}</h2>
+        <h2 class="daytitle" style="text-align:center">{{$day->time}}</h2>
+        <h2 class="daytitle" style="text-align:center">{{intval($day->distance)/1000}} km</h2>
+      </div>
     </li>
-    <li><img src="https://images.unsplash.com/photo-1499057625772-bafa601ee80c?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=136e035a7d5740f54f2acaa940c07f0b&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Tim Pawson</span><span class="title">Project Manager</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:tim.pawson@email.com">tim.pawson@email.com</a></div>
+     <li>
+      <iframe
+		  width="100%" 
+		  height="300" 
+		  frameborder="0" style="border:0"
+		  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAiTGDJkinOXMY9hc248cZ4hshRz6Mtq-c&q={{$day->attractions[0]->lat}}+,+{{$day->attractions[0]->lng}}&zoom=12.5&maptype=roadmap" allowfullscreen>
+		</iframe>
     </li>
-    <li><img src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=5ba0eb3fce2a3b77dd7d18bf1615ddee&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Amanda Tyler</span><span class="title">Frontend Developer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:amanda.tyler@email.com">amanda.tyler@email.com				</a></div>
+    @for($i = 1; $i < count($day->attractions); $i++)
+    <li>
+      <img src="{{ url('/uploads/attractions') }}/{{App\Attraction::find($day->attractions[$i]->id)['mainpic']}}"/>
+      <div class="details">
+        <span class="name">{{App\Attraction::find($day->attractions[$i]->id)['name']}}</span>
+        <span class="title">{{App\Attraction::find($day->attractions[$i]->id)['address']}}</span>
+        <a class="phone" >{{App\Attraction::find($day->attractions[$i]->id)['telephone']}}</a>
+        <a class="email" >{{App\Attraction::find($day->attractions[$i]->id)['type']}}</a>
+      </div>
     </li>
-    <li><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=952f907e565bc7c4c7eb53497510863f&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Thomas Jones </span><span class="title">Fullstack Developer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:tom.jones@email.com">tom.jones@email.com		</a></div>
-    </li>
+    @endfor
   </ul>
 </div>
-    
-
-<div class="container day">
-    <h1 style="text-align:center">Day2</h1>
-  <ul class="cards">
-    <li><img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=1cd7edb2ed25c1de4908db807e545988&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Emilia Jacobs</span><span class="title">UI/UX Designer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:emilia.jacobs@email.com">emilia.jacobs@email.com</a></div>
-    </li>
-    <li><img src="https://images.unsplash.com/photo-1499057625772-bafa601ee80c?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=136e035a7d5740f54f2acaa940c07f0b&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Tim Pawson</span><span class="title">Project Manager</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:tim.pawson@email.com">tim.pawson@email.com</a></div>
-    </li>
-    <li><img src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=5ba0eb3fce2a3b77dd7d18bf1615ddee&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Amanda Tyler</span><span class="title">Frontend Developer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:amanda.tyler@email.com">amanda.tyler@email.com				</a></div>
-    </li>
-    <li><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=952f907e565bc7c4c7eb53497510863f&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Thomas Jones </span><span class="title">Fullstack Developer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:tom.jones@email.com">tom.jones@email.com		</a></div>
-    </li>
-  </ul>
-</div>
-
-
-<div class="container day">
-    <h1 style="text-align:center">Day3</h1>
-  <ul class="cards">
-    <li><img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=1cd7edb2ed25c1de4908db807e545988&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Emilia Jacobs</span><span class="title">UI/UX Designer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:emilia.jacobs@email.com">emilia.jacobs@email.com</a></div>
-    </li>
-    <li><img src="https://images.unsplash.com/photo-1499057625772-bafa601ee80c?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=136e035a7d5740f54f2acaa940c07f0b&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Tim Pawson</span><span class="title">Project Manager</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:tim.pawson@email.com">tim.pawson@email.com</a></div>
-    </li>
-    <li><img src="https://images.unsplash.com/photo-1477118476589-bff2c5c4cfbb?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=5ba0eb3fce2a3b77dd7d18bf1615ddee&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Amanda Tyler</span><span class="title">Frontend Developer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:amanda.tyler@email.com">amanda.tyler@email.com				</a></div>
-    </li>
-    <li><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-0.3.5&amp;q=85&amp;fm=jpg&amp;crop=faces&amp;fit=crop&amp;cs=srgb&amp;s=952f907e565bc7c4c7eb53497510863f&amp;w=150&amp;h=150"/>
-      <div class="details"><span class="name">Thomas Jones </span><span class="title">Fullstack Developer</span><a class="phone" href="tel:123-456-789">123-456-789</a><a class="email" href="mailto:tom.jones@email.com">tom.jones@email.com		</a></div>
-    </li>
-  </ul>
-</div>
+<head>
+@endforeach
 @endsection

@@ -202,24 +202,24 @@ div.screen {
     margin-bottom: 0;
 }
 
-a:link {
+.opt:link {
     color: #e76e66;
     text-decoration: none;
     outline: none;
     transition: all 0.25s;
 }
 
-a:visited {
+.opt:visited {
     color: #666;
     text-decoration: none;
 }
 
-a:link:hover {
+.opt:link:hover {
     color: #666;
     text-decoration: none;
 }
 
-a:visited:hover {
+.opt:visited:hover {
     color: #e76e66;
     text-decoration: none;
 }
@@ -252,7 +252,7 @@ a:visited:hover {
 #social-sidebar ul li a[class*="attraction"]:hover,#social-sidebar ul li a[class*="attraction"] span,#social-sidebar ul li a[class*="attraction"] span:before{background:#7d7e7e}
 #social-sidebar{
     z-index:99;
-        top: 25%;
+        top: 15%;
 }
 .far,.fas {
     font-size: 35px !important;
@@ -282,21 +282,25 @@ a:visited:hover {
 .entypo-attraction{
     background:white;
     color:black !important;
-    border: solid 1px orange;
+    border: solid 1px #f67930;
     height: 90px !important;
         font-size: 14px!important;
      padding: 0px !important; 
 }
 
 #social-sidebar ul li a[class*="attraction"]:hover{
-    background:#fd7523;
+    background:orange;
     color:white !important;
 }
+b:hover{
+    color:white !important;
+}
+
 #social-sidebar ul li a[class*="attraction"] span,
 #social-sidebar ul li a[class*="attraction"] span:before
 {
     background:white;
-    border: solid 1px orange;
+    border: solid 1px #f67930;
 }
 
 
@@ -306,7 +310,7 @@ a:visited:hover {
 /* navbar styles */
 .navbar__component {
   background-color: #fff;
-  border-top: 4px solid orange;
+  border-top: 4px solid #f67930;
   box-shadow:  0 0 10px #777;
   max-height: 60px;
   max-width: 100%;
@@ -335,7 +339,7 @@ a:visited:hover {
   display: inline-block;
   -webkit-flex: 1 0 0;
   flex: 1 0 0;
-  border-right: 1px solid orange;
+  border-right: 1px solid #f67930;
   color: #555;
   font-size: .9em;
   padding-left: 15px;
@@ -425,7 +429,7 @@ a:visited:hover {
   }
 }
 #cityNameNavBar{
-    color:orange; 
+    color:#f67930; 
     font-size:40px;
     text-transform: uppercase;
     font-weight: bold;
@@ -440,47 +444,64 @@ a:visited:hover {
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <script type="text/javascript" src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <link href="{!! asset('pages/showtrip/showtrip.css') !!}" rel="stylesheet" />
+
 </head>
 
 <body>
     
-    
+    <!-- UI - X Starts -->
+					<div class="ui-item-three">
+						<!-- UI Icons -->
+						<a href="#" class="travelModeCh act" type="DRIVING" title="Car"><i class="fa fa-car"></i></a>
+						<a href="#" class="travelModeCh" type="BICYCLING" title="Bicycle"><i class="fa fa-bicycle"></i></a>
+						<a href="#" class="travelModeCh" type="TRANSIT" type1="TRAIN" title="Train"><i class="fa fa-train"></i></a>
+						<a href="#" class="travelModeCh" type="WALKING" title="Walk"><i class="fa fa-male"></i></a>
+						<a href="#" class="travelModeCh" type="TRANSIT" type1="BUS" title="Bus"><i class="fa fa-bus"></i></a>
+					</div>
+<!-- UI - X Ends -->
     
     
 <!--left sidebar-->
 <div id='social-sidebar'>
     <ul>
         <li id="saveTrip">
-        	<a class='entypo-twitter' href='javascript:void(0)' target='_blank' id="saveText">
+        	<a class='entypo-twitter opt' href='javascript:void(0)' target='_blank' id="saveText">
         		<span>Save</span>
         		<i id="saveIco" class="far fa-save"></i><br>
         		Save my trip
         	</a>
         </li>
         <li>
-        	<a class='entypo-gplus' href='' target='_blank'>
+        	<a class='entypo-gplus opt' href='javascript:void(0)' target='_blank' id="sendEmail">
         		<span>Email</span>
         		<i class="far fa-envelope"></i><br>
         		Send to email
         	</a>
         </li>
         <li>
-        	<a class='entypo-tumblr' href='javascript:void(0)' target='_blank' id="pdfFile">
+        	<a class='entypo-tumblr opt' href='javascript:void(0)' target='_blank' id="pdfFile">
         		<span>PDF</span>
         		<i class="far fa-file-pdf"></i><br>
         		Download PDF file
         	</a>
         </li>
         <li>
-        	<a class='entypo-rss' href='javascript:void(0)' target='_blank' id="backToBuilder" >
+        	<a class='entypo-facebook opt' href='javascript:void(0)' target='_blank' id="listview">
+        		<span>List</span>
+        		 <i class="fas fa-list-ul"></i><br>
+        	    Show list view
+        	</a>
+        </li>
+        <li>
+        	<a class='entypo-rss opt' href='javascript:void(0)' target='_blank' id="backToBuilder" >
         		<span>Builder</span>
         		 <i class="far fa-edit"></i><br>
         	    Back to trip builder
         	</a>
         </li>
         <li>
-        	<a class='entypo-facebook' href='/'>
+        	<a class='entypo-facebook opt' href='/'>
         		<span>Homepage</span>
         		 <i class="fas fa-home"></i><br>
         	    Back to homepage
@@ -505,7 +526,7 @@ a:visited:hover {
         @for($i=0;$i < count($attractionList); $i++)
         <li class="attraction_li" indexAttr="{{$i}}">
         	<a class='entypo-attraction' href='javascript:void(0)' target='_blank' style="height: 70px!important;width: 150px">
-        	    <b style="color:orange; font-size:17px;font-weight: bold;">Day {{$i+1}}</b>
+        	    <b style="color:#f67930; font-size:17px;font-weight: bold;">Day {{$i+1}}</b>
         	    <br>
   				{{$attractionList[$i]["weekDay"]}}
   				<br>
@@ -524,32 +545,20 @@ a:visited:hover {
       <ul class="navbar__list">
         <li class="navbar__item"><span class="titles">City: </span>{{App\City::find($request["cityname"])->name}}, {{$request["countryName"]}}</li>
         <li class="navbar__item"><span class="titles">Trip name: </span>{{$request["pathName"]}}</li>
+        <li class="navbar__item"><span class="titles">Duration: </span><span class="duration">0 hours 0 minutes 0 seconds</span></li>
         <li onClick="document.location.href = '/'" class="navbar__item navbar--link navbar--ad" id="cityNameNavBar">TRIPLAN</li>
+        <li class="navbar__item"><span class="titles">Distance: </span><span class="distance">0 km</span></li>   
         <li class="navbar__item"><span class="titles">First day: </span>{{ Carbon\Carbon::parse($request["startDate"])->format('d/m/Y') }}</li>
         <li class="navbar__item"><span class="titles">Last day: </span>{{ Carbon\Carbon::parse( $request["endDate"])->format('d/m/Y') }}</li>
       </ul>
     </nav>
   </div>
 </div>
+<!---->
 
 
 
 
-
-
-
-
-
-
-<!--PDF Template-->
-<div hidden>
-	<div id="content">
-        <h3>Sample h3 tag</h3>
-        <p>Sample pararaph</p>
-    </div>
-    <div id="editor"></div>
-</div>
-<!--end PDF Template-->
 
 
 
@@ -570,19 +579,17 @@ a:visited:hover {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
-    
 
 <!--actions-->
 <script type="text/javascript">
 var req = {!! json_encode($request) !!};
-    $('#saveTrip').click(function(){
+    $('#saveText').click(function(){
 	    	var url = "{{route('savetrip')}}";
 			$.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': '{{csrf_token()}}'
 				}
 			});
-            
 			$.ajax({
 				type: "POST",
 				url: url,
@@ -592,7 +599,14 @@ var req = {!! json_encode($request) !!};
 				    setTimeout(function(){
                         $("#saveText").html("<span>Saved!</span><i class='far fa-check-circle'><br></i>Saved!");
                         $(".entypo-twitter").css("background", "green");
-                        $(this).off( "click");
+                        setTimeout(function(){
+                            $("#saveText").html("<span>Edit</span><i class='fas fa-pen-square'></i><br>Edit my trip");
+                            $("#saveText").addClass("editTrip");
+                            $("#saveText").off('click');
+                            $("#saveText").removeAttr( "id" )
+                            $(".entypo-twitter").css("background", "#f79b5d");
+                            
+                        },2000);
                     },3000); 
 				},error: function(data){
 				    swal({
@@ -604,32 +618,30 @@ var req = {!! json_encode($request) !!};
 			});
 	    });
 	    
-	    var doc = new jsPDF();
-        var specialElementHandlers = {
-            '#editor': function (element, renderer) {
-                return true;
-            }
-        };
+	    $( "#saveTrip" ).delegate( ".editTrip", "click", function() {
+          alert("sds");
+        });
+	    
         $('#backToBuilder').click(function () {
-           history.go(-2);
+           history.back().back();
+        });
+        $('#listview').click(function () {
+           generateObjToSend("listView");
+        });
+        $('#calendarview').click(function () {
+           generateObjToSend("calendarview");
         });
         $('#pdfFile').click(function () {
-            $("#pdfFile").html("<i class='fa fa-circle-o-notch fa-spin' style='font-size:35px'></i>Creating");
-    	    setTimeout(function(){
-                $("#pdfFile").html("<span>Downloaded!</span><i class='far fa-check-circle'><br></i>Downloaded!");
-                doc.fromHTML($('#content').html(), 15, 15, {
-                    'width': 170,
-                        'elementHandlers': specialElementHandlers
-                });
-                doc.save('sample-file.pdf');
-                $(".entypo-tumblr").css("background", "red");
-                $(this).off( "click");
-            },3000); 
+            generateObjToSend("downloadPDF");
+        });
+         $('#sendEmail').click(function () {
+            generateObjToSend("sendEmail");
         });
 </script>
 
 
 
+<script src="{!! asset('js/async.js') !!}"></script>
 
 
 <script type="text/javascript">
@@ -637,7 +649,7 @@ var req = {!! json_encode($request) !!};
   $(".attraction_li").click(function(){
     var dayIndex = $(this).attr("indexAttr");
     var attractionsPerDay = attractionList[dayIndex];
-    if(attractionsPerDay.attractions.length == 1){
+    if(attractionsPerDay.attractions.length <= 1){
         swal({
           type: 'warning',
           title: 'Oops...',
@@ -658,10 +670,27 @@ var directionsRenderer;
 var autoComplete;
 var googleMap;
 var marker;
+var travelMode = "DRIVING";
+var transitMode = null;
 var geocoder = new google.maps.Geocoder;
+$(".act").css("color","#F67930");
+
+
+$(".travelModeCh").click(function(){
+    transitMode = null;
+     $(".duration").text("0 hours 0 minutes 0 seconds");
+    $(".distance").text("0 km");
+   travelMode = $(this).attr("type");
+   if(travelMode == "TRANSIT"){
+       transitMode = $(this).attr("type1");
+   }
+   $(".travelModeCh").css("color","#666");
+   $(this).css("color","#F67930");
+});
+
+
 function initializeMap(attractions) {
   if(attractions.attractions != undefined){
-      console.log(attractions.attractions)
      // Add way points to array.
     
         var locationList = [];
@@ -675,10 +704,10 @@ function initializeMap(attractions) {
           var obj = {lat : parseFloat(attractions.attractions[i].lat),
                     id : parseFloat(attractions.attractions[i].id),
                     lng : parseFloat(attractions.attractions[i].lng)};
-            locationList.push(obj);  
+            locationList.push(obj);
+            
             wayPoints.push(wayPoint);                
         }
-        console.log(locationList)
     // Clear previous directions, if any.
         if (directionsRenderer) {
             directionsRenderer.setMap(null);
@@ -687,23 +716,44 @@ function initializeMap(attractions) {
         directionsRenderer = new google.maps.DirectionsRenderer({
             map: googleMap,
             draggable: true,
-            polylineOptions: { strokeColor: "orange" }
+            polylineOptions: { strokeColor: "#f67930" }
         });
     if(wayPoints.length > 1){
         //origin and destination lat lng to address
-        var directionsRequest = {
-            origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
-            destination: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
-            travelMode: google.maps.TravelMode["DRIVING"],
-            waypoints: wayPoints,
-            optimizeWaypoints: true
+        
+        if (travelMode == "TRANSIT"){
+            var directionsRequest = {
+                origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                destination: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                travelMode: google.maps.TravelMode[travelMode],
+                transitOptions: {
+                    modes: [transitMode],
+                    routingPreference: 'FEWER_TRANSFERS'
+                },
+                waypoints: wayPoints,
+                optimizeWaypoints: true
+            }
+        }else{
+            var directionsRequest = {
+                origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                destination: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                travelMode: google.maps.TravelMode[travelMode],
+                waypoints: wayPoints,
+                optimizeWaypoints: true
+            }
         }
-      
         var x;
         // Send request to the directions service.
         directionsService.route(directionsRequest, function (response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-                directionsRenderer.setDirections(response);
+            if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+                swal({
+                      type: 'error',
+                      title: 'Oops...',
+                      text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
+                    });
+            }
+            else if (status == google.maps.DirectionsStatus.OK) {
+                // directionsRenderer.setDirections(response);
                 x = response.routes[0].waypoint_order.pop();
                 var destinationLat = attractions.attractions[x+1].lat;
                 var destinationLng= attractions.attractions[x+1].lng;
@@ -713,42 +763,115 @@ function initializeMap(attractions) {
                         wayPoints2.push(wayPoints[i]); 
                     }
                 }
-                var directionsRequest = {
-                    origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
-                    destination: new google.maps.LatLng(parseFloat(destinationLat),parseFloat(destinationLng)),
-                    travelMode: google.maps.TravelMode["DRIVING"],
-                    waypoints: wayPoints2,
-                    optimizeWaypoints: true
+                
+                if (travelMode == "TRANSIT"){
+                    var directionsRequest = {
+                        origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                        destination: new google.maps.LatLng(parseFloat(destinationLat),parseFloat(destinationLng)),
+                        travelMode: google.maps.TravelMode[travelMode],
+                        transitOptions: {
+                            modes: [transitMode],
+                            routingPreference: 'FEWER_TRANSFERS'
+                        },
+                        waypoints: wayPoints2,
+                        optimizeWaypoints: true
+                    }
+                }else{
+                    var directionsRequest = {
+                        origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                        destination: new google.maps.LatLng(parseFloat(destinationLat),parseFloat(destinationLng)),
+                        travelMode: google.maps.TravelMode[travelMode],
+                        waypoints: wayPoints2,
+                        optimizeWaypoints: true
+                    }
                 }
+                
             
             
                 // Send request to the directions service.
                 directionsService.route(directionsRequest, function (response, status) {
-                    if (status == google.maps.DirectionsStatus.OK) {
+                    
+                    if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+                        swal({
+                          type: 'error',
+                          title: 'Oops...',
+                            text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
+                        });
+                    }
+                    else if (status == google.maps.DirectionsStatus.OK) {
+                        var distance = 0;
+                        var time = 0;
+                        var route = response.routes[0].legs;
+                        for (var j = 0 ; j < route.length; j++){
+                            distance += route[j].distance.value;
+                            time += route[j].duration.value;
+                        }
+                        var hours = Math.floor(time / 3600);
+                        time %= 3600;
+                        var minutes = Math.floor(time / 60);
+                        var seconds = time % 60;
+                        $(".duration").text(hours + " hours " + minutes + " minutes " + seconds + " seconds");
+                        $(".distance").text((distance/1000) + " km");
                         directionsRenderer.setDirections(response);
-                    } else {
+                        // for(var step = 0; step < route.length; step++){
+                        //     var infowindow = new google.maps.InfoWindow();
+                        //     infowindow.setContent(route[step].start_address);
+                        //     infowindow.setPosition(route[step].start_location);
+                        //     infowindow.open(googleMap);
+                        // }
+                        } else {
+                                console.log(google.maps.DirectionsStatus);
+                                console.log(status);
+                            }
+                        });
+            }
+            });
+        }else if(wayPoints.length == 1){
+            if (travelMode == "TRANSIT"){
+                var directionsRequest = {
+                    origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                    destination: new google.maps.LatLng(parseFloat(attractions.attractions[1].lat),parseFloat(attractions.attractions[1].lng)),
+                    travelMode: google.maps.TravelMode[travelMode],
+                    transitOptions: {
+                        modes: [transitMode],
+                        routingPreference: 'FEWER_TRANSFERS'
+                    },
+                    optimizeWaypoints: true
+                }
+            }else{
+                var directionsRequest = {
+                    origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
+                    destination: new google.maps.LatLng(parseFloat(attractions.attractions[1].lat),parseFloat(attractions.attractions[1].lng)),
+                    travelMode: google.maps.TravelMode[travelMode],
+                    optimizeWaypoints: true
+                }
+            }
+            
+                
+                directionsService.route(directionsRequest, function (response, status) {
+                if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+                    swal({
+                      type: 'error',
+                      title: 'Oops...',
+                      text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
+                    });
+                }
+                else if (status == google.maps.DirectionsStatus.OK) {
+                    var route = response.routes[0].legs;
+                    var distance = route[0].distance.value;
+                    var time = route[0].duration.value;
+                    var hours = Math.floor(time / 3600);
+                    time %= 3600;
+                    var minutes = Math.floor(time / 60);
+                    var seconds = time % 60;
+                    $(".duration").text(hours + " hours " + minutes + " minutes " + seconds + " seconds");
+                    $(".distance").text((distance/1000) + " km");
+                        directionsRenderer.setDirections(response);
+                    }else{
                         console.log(google.maps.DirectionsStatus);
                         console.log(status);
                     }
                 });
-            }
-            });
-        }else if(wayPoints.length == 1){
-            var directionsRequest = {
-            origin: new google.maps.LatLng(parseFloat(attractions.attractions[0].lat),parseFloat(attractions.attractions[0].lng)),
-            destination: new google.maps.LatLng(parseFloat(attractions.attractions[1].lat),parseFloat(attractions.attractions[1].lng)),
-            travelMode: google.maps.TravelMode["DRIVING"],
-            optimizeWaypoints: true
-                }
-                
-                directionsService.route(directionsRequest, function (response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsRenderer.setDirections(response);
-                }else{
-                    console.log(google.maps.DirectionsStatus);
-                    console.log(status);
-                }
-            });
         
         
         
@@ -797,7 +920,261 @@ function initializeMap(attractions) {
 // Add window load event.
 google.maps.event.addDomListener(window, "load", initializeMap);
 
+
+
+function generateObjToSend(url){
+    var tripObject = [];
+    var array = [];
+    var attractionList = {!! json_encode($attractionList) !!};
+    
+    function itrDay(day){
+        array = [];
+        var locationList = [];
+        var attractionDay = day;
+        var wayPoints = [];
+        var objStart = {lat : parseFloat(attractionDay.attractions[0].lat),
+                    id : 0,
+                    lng : parseFloat(attractionDay.attractions[0].lng)};
+        array.push(objStart);
+        for(var i = 1 ; i < attractionDay.attractions.length; i++){
+            var wayPoint =
+            {
+              location:  new google.maps.LatLng(parseFloat(attractionDay.attractions[i].lat),parseFloat(attractionDay.attractions[i].lng)),
+              stopover: true,
+            };
+            var obj = {lat : parseFloat(attractionDay.attractions[i].lat),
+                    id : parseFloat(attractionDay.attractions[i].id),
+                    lng : parseFloat(attractionDay.attractions[i].lng)};
+            locationList.push(obj);
+            wayPoints.push(wayPoint);                
+        }
+        var directionsService = new google.maps.DirectionsService;
+        if(wayPoints.length > 1){
+            
+            if (travelMode == "TRANSIT"){
+                var directionsRequest = {
+                    origin: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
+                    destination: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
+                    travelMode: google.maps.TravelMode[travelMode],
+                    transitOptions: {
+                        modes: [transitMode],
+                        routingPreference: 'FEWER_TRANSFERS'
+                    },
+                    waypoints: wayPoints,
+                    optimizeWaypoints: true
+                }
+            }else{
+                var directionsRequest = {
+                    origin: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
+                    destination: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
+                    travelMode: google.maps.TravelMode[travelMode],
+                    waypoints: wayPoints,
+                    optimizeWaypoints: true
+                }
+            }
+            
+            
+        var x;
+        // Send request to the directions service.
+        directionsService.route(directionsRequest, function (response, status) {
+            if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+                swal({
+                      type: 'error',
+                      title: 'Oops...',
+                      text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
+                    });
+            }
+            else if (status == google.maps.DirectionsStatus.OK) {
+                
+                x = response.routes[0].waypoint_order.pop();
+                var destinationLat = attractionDay.attractions[x+1].lat;
+                var destinationLng= attractionDay.attractions[x+1].lng;
+                var destinationId= attractionDay.attractions[x+1].id;
+                var objLast = {lat : parseFloat(destinationLat),
+                    id : parseFloat(destinationId),
+                    lng : parseFloat(destinationLng)};
+                   
+                var wayPoints2 = [];
+                var locationList2 = [];
+                for(var i = 0 ; i < wayPoints.length; i++){
+                    if(i != x){
+                        wayPoints2.push(wayPoints[i]); 
+                        locationList2.push(locationList[i]);
+                    }
+                }
+                
+                if (travelMode == "TRANSIT"){
+                    var directionsRequest = {
+                        origin: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
+                        destination: new google.maps.LatLng(parseFloat(destinationLat),parseFloat(destinationLng)),
+                        travelMode: google.maps.TravelMode[travelMode],
+                        transitOptions: {
+                            modes: [transitMode],
+                            routingPreference: 'FEWER_TRANSFERS'
+                        },
+                        waypoints: wayPoints2,
+                        optimizeWaypoints: true
+                    }
+                }else{
+                    var directionsRequest = {
+                        origin: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
+                        destination: new google.maps.LatLng(parseFloat(destinationLat),parseFloat(destinationLng)),
+                        travelMode: google.maps.TravelMode[travelMode],
+                        waypoints: wayPoints2,
+                        optimizeWaypoints: true
+                    }
+                }
+                
+            
+            
+                // Send request to the directions service.
+                directionsService.route(directionsRequest, function (response, status) {
+                    
+                    if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+                        swal({
+                          type: 'error',
+                          title: 'Oops...',
+                            text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
+                        });
+                    }
+                    else if (status == google.maps.DirectionsStatus.OK) {
+                        var order = response.routes[0].waypoint_order;
+                        var route = response.routes[0].legs;
+                        
+                        for (var x = 0 ; x < response.routes[0].waypoint_order.length; x++){
+                            array.push(locationList2[response.routes[0].waypoint_order[x]]);
+                        }
+                        array.push(objLast);
+                        
+                        var distance = 0;
+                        var time = 0;
+                        console.log(route)
+                        for (var j = 0 ; j < route.length; j++){
+                            distance += route[j].distance.value;
+                            time += route[j].duration.value;
+                        }
+                        var hours = Math.floor(time / 3600);
+                        time %= 3600;
+                        var minutes = Math.floor(time / 60);
+                        var seconds = time % 60;
+                         tripObject.push({"day": day.weekDay, "date": day.date,
+                            "attractions":array , "time": hours + " hours " + minutes + " minutes " + seconds + " seconds",
+                            "distance": distance,"pathname": '{{$request["pathName"]}}'
+                        });
+                        
+                    }else{
+                            console.log(google.maps.DirectionsStatus);
+                            console.log(status);
+                    }
+                    
+                });
+                
+            }
+        })
+    }else if(wayPoints.length == 1){
+         
+            if (travelMode == "TRANSIT"){
+                var directionsRequest = {
+                    origin: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
+                    destination: new google.maps.LatLng(parseFloat(attractionDay.attractions[1].lat),parseFloat(attractionDay.attractions[1].lng)),
+                    travelMode: google.maps.TravelMode[travelMode],
+                    transitOptions: {
+                        modes: [transitMode],
+                        routingPreference: 'FEWER_TRANSFERS'
+                    },
+                    optimizeWaypoints: true
+                }
+            }else{
+                
+                var directionsRequest = {
+                    origin: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
+                    destination: new google.maps.LatLng(parseFloat(attractionDay.attractions[1].lat),parseFloat(attractionDay.attractions[1].lng)),
+                    travelMode: google.maps.TravelMode[travelMode],
+                    optimizeWaypoints: true
+                }
+            }
+            
+                
+                directionsService.route(directionsRequest, function (response, status) {
+                if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+                    swal({
+                      type: 'error',
+                      title: 'Oops...',
+                      text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
+                    });
+                }
+                else if (status == google.maps.DirectionsStatus.OK) {
+                    var order = response.routes[0].waypoint_order;
+                    var route = response.routes[0].legs;
+                    var time = route[0].duration.value;
+                    var distance = 0;
+                    var hours = Math.floor(time / 3600);
+                    time %= 3600;
+                    var minutes = Math.floor(time / 60);
+                    var seconds = time % 60;
+                    $(".duration").text(hours + " hours " + minutes + " minutes " + seconds + " seconds");
+                    $(".distance").text((distance/1000) + " km");
+                    
+                    }else{
+                        console.log(google.maps.DirectionsStatus);
+                        console.log(status);
+                    }
+                })
+                
+            }
+        }
+        var promise = Promise.resolve();
+        var interval = 500;
+        attractionList.forEach(function (el) {
+          promise = promise.then(function () {
+            itrDay(el)
+            return new Promise(function (resolve) {
+              setTimeout(resolve, interval);
+            });
+          });
+        });
+        promise.then(function () {
+            console.log(tripObject);
+            if(url == "downloadPDF"){
+                $("#pdfFile").html("<i class='fa fa-circle-o-notch fa-spin' style='font-size:35px'></i>Creating");
+                setTimeout(function(){
+                    $("#pdfFile").html("<span>Downloaded!</span><i class='far fa-check-circle'><br></i>Downloaded!");
+                    tripObject = JSON.stringify(tripObject);
+                    window.location.href = "/"+url+"?array=" +  tripObject ;
+                },1000);
+            }else if(url == "sendEmail") {
+                $("#sendEmail").html("<i class='fa fa-circle-o-notch fa-spin' style='font-size:35px'></i>Creating");
+                setTimeout(function(){
+                    $("#sendEmail").html("<span>Sent!</span><i class='far fa-check-circle'><br></i>Sent!");
+                	var url = "{{route('sendEmail')}}";
+                	tripObject = JSON.stringify(tripObject);
+        			$.ajaxSetup({
+        				headers: {
+        					'X-CSRF-TOKEN': '{{csrf_token()}}'
+        				}
+        			});
+        
+        			$.ajax({
+        				type:"GET",
+        				url: url,
+        				data : {array: tripObject},
+        				success: function(data) {
+        				    console.log(data)
+        				}
+        			});
+                },2000);
+            }else{
+                tripObject = JSON.stringify(tripObject);
+                window.location.href = "/"+url+"?array=" +  tripObject ;
+            }
+        }); 
+    }
 </script>
+
+
+
+
+
 
 </html>
 @endsection

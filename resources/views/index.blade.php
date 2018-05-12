@@ -4,6 +4,8 @@
 
 <script src="{!! asset('pages/index/index.js') !!}"></script>
 <link href="{!! asset('pages/index/index.css') !!}" rel="stylesheet" />
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYUrj824we7Ae73T3khwyy_epnUlgudSM&libraries=places"></script>
+
 <style type="text/css">
 .text-border{
 	text-shadow: -1px 0 #fc3f00, 0 1px #fc3f00, 1px 0 #fc3f00, 0 -1px #fc3f00;	
@@ -67,6 +69,12 @@ select option:hover {
 							 	<form id="formtrip" action="{{ url('/trip') }}" method="GET">
 							 		<input id="countryname" type="hidden" name="country" value="">
 							 		<input id="cityname" type="hidden" name="city" value="">
+							 		<input id="typeTrip" type="hidden" name="type" value="">
+							 		<input id="numPassengers" type="hidden" name="passengers" value="">
+							 		<input id="budgetInput" type="hidden" name="budget" value="">
+							 		<input id="startLocationLt" type="hidden" name="startLocation" value="">
+							 		<input id="startLocationInput" type="hidden" name="startLocationString" value="">
+							 		<input id="pathNameInput" type="hidden" name="pathName" value="">
 									<div class="row">
 										<div class="col-xxs-12 col-xs-6 mt">
 											<div class="input-field">
@@ -99,6 +107,52 @@ select option:hover {
 											<div class="input-field">
 												<label for="date-end">Check Out:</label>
 												<input type="text" class="form-control" name="end" id="date-end" placeholder="mm/dd/yyyy" required/>
+											</div>
+										</div>
+										<div class="col-xxs-12 col-xs-12 mt">
+											<div class="input-field">
+												<label for="from">Type:</label>
+												<select class="form-control custom-select sources" id="type-select" required >
+												  <option value="">Select type</option>
+												  	<option value="normal">Normal</option>
+												  	<option value="budget">Budget</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-xxs-12 col-xs-6 mt PassengersSelect" hidden>
+											<div class="input-field">
+												<label for="from">Passengers:</label>
+												<select class="form-control custom-select sources" id="passengers-select" required >
+												  <option value="">#</option>
+												  	<option value="1">1</option>
+												  	<option value="2">2</option>
+												  	<option value="3">3</option>
+												  	<option value="4">4</option>
+												  	<option value="5">5</option>
+												  	<option value="6">6</option>
+												  	<option value="7">7</option>
+												  	<option value="8">8</option>
+												  	<option value="9">9</option>
+												  	<option value="10">10</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-xxs-12 col-xs-6 mt BudgetsSelect" hidden>
+											<div class="input-field">
+												<label for="from">Budget:</label>
+												<input type="text" class="form-control" id="budgetTxt" placeholder="Enter your budget (USD)">
+											</div>
+										</div>
+										<div class="col-xxs-12 col-xs-6 mt BudgetsSelect" hidden>
+											<div class="input-field">
+												<label for="from">Start location:</label>
+												<input type="text" class="form-control" id="startLocation" placeholder="Enter your starting location">
+											</div>
+										</div>
+										<div class="col-xxs-12 col-xs-6 mt BudgetsSelect" hidden>
+											<div class="input-field">
+												<label for="from">Path name:</label>
+												<input type="text" class="form-control" id="pathName" placeholder="Give your path a name">
 											</div>
 										</div>
 										<div class="col-xs-12">
@@ -256,10 +310,10 @@ select option:hover {
 					<div class="col-md-12">
 						<ul id="fh5co-destination-list" class="animate-box">
 							@for ($i = 0; $i < 5; $i++)
-							<li class="one-forth text-center" style="background-image: url({{ url('/uploads/cities') }}/{{$citiesToTravel[$i]->mainpic}});">
-								<a href="{{route('show-citydetalis', $citiesToTravel[$i]->name)}}">
+							<li class="one-forth text-center" style="background-image: url({{ url('/uploads/cities') }}/{{str_replace(' ', '', $cities[$i]->name)}}/{{$cities[$i]->mainpic}});">
+								<a href="{{route('show-citydetalis', $cities[$i]->name)}}">
 									<div class="case-studies-summary">
-										<h2>{{$citiesToTravel[$i]->name}}</h2>
+										<h2>{{$cities[$i]->name}}</h2>
 									</div>
 								</a>
 							</li>
@@ -272,11 +326,11 @@ select option:hover {
 									</div>
 								</div>
 							</li>
-							@for ($i = 5; $i < count($citiesToTravel); $i++)
-							<li class="one-forth text-center" style="background-image: url({{ url('/uploads/cities') }}/{{$citiesToTravel[$i]->mainpic}});">
-								<a href="{{route('show-citydetalis', $citiesToTravel[$i]->name)}}">
+							@for ($i = 5; $i < count($cities); $i++)
+							<li class="one-forth text-center" style="background-image: url({{ url('/uploads/cities') }}/{{str_replace(' ', '', $cities[$i]->name)}}/{{$cities[$i]->mainpic}});">
+								<a href="{{route('show-citydetalis', $cities[$i]->name)}}">
 									<div class="case-studies-summary">
-										<h2>{{$citiesToTravel[$i]->name}}</h2>
+										<h2>{{$cities[$i]->name}}</h2>
 									</div>
 								</a>
 							</li>
@@ -424,7 +478,18 @@ select option:hover {
 	
 	
 	
-	
+	<script type="text/javascript">
+		$( "#type-select" ).change(function() {
+		  var type = $(this).val();
+		  if(type == "budget"){
+		  	$(".PassengersSelect").show();
+		  	$(".BudgetsSelect").show();
+		  }else{
+		  	$(".PassengersSelect").hide();
+		  	$(".BudgetsSelect").hide();
+		  }
+		});
+	</script>
 	
 	
 	
@@ -480,23 +545,51 @@ function nonRegisteredUserAlert(){
 					  timer: 3000,
 					});
 			}else{
-			    var selected = $("#country-select").val();
-			    $("#countryname").val(selected);
-			    var selected1 = $("#city-select").val();
-			    $("#cityname").val(selected1);
-			    var start = $('#date-start').val();
-			    var end = $('#date-end').val();
-			    if (start > end) {
-			    	swal("Check out must be greater then check in", {
-					  buttons: false,
-					  timer: 3000,
-					});
-			    }else{
-			    	$("#formtrip").submit();
-			    }
+				    if($("#type-select").val() == "budget"){
+				    	geocoder = new google.maps.Geocoder();
+			            geocoder.geocode( { 'address' : $("#startLocation").val() }, function( results, status ) {
+			                if( status == google.maps.GeocoderStatus.OK ) {
+			                	var selected = $("#country-select").val();
+							    $("#countryname").val(selected);
+							    var selected1 = $("#city-select").val();
+							    $("#cityname").val(selected1);
+			                    $("#startLocationLt").val(results[0].geometry.location);
+			                    $("#typeTrip").val($("#type-select").val());
+						    	$("#numPassengers").val($("#passengers-select").val());
+						    	$("#budgetInput").val($("#budgetTxt").val());
+						    	$("#startLocationInput").val($("#startLocation").val());
+						    	$("#pathNameInput").val($("#pathName").val());
+						    	var start = $('#date-start').val();
+							    var end = $('#date-end').val();
+							    if (start > end) {
+							    	swal("Check out must be greater then check in", {
+									  buttons: false,
+									  timer: 3000,
+									});
+							    }else{
+							    	$("#formtrip").submit();
+						                }
+				            }
+						});
+				}else{
+				    var selected = $("#country-select").val();
+				    $("#countryname").val(selected);
+				    var selected1 = $("#city-select").val();
+				    $("#cityname").val(selected1);
+				    var start = $('#date-start').val();
+				    var end = $('#date-end').val();
+				    if (start > end) {
+				    	swal("Check out must be greater then check in", {
+						  buttons: false,
+						  timer: 3000,
+						});
+				    }else{
+				    	$("#formtrip").submit();
+				    }
+				}
 			}
 		}
 	
-		
+		autoComplete = new google.maps.places.Autocomplete(document.getElementById("startLocation")); 
 	</script>
 @endsection

@@ -3,7 +3,120 @@
 
 @section('content')
 
+<style type="text/css">
 
+.file-upload {
+  background-color: #ffffff;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.file-upload-btn {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  background: #E89664;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #E89664;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.file-upload-btn:hover {
+  background: #E89664;
+  color:white !important;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.file-upload-btn:active {
+  border: 0;
+  transition: all .2s ease;
+}
+
+.file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 4px dashed #E89664;
+  position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+  background-color: #E89664;
+  border: 4px dashed #ffffff;
+  color:white !important;
+}
+
+.image-title-wrap {
+  padding: 0 15px 15px 15px;
+  color: #222;
+}
+
+.drag-text {
+  text-align: center;
+}
+
+.drag-text h3 {
+  font-weight: 100;
+  text-transform: uppercase;
+  color: black;
+  padding: 60px 0;
+}
+
+.file-upload-image {
+  max-height: 200px;
+  max-width: 200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.remove-image {
+  width: auto;
+  margin: 0;
+  color: #fff;
+  background: #E89664;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  border-bottom: 4px solid #E89664;
+  transition: all .2s ease;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.remove-image:hover {
+  background: #c13b2a;
+  color:white !important;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.remove-image:active {
+  border: 0;
+  transition: all .2s ease;
+}
+</style>
 
 
 
@@ -12,7 +125,6 @@
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 <!-- bootstrap carousel -->
 <p id="pageName" hidden >Other</p>
-
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">
 		
 	  <!-- Indicators -->
@@ -256,7 +368,7 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 	@foreach ($country->cities as $city)
   <div class="item1">
     <div class="item-image1">
-      <img src="{{ url('/uploads/cities') }}/{{$city->mainpic}}" alt="" />
+      <img src="{{ url('/uploads/cities') }}/{{str_replace(' ', '', $city->name)}}/{{$city->mainpic}}" alt="" />
     </div>
     <div class="item-text1">
       <div class="item-text-wrapper1">
@@ -274,28 +386,50 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 <!--add a new comment modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
+  	<form enctype="multipart/form-data" method="POST" action="{{ route('addquestion') }}" autocomplete="off">
+  		{{ csrf_field() }}
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New comment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-  		<div class="form-group">
-            <label for="message-text" class="form-control-label">Title:</label>
-				<input class="form-control" type="text" name="title" id="textTitle"/>    
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">New comment</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	  		<div class="form-group">
+	            <label for="message-text" class="form-control-label">Title:</label>
+					<input class="form-control" type="text" name="title" id="textTitle"/>    
+				</div>
+			<div class="form-group">
+				<label for="message-text" class="form-control-label">Content:</label>
+				<textarea class="form-control" name="data" id="commentText"></textarea>
 			</div>
-		<div class="form-group">
-			<label for="message-text" class="form-control-label">Content:</label>
-			<textarea class="form-control" id="commentText"></textarea>
-		</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" data-dismiss="modal" class="btn btn-primary saveComment">Save </button>
-      </div>
+			<input type="text" hidden name="cId" value="{{$country->id}}"/>
+			<div class="form-group">
+				<div class="file-upload">
+				  <div class="image-upload-wrap">
+				    <input class="file-upload-input" type='file' name="image_path" onchange="readURL(this);" accept="image/*" />
+				    <div class="drag-text">
+				      <h3>Click or Drag & Drop an image</h3>
+				    </div>
+				  </div>
+				  <div class="file-upload-content">
+				    <img class="file-upload-image" src="#" alt="your image" />
+				    <div class="image-title-wrap">
+				      <button type="button" onclick="removeUpload()" class="remove-image">Remove</button>
+				    </div>
+				  </div>
+				</div>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit"  class="btn btn-primary saveComment">Save </button>
+	      </div>
+      
     </div>
+    </form>
   </div>
 </div>
 
@@ -331,9 +465,13 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 <!--comment Inner Modal-->
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
+  	<form enctype="multipart/form-data" method="POST" action="{{ route('addanswertoquestion') }}" autocomplete="off">
+  		{{ csrf_field() }}
+    <div class="modal-content">
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="modal-content">
       <div class="modal-header">
-      	<input type="text" hidden id="qId_hidden"/>
+      	<input type="text" hidden name="qId" id="qId_hidden"/>
         <h5 class="modal-title" id="exampleModalLabel1">New answer to question</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -342,15 +480,33 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
       <div class="modal-body">
 		<div class="form-group">
 			<label for="message-text" class="form-control-label">Answer:</label>
-			<textarea class="form-control" id="commentText1"></textarea>
+			<textarea class="form-control" name="data" id="commentText1"></textarea>
+		</div>
+		<div class="form-group">
+			<div class="file-upload">
+			  <div class="image-upload-wrap">
+			    <input class="file-upload-input" type='file' name="image_path" onchange="readURL(this);" accept="image/*" />
+			    <div class="drag-text">
+			      <h3>Click or Drag & Drop an image</h3>
+			    </div>
+			  </div>
+			  <div class="file-upload-content">
+			    <img class="file-upload-image" src="#" alt="your image" />
+			    <div class="image-title-wrap">
+			      <button type="button" onclick="removeUpload()" class="remove-image">Remove</button>
+			    </div>
+			  </div>
+			</div>
 		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" data-dismiss="modal" class="btn btn-primary saveAnswer">Save </button>
+        <button type="submit" class="btn btn-primary saveAnswer">Save </button>
       </div>
     </div>
+    </form>
   </div>
+</div>
 </div>
 <!---->
 
@@ -392,7 +548,10 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 						</div>
 						<div class="comment-content">
 							<b>{{$q->title}}</b><br>
-							{{$q->body}}
+							@if($q->img_path != null)
+								<img class="question-image" style="width: 150px;height:120px;"  src="{{ url('/uploads/questions')}}/{{$q->img_path}}" alt=""></img><br>
+							@endif
+							<p style="text-align: left">{{$q->body}}</p>
 						</div>
 						<div class="comment-content">
 							<input style="width:100%; background:#FFFFFF;" num_of_comments="{{count($q->answers)}}" qId="{{$q->id}}" value="{{count($q->answers)}} comments" type="button"  name="showC" class="showComments"/>
@@ -414,7 +573,10 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 								<span class="date">{{date("F jS, Y, g:i a", strtotime($a->created_at))}}</span>
 							</div>
 							<div class="comment-content">
-								{{$a->body}}
+								@if($a->img_path != null)
+									<img class="question-image" style="width: 150px;height:120px;"  src="{{ url('/uploads/answers')}}/{{$a->img_path}}" alt=""></img><br><hr>
+								@endif
+								<p style="text-align: left">{{$a->body}}</p>
 							</div>
 						</div>
 					</li>
@@ -427,7 +589,7 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 	</div>
 				</div>
 			</div>
-		</div>
+</div>
 
 
 <script type="text/javascript">
@@ -531,58 +693,46 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 	    })
 	    
 	    
-	    
-	    
-	    $('.saveComment').click(function(e){
-	    	var commentText = $('#commentText').val();
-	    	var textTitle = $('#textTitle').val();
-	    	var countryId = '{{$country->id}}';
-	    	var url = "{{route('addquestion')}}";
-	    	e.preventDefault();
-	    	
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-
-			$.ajax({
-				type:"POST",
-				url: url,
-				data : {cId: countryId, data: commentText, title: textTitle },
-				success: function() {
-					location.reload();
-				}
-			});
-	    });
-	    
-	    
 	    $('.showAnswerModal').click(function(){
 	    	var qid = $(this).children().attr('qustionIdA');
 	    	$('#qId_hidden').val(qid);
 	    })
-	    $('.saveAnswer').click(function(e){
-	    	var commentText = $('#commentText1').val();
-	    	var questionId = $('#qId_hidden').val();
-	    	var url = "{{route('addanswertoquestion')}}";
-	    	e.preventDefault();
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
 
-			$.ajax({
-				type:"POST",
-				url: url,
-				data : {qId: questionId, data: commentText},
-				success: function() {
-					location.reload();
-				}
-			});
-	    });
 	    
 	});
+	function readURL(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+		$('.image-upload-wrap').addClass('image-dropping');
+	});
+	$('.image-upload-wrap').bind('dragleave', function () {
+		$('.image-upload-wrap').removeClass('image-dropping');
+});
+
 </script>
 
 <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

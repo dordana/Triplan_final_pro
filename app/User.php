@@ -18,6 +18,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Question');
     }
     
+    public function friends(){
+        return $this->hasMany('App\friend');
+    }
+    
+    public function favorites(){
+        return $this->hasMany('App\user_favorite');
+    }
+    
     public function answers(){
         return $this->hasMany('App\Answer');
     }

@@ -28,9 +28,10 @@ Route::get('/profile', 'UserController@showprofile');
 Route::post('/profile', 'UserController@udpateprofile');
 Route::post('/profile/changepassword', ['as' => 'change-password', 'uses' => 'UserController@changepassword']);
 Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserController@changephoto']);
-
-///Users Routes
 Route::get('/profile/{id}', ['as' => 'showuserprofile', 'uses' => 'UserController@userprofile_byid']);
+Route::post('/deletefriend', ['as' => 'deletefriend', 'uses' => 'UserController@deletefriend_byid']);
+Route::post('/addfavorite', ['as' => 'addfavorite', 'uses' => 'UserController@addfavorite']);
+Route::post('/delfavorite', ['as' => 'delfavorite', 'uses' => 'UserController@delfavorite']);
 
 ///Country Routes
 Route::get('/countries', ['as' => 'showcountries', 'uses' => 'CountryController@showallcountries']);

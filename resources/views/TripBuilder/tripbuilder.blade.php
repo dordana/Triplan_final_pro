@@ -27,7 +27,7 @@
     <input type="text" hidden name="startLocation" id="startLocation"/>
     <input type="text" hidden name="startLocationString" id="startLocationString"/>
     <input type="text" hidden name="countryName" value="{{$country->name}}"/>
-    <div id="checkout">CHECKOUT</div>
+    <div id="checkout">BUILD</div>
 </form>
 
 

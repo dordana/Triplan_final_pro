@@ -6,7 +6,7 @@
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <p id="pageName" hidden >Other</p>
 
-<div id="fh5co-car" class="fh5co-section-gray">
+<div id="fh5co-car" style="height: 100vh" class="fh5co-section-gray">
 			<div class="container">
 				<div class="row">
 
@@ -17,8 +17,8 @@
 		<div id="form-left-wrapper">
 			<div id="form-tab-menu">
 				<div class="tab-menu-item current personal-tab">Personal info</div>
-				<div class="tab-menu-item add-tab">Payment</div>
-				<div class="tab-menu-item other-tab">Confirmation</div>
+				<div class="tab-menu-item add-tab">My friends</div>
+				<div class="tab-menu-item other-tab">My paths</div>
 			</div>
 			<!-- Body of the Form -->
 			<div id="form-body">
@@ -66,49 +66,69 @@
 							<label>Gender</label><br/>
 							<input value="{{Auth::user()->gender}}"type='text' name='gender' placeholder='Gender' id='postcode-input' class='postcode-input'/>
 						</div>
+						<br><br><br><br><br><br>
 						<div class='hr' style='margin-bottom: 5px;'></div>
 					</div>
 				</div>
 				<div id="add-tab">
-					<div id="contact-details">
-						<div class='form-input input-small'>
-							<label>First name paym</label><br/>
-							<input type='text' name='' placeholder='First Name' id='firstname-input'/>
-						</div>
-						<div class='form-input input-small'>
-							<label>Last name</label><br/>
-							<input type='text' name='' placeholder='Last Name' id='lastname-input'/>
-						</div>
-						<div class='form-input input-small'>
-							<label>E-mail</label><br/>
-							<input type='email' name='' placeholder='E-Mail Address' id='email-input'/>
-						</div>
-					</div>
-					<div class='hr'></div>
-					<div id="Address-details">
-						<div class='form-input input-small'>
-							<label>Contact Number</label><br/>
-							<input type='number' name='company' placeholder='Contact Number' id='contact-input'/>
-						</div>
-						<div class='form-input input-medium'>
-							<label>Street Address</label><br/>
-							<input type='text' name='address' placeholder='Street Address' id='address-input'/>
-						</div>
-						<!-- Line Break -->
-						<div class='form-input input-small'>
-							<label>Country</label><br/>
-							<input type='text' name='' placeholder='Country' id='country-input'/>
-						</div>
-						<div class='form-input input-small'>
-							<label>City</label><br/>
-							<input type='text' name='' placeholder='City' id='city-input'/>
-						</div>
-						<div class='form-input input-small'>
-							<label>Post Code</label><br/>
-							<input type='number' name='' placeholder='Post Code' id='postcode-input'/>
-						</div>
-						<div class='hr' style='margin-bottom: 5px;'></div>
-					</div>
+					<style>
+
+					.results tr[visible='false'],
+					.no-result{
+					  display:none;
+					}
+					
+					.results tr[visible='true']{
+					  display:table-row;
+					}
+					
+					.counter{
+					  padding:8px; 
+					  color:#ccc;
+					}
+					.form-control {
+					    width: 98% !important;
+					}
+					</style>
+
+<div class="form-group ">
+    <input type="text" class="search form-control" placeholder="Search friends..">
+</div>
+<span class="counter "></span>
+<table class="table table-hover table-bordered results">
+  <thead>
+    <tr>
+      <th class="col-md-3 col-xs-3">First name</th>
+      <th class="col-md-3 col-xs-3">Last name</th>
+      <th class="col-md-1 col-xs-1">Country</th>
+      <th class="col-md-1 col-xs-1">Age</th>
+       <th class="col-md-3 col-xs-3">Actions</th>
+    </tr>
+    <tr class="warning no-result">
+      <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+    </tr>
+  </thead>
+  <tbody>
+  	@foreach(Auth::user()->friends as $friend)
+	    <tr class="tr{{$friend->user_friend_id}}">
+	      <td>{{App\User::find($friend->user_friend_id)->firstname}}</td>
+	      <td>{{App\User::find($friend->user_friend_id)->lastname}}</td>
+	      <td>{{App\User::find($friend->user_friend_id)->country}}</td>
+	      <td>{{App\User::find($friend->user_friend_id)->age}}</td>
+	      <td>
+	      	<div class="actionsButtons" style="display:flex;">
+	      		<a href="{{route('showuserprofile', $friend->user_friend_id)}}" class="btn btn-primary" style="background-color:#74a948; width: 50%; height:40%;    display: inline-table; margin-right:10px;">View</a>
+	      		<a  class="btn btn-primary" style="background-color: #00aeff; width: 50%; height:40%;    display: inline-table;">Message</a>
+				<a class="btn btn-primary delete-friend" friendId="{{$friend->user_friend_id}}" style="background-color:#fc5a5a; width: 50%; height:40%; display: inline-table; margin-left:10px;">Delete</a>
+	      	</div>
+	      </td>
+	    </tr>
+    @endforeach
+  </tbody>
+</table>
+<br><br><br><br><br><br>
+	<div class='hr' style='margin-bottom: 5px;'></div>
+
 				</div>
 				<div id="other-tab">
 					<div id="contact-details">
@@ -148,11 +168,13 @@
 							<label>Post Code</label><br/>
 							<input type='number' name='' placeholder='Post Code' id='postcode-input'/>
 						</div>
+						<br><br><br><br><br><br>
 						<div class='hr' style='margin-bottom: 5px;'></div>
 					</div>
+					
 				</div>
 				<div id="form-submit">
-			              <input type="submit" value="Save Changes">
+			              <input style="    width: 24%; !important" type="submit" value="Save Changes">
 				</div>
 			</div>
 		</div>
@@ -162,7 +184,11 @@
 				<h1 class="text-center">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h1>
 			</div>
 			<div class="container-user-profile-photo">
-              <img src="{{ url('/uploads/user-photos') }}/{{Auth::user()->profile_phote_path}}" alt="{{ url('/uploads/Icons/userprofile.png') }}" />
+				@if(Auth::user()->profile_phote_path != null)
+              		<img src="{{ url('/uploads/user-photos') }}/{{Auth::user()->profile_phote_path}}" alt="ttps://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" />
+              	@else
+            		<img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" />
+				@endif
               <div class="overlay"></div>
                 <div class="button"><a class="" data-toggle="modal" data-target="#change-photo-modal" data-user-email="{{ Auth::user()->email }}">Change</a></div>
             </div>
@@ -179,6 +205,14 @@
 				<tr class='shopping-cart-item'>
 					<td class='cart-title'>Paths</td>
 					<td class='cart-price'>{{ Auth::user()->num_of_paths }}</td>
+				</tr>
+				<tr class='shopping-cart-item'>
+					<td class='cart-title'>Friends</td>
+					<td class='cart-price'>{{ count(Auth::user()->friends) }}</td>
+				</tr>
+				<tr class='shopping-cart-item'>
+					<td class='cart-title'>Favorites</td>
+					<td class='cart-price'>{{ count(Auth::user()->favorites) }}</td>
 				</tr>
 			</table>
 		</div>
@@ -249,5 +283,60 @@
 </div>
 				</div>  
 <script src="{!! asset('pages/profile/profile.js') !!}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".search").keyup(function () {
+    var searchTerm = $(".search").val();
+    var listItem = $('.results tbody').children('tr');
+    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+    
+  $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+        return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+  });
+    
+  $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','false');
+  });
 
+  $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','true');
+  });
+
+  var jobCount = $('.results tbody tr[visible="true"]').length;
+    $('.counter').text(jobCount + ' item');
+
+  if(jobCount == '0') {$('.no-result').show();}
+    else {$('.no-result').hide();}
+		  });
+$(".delete-friend").click(function(){
+	
+
+	var friendId = $(this).attr("friendId");
+		$(".tr"+friendId).remove();
+	console.log($(".tr"+friendId));
+	var url = "{{route('deletefriend')}}";
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	$.ajax({
+    	type: 'ajax',
+    	method: 'post',
+    	url: url,
+    	data: {id:friendId},
+    	async: false,
+    	dataType: 'json',
+    	success: function(data){
+    	    $(".tr"+friendId).hide();
+    	},
+    	error: function(data){
+    		console.log(data)
+    	}
+    });
+});
+});
+</script>
 @endsection
