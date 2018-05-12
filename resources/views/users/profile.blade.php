@@ -1,455 +1,791 @@
  @extends('layouts.app')
 
 @section('content')
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 <style type="text/css">
-    /*
+	
+* {
+	margin:0px;
+	padding:0px;
+}
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing: border-box; }
 
-All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 306). 
-        
-The 'supports' rule will only run if your browser supports CSS grid.
+.clearfix:before, .clearfix:after { display: table; content: ''; }
+.clearfix:after { clear: both; }
 
-Flexbox and floats are used as a fallback so that browsers which don't support grid will still recieve an identical layout.
 
-*/
-
-/* Fonts */
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
-
-@import url(https://use.fontawesome.com/releases/v5.0.8/css/all.css);
-
-.profile {
-	padding: 5rem 0;
-	text-align: center;
+input:focus, textarea:focus, keygen:focus, select:focus {
+	outline: none;
+}
+::-moz-placeholder {
+	color: #666;
+	font-weight: 300;
+	opacity: 1;
 }
 
-.profile::after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-.profile-image {
-	float: left;
-	width: 500px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-right: 3rem;
-}
-
-
-.profile-user-settings,
-.profile-stats,
-.profile-bio {
-	float: left;
-	width: calc(66.666% - 2rem);
-}
-
-.profile-user-settings {
-	margin-top: 1.1rem;
-}
-
-.profile-user-name {
-	display: inline-block;
-	font-size: 3.2rem;
+::-webkit-input-placeholder {
+	color: #666;
 	font-weight: 300;
 }
 
-
-.profile-stats {
-	margin-top: 2.3rem;
+.grid .col2 {
+	width: 50%;
+	padding: 0 10px 0 0;
+}
+.grid .col2.first {
+	float: left;
+}
+.grid .col2.last {
+	float: right;
 }
 
-.profile-stats li {
-	display: inline-block;
-	font-size: 1.6rem;
-	line-height: 1.5;
-	margin-right: 4rem;
-	cursor: pointer;
+.grid .col3 {
+	width: 32%;
+	float: left;
+	margin-right: 11px;
 }
-
-.profile-stats li:last-of-type {
+.grid .col3.first {
+	margin-left: 0;
+	float: left;
+}
+.grid .col3.last {
 	margin-right: 0;
+	float: right;
 }
 
-.profile-bio {
-	font-size: 1.6rem;
-	font-weight: 400;
-	line-height: 1.5;
-	margin-top: 2.3rem;
+/* profile page */
+/*.container {*/
+/*    padding: 60px 50px 70px;*/
+/*}*/
+
+.innerwrap {
+    width: 1200px;
+    margin: 0 auto;
 }
 
-.profile-real-name,
-.profile-stat-count,
-.profile-edit-btn {
-	font-weight: 600;
-}
-
-/* Gallery Section */
-
-.gallery {
-	display: flex;
-	flex-wrap: wrap;
-	margin: -1rem -1rem;
-	padding-bottom: 3rem;
-}
-
-.gallery-item {
+.section1 {
+	background: #fff;
 	position: relative;
-	flex: 1 0 22rem;
-	margin: 1rem;
-	color: #fff;
-	cursor: pointer;
+	border-radius: 2px;
+}
+.section1 div .row:first-child {
+	padding: 25px;
 }
 
-.gallery-item:hover .gallery-item-info {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.3);
-}
 
-.gallery-item-info {
-	display: none;
-}
-
-.gallery-item-info li {
-	display: inline-block;
-	font-size: 1.7rem;
-	font-weight: 600;
-}
-
-.gallery-item-likes {
-	margin-right: 2.2rem;
-}
-
-.gallery-item-type {
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	font-size: 2.5rem;
-	text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
-}
-
-.fa-clone,
-.fa-comment {
-	transform: rotateY(180deg);
-}
-
-.gallery-image {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-/* Spinner */
-
-.spinner {
-	width: 5rem;
-	height: 5rem;
-	border: 0.6rem solid #999;
-	border-bottom-color: transparent;
+.section1 .col2.first img {
 	border-radius: 50%;
-	margin: 0 auto;
-	animation: spinner 1s linear infinite;
+	margin: 0 20px;
+	width: 120px;
+	border:2px solid #f1f1f1;
+	padding: 2px;
+	float: left;
+}
+.section1 .col2.first {
+	line-height: 25px;
+	position: relative;
+	border-right:1px solid #a2a2a2;
+}
+.section1 .col2.first h1 {
+    font-weight: normal;
+    margin-bottom: 10px;
+	margin-top: 15px;
+	text-transform: capitalize;
+}
+.section1 .col2.first p {
+	font-size: 14px;
+}
+.section1 .col2.first span {
+	position: absolute;
+    right: 15px;
+    top: 16px;
+    background: #32363E;
+    padding: 5px 11px;
+    font-size: 12px;
+    line-height: 1;
+    border-radius: 2px;
+    color: #fff;
+  cursor:pointer;
 }
 
-/* Media Query */
+.section1 .col2.last {
+	padding: 8px 0;
+}
+.section1 .col2.last .col3 span {
+    color: #a2a2a2;
+    font-size: 14px;
+}
+.section1 .col2.last .col3 h1 {
+    color: #f68546;
+}
 
-@media screen and (max-width: 40rem) {
-	.profile {
-		display: flex;
-		flex-wrap: wrap;
-		padding: 4rem 0;
+.section1 .col2.last .col3 {
+    text-align: center;
+    line-height: 30px;
+    border-right: 1px solid #ccc;
+}
+.section1 .col2.last .col3.last {
+	border-right: 0;
+}
+
+.row2tab li {
+    list-style: none;
+    float: left;
+    width: 25%;
+    padding: 15px;
+    font-size: 14px;
+    text-align: center;
+    cursor:pointer;
+    background: #f1f1f1;
+    color: #555;
+    border-bottom: 2px solid #f1f1f1;
+}
+.row2tab li {
+    border-radius: 0 0 2px 2px;
+}
+.active-tab{
+	    border-bottom: 2px solid #f68546 !important;
+	    color: #f68546 !important;
+}
+
+.row2tab li i {
+        margin-right: 3px;
+    font-size: 14px;
+}
+
+.smalltri {
+	    border-right: 40px solid #f68546;
+    height: 0;
+    width: 0;
+    border-left: 20px solid transparent;
+    border-top: 10px solid #f68546;
+    border-bottom: 20px solid transparent;
+    padding: 0px;
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+.smalltri i {
+    position: absolute;
+    top: -5px;
+    right: -33px;
+    color: #fff;
+    border: 0px;
+    font-size: 12px;
+}
+
+section.section2 {
+    margin: 50px 0;
+}
+
+.section2 .col3 {
+	width: 30%;
+	margin-right: 60px;
+	background: #fff;
+	border-radius: 2px;
+}
+
+.section2 .postcont img {
+
+	width: 100%;
+}
+.section2 .profileinfo {
+    text-align: center;
+    padding: 0 10px 30px;
+    color: #555;
+    font-size: 14px;
+    line-height: 25px;
+}
+.section2 .profileinfo img {
+    border-radius: 50%;
+    width: 80px;
+    padding: 2px;
+    border: 3px solid #f68546;
+    margin-top: -48px;
+    margin-bottom: 18px;
+}
+.section2 .col3.center .profileinfo img {
+    border: 3px solid #f68546 !important;
+
+}
+.section2 .profileinfo p {
+	text-align: justify;
+}
+.section2 .profileinfo span {
+	margin-top: 15px;
+    display: block;
+    text-align: left;
+    color: #f68546;
+    cursor: pointer;
+}
+.section2 .profileinfo span i {
+	margin-left: 10px;
+}
+
+@media only screen and (max-width: 1300px) {
+	.innerwrap {
+		width: 90%;
 	}
-
-	.profile::after {
-		display: none;
+	.section2 .col3 {
+		margin-right: 5%;
 	}
-
-	.profile-image,
-	.profile-user-settings,
-	.profile-bio,
-	.profile-stats {
-		float: none;
-		width: auto;
+	.section1 .grid .col3 {
+		margin-right: 2%;
 	}
-
-	.profile-image img {
-		width: 7.7rem;
+	.section1 .col2.last .col3.last {
+		margin-right: 0;
 	}
+}
 
-	.profile-user-settings {
-		flex-basis: calc(100% - 10.7rem);
-		display: flex;
-		flex-wrap: wrap;
-		margin-top: 1rem;
-	}
-
-	.profile-user-name {
-		font-size: 2.2rem;
-	}
-
-	.profile-edit-btn {
-		order: 1;
+@media only screen and (max-width: 1060px) {
+	.section1 .col2 {
+		width: 100%;
+		border-right:0 !important;
 		padding: 0;
+	}
+}
+
+@media only screen and (max-width: 660px) {
+	.section2 .col3 {
+		width: 100%;
+		float: none !important;
+		margin-bottom: 10px;
+	}
+	.row2tab li {
+		width: 50%;
+		text-align: left;
+	}
+	.section1 .col2.first {
 		text-align: center;
-		margin-top: 1rem;
 	}
-
-	.profile-edit-btn {
-		margin-left: 0;
+	.section1 .col2.first img {
+		display: inline-block;
+		float: none;
 	}
-
-	.profile-bio {
-		font-size: 1.4rem;
-		margin-top: 1.5rem;
+	.section1 .col2.first span {
+		position: relative;
+		right: 0;
 	}
-
-	.profile-edit-btn,
-	.profile-bio,
-	.profile-stats {
-		flex-basis: 100%;
+  .section1 .col2.last {
+    margin-top:25px;
+  }
+}
+@media only screen and (max-width: 450px) {
+	.container {
+    padding: 60px 5px 70px;
+}
+  .row2tab li {
+		width: 100%;
+		text-align: left;
 	}
-
-	.profile-stats {
-		order: 1;
-		margin-top: 1.5rem;
+	.section1 .col2.last .col3 span {
+		font-size: 10px;
 	}
-
-	.profile-stats ul {
-		display: flex;
-		text-align: center;
-		padding: 1.2rem 0;
-		border-top: 0.1rem solid #dadada;
-		border-bottom: 0.1rem solid #dadada;
+	.section1 .col2.last .col3 h1 {
+		font-size: 18px;
 	}
-
-	.profile-stats li {
-		font-size: 1.4rem;
-		flex: 1;
-		margin: 0;
-	}
-
-	.profile-stat-count {
-		display: block;
-	}
+	
 }
 
-/* Spinner Animation */
-
-@keyframes spinner {
-	to {
-		transform: rotate(360deg);
-	}
+.fullcont{
+	margin-top:30px;
+	margin-bottom:30px;
 }
 
-/*
-
-The following code will only run if your browser supports CSS grid.
-
-Remove or comment-out the code block below to see how the browser will fall-back to flexbox & floated styling. 
-
-*/
-
-@supports (display: grid) {
-	.profile {
-		display: grid;
-		grid-template-columns: 1fr 2fr;
-		grid-template-rows: repeat(3, auto);
-		grid-column-gap: 3rem;
-		align-items: center;
-	}
-
-	.profile-image {
-		grid-row: 1 / -1;
-	}
-
-	.gallery {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-		grid-gap: 2rem;
-	}
-
-	.profile-image,
-	.profile-user-settings,
-	.profile-stats,
-	.profile-bio,
-	.gallery-item,
-	.gallery {
-		width: auto;
-		margin: 0;
-	}
-
-	@media (max-width: 40rem) {
-		.profile {
-			grid-template-columns: auto 1fr;
-			grid-row-gap: 1.5rem;
-		}
-
-		.profile-image {
-			grid-row: 1 / 2;
-		}
-
-		.profile-user-settings {
-			display: grid;
-			grid-template-columns: auto 1fr;
-			grid-gap: 1rem;
-		}
-
-		.profile-edit-btn,
-		.profile-stats,
-		.profile-bio {
-			grid-column: 1 / -1;
-		}
-
-		.profile-user-settings,
-		.profile-edit-btn,
-		.profile-settings-btn,
-		.profile-bio,
-		.profile-stats {
-			margin: 0;
-		}
-	}
-}
 /**/
 /**/
-button:focus,
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none; }
+/**/
 
-.tabs {
-  display: block;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin: 0;
-  overflow: hidden; }
-  .tabs [class^="tab"] label,
-  .tabs [class*=" tab"] label {
-    cursor: pointer;
-    display: block;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1em;
-    padding: 2rem 0;
-    text-align: center; }
-  .tabs [class^="tab"] [type="radio"],
-  .tabs [class*=" tab"] [type="radio"] {
-    border-bottom: 1px solid rgba(239, 237, 239, 0.5);
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: block;
+.gallery-title
+{
+    font-size: 36px;
+    color: #42B32F;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+.gallery-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #42B32F;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #42B32F;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #42B32F;
+    color: white;
+}
+
+.port-image
+{
     width: 100%;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out; }
-    .tabs [class^="tab"] [type="radio"]:hover, .tabs [class^="tab"] [type="radio"]:focus,
-    .tabs [class*=" tab"] [type="radio"]:hover,
-    .tabs [class*=" tab"] [type="radio"]:focus {
-      border-bottom: 1px solid #f68546; }
-    .tabs [class^="tab"] [type="radio"]:checked,
-    .tabs [class*=" tab"] [type="radio"]:checked {
-      border-bottom: 2px solid #f68546; }
-    .tabs [class^="tab"] [type="radio"]:checked + div,
-    .tabs [class*=" tab"] [type="radio"]:checked + div {
-      opacity: 1; }
-    .tabs [class^="tab"] [type="radio"] + div,
-    .tabs [class*=" tab"] [type="radio"] + div {
-      display: block;
-      opacity: 0;
-      padding: 2rem 0;
-      width: 90%;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out; }
-  .tabs .tab-2 {
-    width: 50%; }
-    .tabs .tab-2 [type="radio"] + div {
-      width: 200%;
-      margin-left: 200%; }
-    .tabs .tab-2 [type="radio"]:checked + div {
-      margin-left: 0; }
-    .tabs .tab-2:last-child [type="radio"] + div {
-      margin-left: 100%; }
-    .tabs .tab-2:last-child [type="radio"]:checked + div {
-      margin-left: -100%; }
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
+/**/
+/**/
+/**/
+
+
+html {
+  font-size: 100%;
+  line-height: 1.5em;
+  font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #1D1311;
+}
+@media print {
+  html {
+    font-size: 12pt;
+  }
+}
+
+h1 {
+  font-size: 36px;
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+h1 + p, h2 + p, h3 + p {
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #FF7867;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+.Review {
+  padding: 24px;
+  padding: 1.5rem;
+}
+@media screen and (min-width: 650px) {
+  .Review {
+    padding: 48px;
+    padding: 3rem;
+  }
+}
+.Review-details {
+  display: flex;
+  align-items: center;
+}
+.Review-details p {
+  margin: 0;
+}
+.Review-details img {
+  width: 54px;
+  height: 54px;
+  margin-right: 24px;
+  margin-right: 1.5rem;
+  border-radius: 50%;
+}
+.Review-author {
+  font-weight: bold;
+}
+.Review-date {
+  color: #b6c2cc;
+}
+.Review-star {
+  color: #B6C2CC;
+}
+.Review-star--active {
+  color: #FF7867;
+}
+.Review-body .Review-title + p {
+  margin-top: 0;
+}
+.Review-body img {
+  margin: 12px 0px;
+  margin: 0.75rem 0rem;
+}
+
+/**/
+/**/
+/**/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+.snip1493 {
+  font-family: 'Open Sans', Arial, sans-serif;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 10px 1%;
+  min-width: 250px;
+  max-width: 310px;
+  width: 100%;
+  background-color: #ffffff;
+  color: #000000;
+  text-align: left;
+  font-size: 16px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+.snip1493 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.snip1493:after {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 0 25px 25px;
+  border-color: transparent transparent transparent #d2652d;
+  content: '';
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.snip1493 img {
+  max-width: 100%;
+  vertical-align: top;
+  position: relative;
+}
+
+.snip1493 figcaption {
+  padding: 20px 20px 30px;
+  background-color: #ffffff;
+}
+
+.snip1493 .date {
+  background-color: #d2652d;
+  top: 15px;
+  color: #fff;
+  right: 15px;
+  min-height: 48px;
+  min-width: 48px;
+  position: absolute;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 50%;
+  padding: 10px 0;
+}
+
+.snip1493 .date span {
+  display: block;
+  line-height: 14px;
+}
+
+.snip1493 .date .month {
+  font-size: 11px;
+}
+
+.snip1493 h3,
+.snip1493 p {
+  margin: 0;
+  padding: 0;
+}
+
+.snip1493 h3 {
+  margin-bottom: 10px;
+  display: inline-block;
+  font-weight: 700;
+}
+
+.snip1493 p {
+  font-size: 0.8em;
+  margin-bottom: 20px;
+  line-height: 1.6em;
+}
+
+.snip1493 footer {
+  padding: 0 25px;
+  color: #999999;
+  font-size: 0.8em;
+  line-height: 50px;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.snip1493 footer > div {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.snip1493 footer i {
+  margin-right: 5px;
+  font-size: 1.2em;
+}
+
+.snip1493 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.snip1493:hover:after,
+.snip1493.hover:after {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+}
+
+
+/**/
+/**/
+/**/
 </style>
-<header>
-<h1>{{$user->id}}</h1>
-	<div class="container">
 
-		<div class="profile">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-			<div class="profile-image">
 
-				<img style="width:300px;height:230px;border:solid 2px orange" src="{{ url('/uploads/user-photos') }}/{{$user->profile_phote_path}}" alt="{{ url('/uploads/Icons/userprofile.png') }}">
-
+<div class="container fullcont">
+	<div class="innerwrap">
+		<section class="section1 clearfix">
+			<div>
+				<div class="row grid clearfix">
+					<div class="col2 first">
+						<img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
+						<h1>{{ $user->firstname }} {{ $user->lastname}}</h1>
+						<p>{{$user->age}} years old {{$user->gender}} from {{$user->city}},{{$user->country}}</p>
+						<span>Add as friend</span>
+					</div>
+					<div class="col2 last">
+						<div class="grid clearfix">
+							<div class="col3 first">
+								<h1>{{ $user->num_of_likes }}</h1>
+								<span>Likes</span>
+							</div>
+							<div class="col3"><h1>{{ $user->num_of_shares }}</h1>
+							<span>Shares</span></div>
+							<div class="col3 last"><h1>{{ $user->num_of_paths }}</h1>
+							<span>Paths</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<ul class="row2tab clearfix">
+						<li class="alltab tab_1 active-tab"><i class="fa fa-image"></i> Photos </li>
+						<li class="alltab tab_2"><i class="fa fa-newspaper"></i> Reviews </li>
+						<li class="alltab tab_3"><i class="fas fa-check"></i> Following </li>
+						<li class="alltab tab_4"><i class="fa fa-thumbs-o-up "></i> Suggestions </li>
+					</ul>
+				</div>
 			</div>
-
-			<div class="profile-user-settings">
-
-				<h1 class="profile-user-name" >{{$user->username}}</h1>
-
-
+			<span class="smalltri">
+			</span>
+		</section>
+		
+		
+		
+		<section class="section2 clearfix tab1">
+			<div class="container">
+        <div class="row">
+					@foreach($user->reviewPhotos as $photo)
+						@if($photo->path != null)
+		          <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
+		                <img src="{{url('/uploads/reviews')}}/{{$photo->path}}" class="img-responsive">
+		          </div>
+	          @endif
+          @endforeach
+          @foreach($user->answers as $a)
+	          @if($a->img_path != null)
+		          <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
+		                <img src="{{url('/uploads/answers')}}/{{$a->img_path}}" class="img-responsive">
+		          </div>
+	          @endif
+          @endforeach
+            
+        </div>
+    </div>
+		</section>
+		
+		<section hidden class="section2 clearfix tab2">
+			<div class="container">
+				
+				
+				@foreach($user->reviews as $review)
+        <div class="row">
+        	<div class="Review">
+					  <div class="Review-details">
+					    <img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}">
+					    <div class="Review-meta">
+					      <p class="Review-author">{{ $user->firstname }} {{ $user->lastname}}</p>
+					      <p class="Review-date">{{ Carbon\Carbon::parse($review->created_at)->format('d-m-Y') }}</p>
+					      <div class="Review-rating">
+					      	@for($i=0; $i < intval($review->rate); $i++)
+					        	<span class="Review-star Review-star--active">&#9733;</span>
+					        @endfor
+					        @for($i; $i < 5; $i++)
+					        	<span class="Review-star">&#9733;</span>
+					        @endfor
+					        
+					      </div>
+					    </div>
+					  </div>
+					  <div class="Review-body">
+					    <h3 class="Review-title">{{ $review->title}}</h3>
+					    <p>{{ $review->body}}</p>
+					  </div>
+					</div>
+        	<hr>
+        </div>
+        @endforeach
+        
+        
+	    </div>	
+	    
+		</section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<section hidden class="section2 clearfix tab3">
+			<div class="container">
+				@foreach($user->paths as $path)
+					<figure class="snip1493">
+					  <div class="image"><img src="{{ url('/uploads/cities') }}/{{str_replace(' ', '', App\City::find($path->city_id)->name)}}/{{App\City::find($path->city_id)->mainpic}}" alt="ls-sample1" /></div>
+					  <figcaption>
+					    <div class="date"><span class="day">28</span><span class="month">Oct</span></div>
+					    <h3>The World Ended Yesterday</h3>
+					    <p>
+					
+					      You know what we need, Hobbes? We need an attitude. Yeah, you can't be cool if you don't have an attitude.
+					    </p>
+					    <footer>
+					      <div class="views"><i class="ion-eye"></i>2,907</div>
+					      <div class="love"><i class="ion-heart"></i>623</div>
+					      <div class="comments"><i class="ion-chatboxes"></i>23</div>
+					    </footer>
+					  </figcaption>
+					  <a href="#"></a>
+					</figure>
+				@endforeach
+	    </div>	
+		</section>
+		
+		
+		
+		
+		
+		
+		<section hidden class="section2 clearfix tab4">
+			<div class="grid">
+				
+				
+				<div class="col3 first">
+					<div class="postcont"><img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
+					</div>
+					<div class="postcont"><img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
+					</div>
+					<div class="profileinfo">
+						<img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
+					</div>
+				</div>
+				
+				
+				<div class="col3 center">
+					<div class="postcont"><img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
+					</div>
+					<div class="profileinfo">
+						<img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
+						<p>Lorem Idsfdsfdsffdfsdpsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy tex</p>
+						<span>Read more <i class="fa fa-angle-right"></i></span>
+					</div>
+				</div>
+				
+				
+				<div class="col3 last">
+					<div class="postcont"><img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
+					</div>
+					<div class="profileinfo">
+						<img src="{{url('/uploads/user-photos')}}/{{$user->profile_phote_path}}" alt="">
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy tex</p>
+						<span>Read more <i class="fa fa-angle-right"></i></span>
+					</div>
+				</div>
+				
+				
 			</div>
-
-			<div class="profile-stats">
-
-				<ul>
-					<li><span class="profile-stat-count"></span> likes</li>
-					<li><span class="profile-stat-count"></span> shares</li>
-					<li><span class="profile-stat-count"></span> paths</li>
-				</ul>
-
-			</div>
-
-			<div class="profile-bio">
-
-				<p><span class="profile-real-name">{{$user->firstname . " " . $user->lastname}}</span> is a {{$user->gender}} {{$user->age}} and lives in {{$user->city}}, {{$user->country}}  </p>
-			</div>
-
-		</div>
-		<!-- End of profile section -->
-
+		</section>
+		
 	</div>
-	<!-- End of container -->
-
-</header>
+</div>	
 
 
-<div class="tabs">
-  <div class="tab-2">
-    <label class="tabName" for="tab2-1">Photos</label>
-    <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
-    <div>
-      <h4>Tab One</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consequat id velit quis vestibulum. Nam id orci eu urna mollis porttitor. Nunc nisi ante, gravida at velit eu, aliquet sodales dui. Sed laoreet condimentum nisi a egestas.</p><p>Donec interdum ante ut enim consequat, quis varius nulla dapibus. Vivamus mollis fermentum augue a varius. Vestibulum in sapien at lectus gravida lobortis vulputate sed metus. Duis scelerisque justo et maximus efficitur. Donec eu eleifend quam. Curabitur aliquet commodo sapien eget vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum vel aliquet nunc, finibus posuere lorem. Suspendisse consectetur volutpat est ut ornare.</p>
-    </div>
-  </div>
-  <div class="tab-2">
-    <label class="tabName" for="tab2-2">Reviews</label>
-    <input id="tab2-2" name="tabs-two" type="radio">
-    <div>
-      <h4>Tab Two</h4>
-      <p>Quisque sit amet turpis leo. Maecenas sed dolor mi. Pellentesque varius elit in neque ornare commodo ac non tellus. Mauris id iaculis quam. Donec eu felis quam. Morbi tristique lorem eget iaculis consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean at tellus eget risus tempus ultrices. Nam condimentum nisi enim, scelerisque faucibus lectus sodales at.</p>
-    </div>
-  </div>
-</div>
 
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".alltab").removeClass("active");
+		$(".tab_1").click(function(){
+			$(".section2").hide();
+			$(".tab1").show();
+			$(".alltab").removeClass("active-tab");
+			$(".tab_1").addClass("active-tab");
+		});
+		$(".tab_2").click(function(){
+			$(".section2").hide();
+			$(".tab2").show();
+			$(".alltab").removeClass("active-tab");
+			$(".tab_2").addClass("active-tab");
+		});
+		$(".tab_3").click(function(){
+			$(".section2").hide();
+			$(".tab3").show();
+			$(".alltab").removeClass("active-tab");
+			$(".tab_3").addClass("active-tab");
+		});
+		$(".tab_4").click(function(){
+			$(".section2").hide();
+			$(".tab4").show();
+			$(".alltab").removeClass("active-tab");
+			$(".tab_4").addClass("active-tab");
+		});
+		
+		
+		
+	});
+</script>
 @endsection

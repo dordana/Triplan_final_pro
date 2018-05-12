@@ -89,6 +89,9 @@
 					.form-control {
 					    width: 98% !important;
 					}
+					th, td{
+						text-align: center;
+					}
 					</style>
 
 <div class="form-group ">
@@ -205,14 +208,6 @@
 				<tr class='shopping-cart-item'>
 					<td class='cart-title'>Paths</td>
 					<td class='cart-price'>{{ Auth::user()->num_of_paths }}</td>
-				</tr>
-				<tr class='shopping-cart-item'>
-					<td class='cart-title'>Friends</td>
-					<td class='cart-price'>{{ count(Auth::user()->friends) }}</td>
-				</tr>
-				<tr class='shopping-cart-item'>
-					<td class='cart-title'>Favorites</td>
-					<td class='cart-price'>{{ count(Auth::user()->favorites) }}</td>
 				</tr>
 			</table>
 		</div>

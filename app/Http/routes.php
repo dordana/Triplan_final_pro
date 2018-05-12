@@ -85,6 +85,10 @@ Route::get('/trip', 'TripController@initTrip');
 Route::get('/tripbuilder', ['as' => 'tripbuilder', 'uses' => 'TripController@build']);
 Route::get('/loading', ['as' => 'loading', 'uses' => 'TripController@loading']);
 Route::post('/savetrip', ['as' => 'savetrip', 'uses' => 'TripController@saveTrip']);
+Route::get('/downloadPDF', ['as' => 'downloadPDF', 'uses' => 'TripController@downloadPDF']);
+Route::get('/sendEmail', ['as' => 'sendEmail', 'uses' => 'TripController@sendEmail']);
+Route::get('/listView', ['as' => 'listView', 'uses' => 'TripController@listView']);
+Route::get('/tripbuilderbudget', ['as' => 'tripbuilderbudget', 'uses' => 'TripController@buildbudget']);
 
 // Admin Routes
 Route::get('/admin/dashboard', 'AdminController@index');

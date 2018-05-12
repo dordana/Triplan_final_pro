@@ -400,7 +400,7 @@
 					<div class="comment-box">
 						<!--head-->
 						<div class="comment-head">
-							<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{App\User::find($q->user_id)->username}}</a></h6>
+							<h6 class="comment-name by-author"><a href="{{route('showuserprofile', $q->user_id)}}">{{App\User::find($q->user_id)->username}}</a></h6>
 							<span class="date">{{date("F jS, Y, g:i a", strtotime($q->created_at))}}</span>
 							@if (Auth::check())
 								@if ($user->id == $q->user_id)
@@ -433,9 +433,9 @@
 						<div class="comment-box">
 							<div class="comment-head">
 								@if ($q->user_id == $a->user_id)
-									<h6 class="comment-name by-author"><a href="">{{App\User::find($a->user_id)->username}}</a></h6>
+									<h6 class="comment-name by-author"><a href="{{route('showuserprofile', $a->user_id)}}">{{App\User::find($a->user_id)->username}}</a></h6>
 								@else
-									<h6 class="comment-name"><a href="">{{App\User::find($a->user_id)->username}}</a></h6>
+									<h6 class="comment-name"><a href="{{route('showuserprofile', $a->user_id)}}">{{App\User::find($a->user_id)->username}}</a></h6>
 								@endif
 								<span class="date">{{date("F jS, Y, g:i a", strtotime($a->created_at))}}</span>
 							</div>
