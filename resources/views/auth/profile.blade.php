@@ -134,47 +134,51 @@
 
 				</div>
 				<div id="other-tab">
-					<div id="contact-details">
-						<div class='form-input input-small'>
-							<label>First name conf</label><br/>
-							<input type='text' name='' placeholder='First Name' id='firstname-input'/>
-						</div>
-						<div class='form-input input-small'>
-							<label>Last name</label><br/>
-							<input type='text' name='' placeholder='Last Name' id='lastname-input'/>
-						</div>
-						<div class='form-input input-small'>
-							<label>E-mail</label><br/>
-							<input type='email' name='' placeholder='E-Mail Address' id='email-input'/>
-						</div>
+					<div class="form-group ">
+					    <input type="text" class="search form-control" placeholder="Search friends..">
 					</div>
-					<div class='hr'></div>
-					<div id="Address-details">
-						<div class='form-input input-small'>
-							<label>Contact Number</label><br/>
-							<input type='number' name='company' placeholder='Contact Number' id='contact-input'/>
-						</div>
-						<div class='form-input input-medium'>
-							<label>Street Address</label><br/>
-							<input type='text' name='address' placeholder='Street Address' id='address-input'/>
-						</div>
-						<!-- Line Break -->
-						<div class='form-input input-small'>
-							<label>Country</label><br/>
-							<input type='text' name='' placeholder='Country' id='country-input'/>
-						</div>
-						<div class='form-input input-small'>
-							<label>City</label><br/>
-							<input type='text' name='' placeholder='City' id='city-input'/>
-						</div>
-						<div class='form-input input-small'>
-							<label>Post Code</label><br/>
-							<input type='number' name='' placeholder='Post Code' id='postcode-input'/>
-						</div>
-						<br><br><br><br><br><br>
+					<span class="counter "></span>
+					<table class="table table-hover table-bordered results">
+					  <thead>
+					    <tr>
+					      <th class="col-md-3 col-xs-3">Path name</th>
+					      <th class="col-md-3 col-xs-3">Start date</th>
+					      <th class="col-md-1 col-xs-1">End date</th>
+					      <th class="col-md-1 col-xs-1">City</th>
+					      <th class="col-md-3 col-xs-3">Country</th>
+					       <th class="col-md-3 col-xs-3">Type</th>
+					        <th class="col-md-3 col-xs-3">Actions</th>
+					    </tr>
+					    <tr class="warning no-result">
+					      <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	@foreach(Auth::user()->paths as $path)
+						    <tr class="trP{{$path->id}}">
+						      <td>{{$path->pathName}}</td>
+						      <td>{{ Carbon\Carbon::parse($path->startDate)->format('d/m/Y') }}</td>
+						      <td>{{ Carbon\Carbon::parse($path->endDate)->format('d/m/Y') }}</td>
+						      <td>{{$path->cityname}}</td>
+						      <td>{{$path->countryName}}</td>
+						      <td>{{$path->type}}</td>
+						      <td>
+						      	<div class="actionsButtons" style="display:flex;">
+						      		@if($path->shared == "1")
+						      			<a href="#" class="btn btn-primary notshared" pathId="{{$path->id}}" style="background-color:#00aeff; width: 50%; height:40%;    display: inline-table; margin-right:10px;">Shared</a>
+						      		@else
+						      			<a href="#" class="btn btn-primary shared" pathId="{{$path->id}}" style="background-color:#00aeff; width: 50%; height:40%;    display: inline-table; margin-right:10px;">Not shared</a>
+						      		@endif
+						      		<a href="{{route('tripbuilder', $path->toArray())}}" class="btn btn-primary" style="background-color:#74a948; width: 50%; height:40%;    display: inline-table; margin-right:10px;">View</a>
+									<a class="btn btn-primary delete-path" pathId="{{$path->id}}" style="background-color:#fc5a5a; width: 50%; height:40%; display: inline-table; margin-left:10px;">Delete</a>
+						      	</div>
+						      </td>
+						    </tr>
+					    @endforeach
+					  </tbody>
+					</table>
+					<br><br><br><br><br><br>
 						<div class='hr' style='margin-bottom: 5px;'></div>
-					</div>
-					
 				</div>
 				<div id="form-submit">
 			              <input style="    width: 24%; !important" type="submit" value="Save Changes">
@@ -332,6 +336,61 @@ $(".delete-friend").click(function(){
     	}
     });
 });
+$(".delete-path").click(function(){
+	
+
+	var pathId = $(this).attr("pathId");
+		$(".trP"+pathId).remove();
+	var url = "{{route('deletepath')}}";
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	$.ajax({
+    	type: 'ajax',
+    	method: 'post',
+    	url: url,
+    	data: {id:pathId},
+    	async: false,
+    	dataType: 'json',
+    	success: function(data){
+    		console.log(data)
+    	},
+    	error: function(data){
+    		console.log(data)
+    	}
+    });
+});
+
+
+$(".notshared, .shared").click(function(){
+	var a = $(this);
+	var pathId = $(this).attr("pathId");
+	var url = "{{route('sharepath')}}";
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	$.ajax({
+    	type: 'ajax',
+    	method: 'post',
+    	url: url,
+    	data: {id:pathId},
+    	async: false,
+    	dataType: 'json',
+    	success: function(data){
+    		location.reload();	
+    	},
+    	error: function(data){
+    		location.reload();
+    	}
+    });
+});
+
 });
 </script>
 @endsection

@@ -9,6 +9,7 @@ use Mail;
 use Config;
 use App\City;
 use App\User;
+use App\Path;
 use App\Review;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +33,7 @@ class HomeController extends Controller
             'countries' => country::take(6)->get(),
             'reviews' => Review::take(3)->get(),
             'cities' => City::take(10)->get(),
+            'paths' => Path::take(5)->get(),
         ]);
     }
    
@@ -49,6 +51,7 @@ class HomeController extends Controller
                 'countries' => country::take(6)->get(),
                 'reviews' => Review::take(3)->get(),
                 'cities' => City::take(10)->get(),
+                'paths' => Path::take(5)->get(),
             ]);
     }
     public function userMsgEmail(Request $request)

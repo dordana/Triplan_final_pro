@@ -465,7 +465,7 @@ b:hover{
 <!--left sidebar-->
 <div id='social-sidebar'>
     <ul>
-        @if (Auth::user()->id == $request["user_id"])
+
         <li id="saveTrip">
         	<a class='entypo-twitter opt' href='javascript:void(0)' target='_blank' id="saveText">
         		<span>Save</span>
@@ -473,7 +473,7 @@ b:hover{
         		Save my trip
         	</a>
         </li>
-        @endif
+
         <li>
         	<a class='entypo-gplus opt' href='javascript:void(0)' target='_blank' id="sendEmail">
         		<span>Email</span>
@@ -495,7 +495,7 @@ b:hover{
         	    Show list view
         	</a>
         </li>
-        @if (Auth::user()->id == $request["user_id"])
+
         <li>
         	<a class='entypo-rss opt' href='javascript:void(0)' target='_blank' id="backToBuilder" >
         		<span>Builder</span>
@@ -503,7 +503,7 @@ b:hover{
         	    Back to trip builder
         	</a>
         </li>
-        @endif
+
         <li>
         	<a class='entypo-facebook opt' href='/'>
         		<span>Homepage</span>

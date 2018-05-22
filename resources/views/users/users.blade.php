@@ -170,11 +170,11 @@ input:focus {
   <button class="sort" data-sort="project-name">
     Sort by name
   </button>
-  <button class="sort" data-sort="project-title">
-    Sort by Project
+  <button class="sort" data-sort="project-username">
+    Sort by username
   </button>
-  <button class="sort" data-sort="project-label">
-    Sort by Label
+  <button class="sort" data-sort="project-city">
+    Sort by city
   </button>
   
 
@@ -188,8 +188,8 @@ input:focus {
 			<img style="width:160px; height:120px;" src="https://community.smartsheet.com/sites/default/files/default_user.jpg" />
 			@endif
 			<h3 class="project-name">{{$u->firstname}} {{$u->lastname}}</h3>
-			<p class="project-title">{{$u->username}}</p>
-			<p class="project-label">{{$u->city}}, {{$u->country}}</p>
+			<p class="project-username">{{$u->username}}</p>
+			<p class="project-city">{{$u->city}}, {{$u->country}}</p>
 	    </li>
 	    </a>
     @endforeach

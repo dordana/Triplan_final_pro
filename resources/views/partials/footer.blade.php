@@ -1,18 +1,10 @@
+
+
 	<footer>
 			<div id="footer">
 				<div class="container">
-					<div class="row row-bottom-padded-md">
-						<div class="col-md-3 col-sm-3 col-xs-12 fh5co-footer-link">
-							<h3>Top 5 Routes</h3>
-							<ul>
-								<li><a href="#">test</a></li>
-								<li><a href="#">test</a></li>
-								<li><a href="#">test</a></li>
-								<li><a href="#">test</a></li>
-								<li><a href="#">test</a></li>
-							</ul>
-						</div>
-						<div class="col-md-3 col-sm-3 col-xs-12 fh5co-footer-link">
+					<div class="row row-bottom-padded-md fot">
+						<div class="col-md-4 col-sm-3 col-xs-12 fh5co-footer-link">
 							<h3>Top 5 Countries</h3>
 							<ul>
 								<li><a href="{{route('show-countrydetalis', 'Israel')}}">Israel</a></li>
@@ -22,7 +14,7 @@
 								<li><a href="{{route('show-countrydetalis', 'Italy')}}">Italy</a></li>
 							</ul>
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-12 fh5co-footer-link">
+						<div class="col-md-4 col-sm-3 col-xs-12 fh5co-footer-link fot">
 							<h3>Top 5 Cities</h3>
 							<ul>
 								<li><a href="{{route('show-citydetalis', 'Barcelona')}}">Barcelona</a></li>
@@ -32,7 +24,7 @@
 								<li><a href="{{route('show-citydetalis', 'Lyon')}}">Lyon</a></li>
 							</ul>
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-12 fh5co-footer-link">
+						<div class="col-md-4 col-sm-3 col-xs-12 fh5co-footer-link fot">
 							<h3>About Triplan</h3>
 							<ul>
 								<li><a href="{{route('show-terms')}}">Terms</a></li>

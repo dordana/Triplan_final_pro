@@ -31,9 +31,13 @@ Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserCont
 Route::get('/profile/{id}', ['as' => 'showuserprofile', 'uses' => 'UserController@userprofile_byid']);
 Route::get('/showfriends', ['as' => 'showfriends', 'uses' => 'UserController@showfriends']);
 Route::post('/addfriend', ['as' => 'addfriend', 'uses' => 'UserController@addfriend_byid']);
+Route::get('/activeuser/{id}', ['as' => 'activeuser', 'uses' => 'HomeController@activeuser']);
 Route::post('/deletefriend', ['as' => 'deletefriend', 'uses' => 'UserController@deletefriend_byid']);
+Route::post('/deletepath', ['as' => 'deletepath', 'uses' => 'UserController@deletepath_byid']);
+Route::post('/sharepath', ['as' => 'sharepath', 'uses' => 'UserController@sharepath_byid']);
 Route::post('/addfavorite', ['as' => 'addfavorite', 'uses' => 'UserController@addfavorite']);
 Route::post('/delfavorite', ['as' => 'delfavorite', 'uses' => 'UserController@delfavorite']);
+Route::post('/sendMsgFriend', ['as' => 'sendMsgFriend', 'uses' => 'UserController@sendMsgFriend']);
 
 ///Country Routes
 Route::get('/countries', ['as' => 'showcountries', 'uses' => 'CountryController@showallcountries']);

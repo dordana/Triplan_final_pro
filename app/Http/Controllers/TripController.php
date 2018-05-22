@@ -384,7 +384,6 @@ class TripController extends Controller
                 array_push($attractionsListPerDay,$oneDate);
             } 
         }
-        
         return view('TripBuilder/showTrip',[
             "attractionList" => $attractionsListPerDay,
             "num_of_days" => count($attractionsListPerDay),

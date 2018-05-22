@@ -9,9 +9,11 @@ use App\Http\Requests;
 use App\country;
 use App\User;
 use App\friend;
+use App\Path;
 use App\user_favorite;
 use Image;
 use File;
+use Mail;
 
 class UserController extends Controller
 {
@@ -73,12 +75,43 @@ class UserController extends Controller
       $friend->delete();
     }
     
+    public function deletepath_byid(Request $request){
+      $path = Path::find($request->id);
+      $path->delete();
+    }
+    
+    public function sharepath_byid(Request $request){
+      $path = Path::find($request->id);
+      if($path->shared == "1"){
+          $path->shared = "0";
+      }else{
+          $path->shared = "1";
+      }
+      $path->update();
+    }
+    
+     public function sendMsgFriend(Request $request){
+      $sender = $user = Auth::user();
+      $toSend = User::find($request->userId);
+      $data = array('name' => $sender->username,'userid' => $sender->id, 'newUserid' => $toSend->username, 'subject' => $request->title, 'data' => $request->data);
+            Mail::send('email-templates/friendMsg', $data, function ($message) use ($sender,$toSend) {
+
+                $message->from($sender->email, 'Triplan');
+                $message->to($toSend->email)->subject('You got a new message from '. $sender->username);
+            });
+            
+        return redirect()->back();
+    }
+    
     public function userprofile_byid($id){
         $user = Auth::user();
         $userFriends = [];
-        $userArrayFriends = $user->friends;
-        for($i = 0 ; $i < count($userArrayFriends) ; $i++){
-            array_push($userFriends,$userArrayFriends[$i]->user_friend_id);
+        if($user){
+            
+            $userArrayFriends = $user->friends;
+            for($i = 0 ; $i < count($userArrayFriends) ; $i++){
+                array_push($userFriends,$userArrayFriends[$i]->user_friend_id);
+            }
         }
         return view('users/profile',[
             'user' => User::find($id),

@@ -139,13 +139,13 @@
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner">
       <div class="item active srle">
-	      <img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$country->mainpic}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
+	      <img src="{{ url('/uploads/countries') }}/{{preg_replace('/\s+/', '', $country->name)}}/{{$country->mainpic}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
 	      <div class="carousel-caption">
 	      </div>
 	    </div>
       @foreach ($country->photos as $photo)
 	    <div class="item">
-	      <img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$photo->path}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
+	      <img src="{{ url('/uploads/countries') }}/{{preg_replace('/\s+/', '', $country->name)}}/{{$photo->path}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
 	      <div class="carousel-caption">
 	      </div>
 	    </div>
@@ -162,9 +162,9 @@
 
 	  <!-- Thumbnails --> 
 	  <ul class="thumbnails-carousel clearfix">
-	  	<li><img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$country->mainpic}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
+	  	<li><img src="{{ url('/uploads/countries') }}/{{ preg_replace('/\s+/', '', $country->name) }}/{{$country->mainpic}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
 	    @foreach ($country->photos as $photo)
-	  	<li><img src="{{ url('/uploads/countries') }}/{{$country->name}}/{{$photo->path}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
+	  	<li><img src="{{ url('/uploads/countries') }}/{{preg_replace('/\s+/', '', $country->name)}}/{{$photo->path}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
 	    @endforeach
 	  </ul>
 	</div>
@@ -347,6 +347,8 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 					</div>
 					</div>
 					<hr>
+					<a href="{{$country->wiki_link}}">{{$country->name}} history in Wikipedia</a>
+					<hr>
 					<iframe
 					  width="100%" 
 					  height="600" 
@@ -374,7 +376,7 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
       <div class="item-text-wrapper1">
         <p class="item-text-dek1">{{$city->name}}</p>
         <br>
-        <h2 class="item-text-title1">Facebook in material design</h2>
+        <h2 class="item-text-title1">{{$country->name}}</h2>
       </div>
     </div>
     <a class="item-link1" href="{{route('show-citydetalis', $city->name)}}">Facebook in material design</a>

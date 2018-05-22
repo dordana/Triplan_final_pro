@@ -589,10 +589,12 @@ a:hover, a:focus {
 						@if (Auth::check())
 							@if (Auth::user()->id != $user->id)
 								@if(in_array($user->id,$userFriends))
-									<span style="background:orange"><i class='fas fa-user-friends'></i> Friends</span>
+									<a href="#" title="Friends" class="btn btn-primary"><i class="fas fa-check" style="font-size:24px;"></i></a>
 								@else
-									<span class="friends"><i class="fas fa-user-plus"></i>  Add as friend</span>
+									<a href="#" title="Add as friend" class="btn btn-primary friends"><i class="fas fa-user-friends" style="font-size:24px;"></i></a>
 								@endif
+								<a href="javascript:void(0);" title="Message" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" class="btn btn-primary" userId="{{$user->id}}"><i class="far fa-envelope" style="font-size:24px;"></i></a>
+								<a href="#" title="Like" class="btn btn-primary"><i class="fas fa-thumbs-up" style="font-size:24px;"></i></a>
 							@endif
 						@endif
 						
@@ -627,7 +629,10 @@ a:hover, a:focus {
 		<section class="section2 clearfix tab1">
 			<div class="container">
         <div class="row">
-					@foreach($user->reviewPhotos as $photo)
+        	@if((count($user->reviewPhotos) + count($user->answers)) == 0)
+				<h2 style="text-align: center;">No shared photos</h2>
+			@endif
+		@foreach($user->reviewPhotos as $photo)
 						@if($photo->path != null)
 		          <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
 		                <img src="{{url('/uploads/reviews')}}/{{$photo->path}}" class="img-responsive">
@@ -649,7 +654,9 @@ a:hover, a:focus {
 		<section hidden class="section2 clearfix tab2">
 			<div class="container">
 				
-				
+				@if(count($user->reviews) == 0)
+					<h2 style="text-align: center;">No shared reviews</h2>
+				@endif
 				@foreach($user->reviews as $review)
         <div class="row" style="border: solid 2px #efefef">
         	<div class="Review">
@@ -693,7 +700,11 @@ a:hover, a:focus {
 		
 		<section hidden class="section2 clearfix tab3">
 			<div class="container">
+				@if(count($user->paths) == 0)
+					<h2 style="text-align: center;">No shared paths</h2>
+				@endif
 				@foreach($user->paths as $path)
+					@if($path->shared == "1")
 					<figure class="snip1493">
 					  <div class="image"><img src="{{ url('/uploads/cities') }}/{{str_replace(' ', '', App\City::find($path->city_id)->name)}}/{{App\City::find($path->city_id)->mainpic}}" alt="ls-sample1" /></div>
 					  <figcaption>
@@ -706,8 +717,11 @@ a:hover, a:focus {
 									Type: {{ $path->type }}
 					    </p>
 					  </figcaption>
-					  <a href="{{route('tripbuilder', $path->toArray())}}"></a>
+					  @if (Auth::check())
+					  	<a href="{{route('tripbuilder', $path->toArray())}}"></a>
+					  @endif
 					</figure>
+					@endif
 				@endforeach
 	    </div>	
 		</section>
@@ -759,7 +773,39 @@ a:hover, a:focus {
 		
 	</div>
 </div>	
-
+<!--add a new comment modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  	<form method="POST" action="{{ route('sendMsgFriend') }}" autocomplete="off">
+  		{{ csrf_field() }}
+    <div class="modal-content">
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Message to {{$user->firstname . " " . $user->lastname}}</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <input type="hidden" name="userId" value="{{$user->id}}"/> 
+	      <div class="modal-body">
+	  		<div class="form-group">
+	            <label for="message-text" class="form-control-label">Subject:</label>
+					<input class="form-control" type="text" name="title" id="textSubject"/>    
+				</div>
+			<div class="form-group">
+				<label for="message-text" class="form-control-label">Content:</label>
+				<textarea class="form-control" name="data" id="textContent"></textarea>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit"  class="btn btn-primary message">Send </button>
+	      </div>
+      
+    </div>
+    </form>
+  </div>
+</div>
 
 
 <script type="text/javascript">
@@ -789,8 +835,7 @@ a:hover, a:focus {
 			    		console.log(data)
 			    	}
 			    });
-		})
-		
+		});
 		
 		
 		

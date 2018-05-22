@@ -35,6 +35,7 @@
               <div class="list-group">
                 <div class="small">
                   <a href="javascript:void(0)" class="nav-item catSubFacet_0_1 list-group-item heading" data-update-url="#" data-facet-update="#main-page">Continents</a>
+                  <a href="javascript:void(0)" class="nav-item catSubFacet_0_1 list-group-item item1" data-update-url="#" data-facet-update="#main-page">All</a>
                   <a href="javascript:void(0)" class="nav-item catSubFacet_0_1 list-group-item item1" data-update-url="#" data-facet-update="#main-page">Asia </a>
                   <a href="javascript:void(0)" class="nav-item catSubFacet_1_1 list-group-item item1" data-update-url="#" data-facet-update="#main-page">North America </a>
                   <a href="javascript:void(0)" class="nav-item catSubFacet_1_2 list-group-item item1" data-update-url="#" data-facet-update="#main-page">Africa </a>
@@ -53,7 +54,7 @@
                     <div class="cards">
                     <a class="card" href="{{route('show-countrydetalis', $country->name)}}">
                       <input id="continent" hidden value="{{$country->continent}}"/>
-                			<span class="card-header" style="background-image: url({{ url('/uploads/countries') }}/{{$country->name}}/{{$country->mainpic}});">
+                			<span class="card-header" style="background-image: url({{ url('/uploads/countries') }}/{{preg_replace('/\s+/', '', $country->name)}}/{{$country->mainpic}});">
                 				<span class="card-title">
                 					<h3 class="text-center countryName">{{$country->name}}</h3>
                 				</span>

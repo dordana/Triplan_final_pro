@@ -135,13 +135,13 @@
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner">
       <div class="item active srle">
-	      <img src="{{ url('/uploads/cities') }}/{{$city->mainpic}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
+	      <img src="{{ url('/uploads/cities') }}/{{ preg_replace('/\s+/', '', $city->name) }}/{{$city->mainpic}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
 	      <div class="carousel-caption">
 	      </div>
 	    </div>
       @foreach ($city->photos as $photo)
 	    <div class="item">
-	      <img src="{{ url('/uploads/cities') }}/{{$photo->path}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
+	      <img src="{{ url('/uploads/cities') }}/{{ preg_replace('/\s+/', '', $city->name) }}/{{$photo->path}}" style="width:100% ;height: 100%;" alt="1.jpg" class="img-responsive">
 	      <div class="carousel-caption">
 	      </div>
 	    </div>
@@ -158,9 +158,9 @@
 
 	  <!-- Thumbnails --> 
 	  <ul class="thumbnails-carousel clearfix">
-	  	<li><img src="{{ url('/uploads/cities') }}/{{$city->mainpic}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
+	  	<li><img src="{{ url('/uploads/cities') }}/{{preg_replace('/\s+/', '', $city->name) }}/{{$city->mainpic}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
 	    @foreach ($city->photos as $photo)
-	  		<li><img src="{{ url('/uploads/cities') }}/{{$photo->path}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
+	  		<li><img src="{{ url('/uploads/cities') }}/{{ preg_replace('/\s+/', '', $city->name) }}/{{$photo->path}}" style="width:120px;height:100px;" alt="1_tn.jpg"></li>
 	    @endforeach
 	  </ul>
 	</div>
@@ -205,6 +205,8 @@
 					</p></div>
 					</div>
 					</div>
+					<hr>
+					<a href="{{$city->wiki_link}}">{{$city->name}} history in Wikipedia</a>
 					<hr>
 					<iframe
 					  width="100%" 

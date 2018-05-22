@@ -1,133 +1,138 @@
 @extends('layouts.app')
 
 @section('content')
-<style type="text/css">
-    /** 
- * Note: The icon images used here are
- * hotlink protected and will not work
- * outside of Codepen.
- *
- * You can get the icons to host yourself 
- * here: http://simpleicons.org/
- */
-
-.social-icons {
-  max-width: 980px;
-  margin: 0 auto;
-   list-style-type: none;
-}
-
-.icon {
-  float: left;
-  position: relative;
-  width: 19%;
-  height: 0;
-  margin: 1% 0.5%;
-  padding-bottom: 19%;
-}
-@media all and (min-width: 640px) {
-  .icon {
-    width: 9%;
-    padding-bottom: 9%;
-  }
-}
-.icon:last-of-type {
-  margin-right: 0;
-}
-.icon a {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 10px;
-  background-color: #fff;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  transition: all .2s ease-out;
-}
-.icon a:hover {
-  background-color: #222;
-  background-size: 0%;
-  transition: all .2s ease-out;
-}
-
-.icon__name {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  margin-top: -7px;
-  color: #fff;
-  font-size: 13px;
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<p id="pageName" hidden >General</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
   text-align: center;
-  transition: all .3s ease-out;
-  opacity: 0;
-  -webkit-filter: blur(25px);
-          filter: blur(25px);
-  -webkit-transform: translateZ(0);
-          transform: translateZ(0);
-  will-change: transform;
-}
-.icon:hover .icon__name {
-  transition: all .3s ease-out;
-  opacity: 1;
-  -webkit-filter: blur(0);
-          filter: blur(0);
+  text-decoration: none;
+  margin: 5px 2px;
+  width: 160px;
 }
 
-.icon--facebook a {
-  background-color: #3b5998;
-  background-image: url("http://benhodgson.net/codepen/social/facebook-128.png");
+.fa:hover {
+    opacity: 0.7;
 }
 
-.icon--twitter a {
-  background-color: #00aced;
-  background-image: url("http://benhodgson.net/codepen/social/twitter-128.png");
+.fa-facebook {
+  background: #3B5998;
+  color: white;
 }
 
-.icon--linkedin a {
-  background-color: #007fb1;
-  background-image: url("http://benhodgson.net/codepen/social/linkedin-128.png");
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
 }
 
-.icon--instagram a {
-  background-color: #5c3d2e;
-  background-image: url("http://benhodgson.net/codepen/social/instagram-128.png");
+.fa-google {
+  background: #dd4b39;
+  color: white;
 }
 
-.icon--flickr a {
-  background-color: #c9317d;
-  background-image: url("http://benhodgson.net/codepen/social/flickr-128.png");
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
 }
 
-.icon--spotify a {
-  background-color: #80b719;
-  background-image: url("http://benhodgson.net/codepen/social/spotify-128.png");
+.fa-youtube {
+  background: #bb0000;
+  color: white;
 }
 
-.icon--soundcloud a {
-  background-color: #f60;
-  background-image: url("http://benhodgson.net/codepen/social/soundcloud-128.png");
+.fa-instagram {
+  background: #125688;
+  color: white;
 }
 
-.icon--lastfm a {
-  background-color: #d51007;
-  background-image: url("http://benhodgson.net/codepen/social/lastfm-128.png");
+.fa-pinterest {
+  background: #cb2027;
+  color: white;
 }
 
-.icon--kickstarter a {
-  background-color: #87c442;
-  background-image: url("http://benhodgson.net/codepen/social/kickstarter-128.png");
+.fa-snapchat-ghost {
+  background: #fffc00;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.icon--github a {
-  background-color: #4183c4;
-  background-image: url("http://benhodgson.net/codepen/social/github-128.png");
+.fa-skype {
+  background: #00aff0;
+  color: white;
+}
+
+.fa-android {
+  background: #a4c639;
+  color: white;
+}
+
+.fa-dribbble {
+  background: #ea4c89;
+  color: white;
+}
+
+.fa-vimeo {
+  background: #45bbff;
+  color: white;
+}
+
+.fa-tumblr {
+  background: #2c4762;
+  color: white;
+}
+
+.fa-vine {
+  background: #00b489;
+  color: white;
+}
+
+.fa-foursquare {
+  background: #45bbff;
+  color: white;
+}
+
+.fa-stumbleupon {
+  background: #eb4924;
+  color: white;
+}
+
+.fa-flickr {
+  background: #f40083;
+  color: white;
+}
+
+.fa-yahoo {
+  background: #430297;
+  color: white;
+}
+
+.fa-soundcloud {
+  background: #ff5500;
+  color: white;
+}
+
+.fa-reddit {
+  background: #ff5700;
+  color: white;
+}
+
+.fa-rss {
+  background: #ff6600;
+  color: white;
+}
+
+.social{
+      margin: 50px auto;
+    display: block;
+    text-align: center;
 }
 </style>
-<p id="pageName" hidden >General</p>
+
+
 	<div id="fh5co-contact" class="fh5co-section-gray">
 			<div class="container">
 				<div class="row">
@@ -135,60 +140,29 @@
 						<h3>Share Us</h3>
 					</div>
 				</div>
-				<div class="row">
-                <ul class="social-icons">
-                  <li class="icon icon--facebook">
-                    <a href="http://www.facebook.com/sharer.php?u=http://triplan1-dordana1191.c9users.io/">
-                      <span class="icon__name">Facebook</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--twitter">
-                    <a href="http://twitter.com/share?text=Triplan&url=http://triplan1-dordana1191.c9users.io/">
-                      <span class="icon__name">Twitter</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--linkedin">
-                    <a href="#">
-                      <span class="icon__name">LinkedIn</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--instagram">
-                    <a href="#">
-                      <span class="icon__name">Instagram</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--flickr">
-                    <a href="#">
-                      <span class="icon__name">Flickr</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--spotify">
-                    <a href="#">
-                      <span class="icon__name">Spotify</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--soundcloud">
-                    <a href="#">
-                      <span class="icon__name">Soundcloud</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--lastfm">
-                    <a href="#">
-                      <span class="icon__name">Last.fm</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--kickstarter">
-                    <a href="#">
-                      <span class="icon__name">Kickstarter</span>
-                    </a>
-                  </li>
-                  <li class="icon icon--github">
-                    <a href="#">
-                      <span class="icon__name">GitHub</span>
-                    </a>
-                  </li>
-                </ul>
-                </div>
+				<div class="row social">
+				    
+<!-- Add font awesome icons -->
+<a href="#" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-twitter"></a>
+<a href="#" class="fa fa-google"></a>
+<a href="#" class="fa fa-linkedin"></a>
+<a href="#" class="fa fa-youtube"></a>
+<a href="#" class="fa fa-instagram"></a>
+<a href="#" class="fa fa-pinterest"></a>
+<a href="#" class="fa fa-snapchat-ghost"></a>
+<a href="#" class="fa fa-skype"></a>
+<a href="#" class="fa fa-android"></a>
+<a href="#" class="fa fa-dribbble"></a>
+<a href="#" class="fa fa-vimeo"></a>
+<a href="#" class="fa fa-tumblr"></a>
+<a href="#" class="fa fa-vine"></a>
+<a href="#" class="fa fa-foursquare"></a>
+<a href="#" class="fa fa-flickr"></a>
+<a href="#" class="fa fa-yahoo"></a>
+<a href="#" class="fa fa-reddit"></a>
+    
         </div>
+  </div>
 </div>
 @endsection
