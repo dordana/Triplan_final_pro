@@ -440,4 +440,12 @@ class TripController extends Controller
             $message->to('triplan2018@gmail.com')->subject("Your trip");
         });
     }
+    
+    
+    
+    public function showAllTrips(){
+        return view('TripBuilder/Alltrips',[
+        'trips' => Path::where('shared',1)->get()    
+        ]);
+    }
 }

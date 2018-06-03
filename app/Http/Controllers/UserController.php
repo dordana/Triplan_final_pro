@@ -24,8 +24,7 @@ class UserController extends Controller
     }
     
     
-    public function udpateprofile(Request $request){
-        
+    public function updateprofile(Request $request){
         $user = Auth::user();
         $user->update($request->all());
         

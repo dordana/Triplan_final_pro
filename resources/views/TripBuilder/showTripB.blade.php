@@ -656,6 +656,7 @@ var req = {!! json_encode($request) !!};
            history.go(-2);
         });
         $('#listview').click(function () {
+           
            generateObjToSend("listView");
         });
         $('#pdfFile').click(function () {
@@ -950,11 +951,13 @@ google.maps.event.addDomListener(window, "load", initializeMap);
 
 
 function generateObjToSend(url){
+    
     var tripObject = [];
     var array = [];
     var attractionList = {!! json_encode($attractionList) !!};
-    
+    var flag_to_actions = false;
     function itrDay(day){
+        
         array = [];
         var locationList = [];
         var attractionDay = day;
@@ -1010,6 +1013,7 @@ function generateObjToSend(url){
                       title: 'Oops...',
                       text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
                     });
+                    flag_to_actions = true;
             }
             else if (status == google.maps.DirectionsStatus.OK) {
                 
@@ -1063,6 +1067,7 @@ function generateObjToSend(url){
                           title: 'Oops...',
                             text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
                         });
+                        flag_to_actions = true;
                     }
                     else if (status == google.maps.DirectionsStatus.OK) {
                         var order = response.routes[0].waypoint_order;
@@ -1129,27 +1134,35 @@ function generateObjToSend(url){
                       title: 'Oops...',
                       text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
                     });
+                    flag_to_actions = true;
                 }
                 else if (status == google.maps.DirectionsStatus.OK) {
+                    var objLast = {lat : parseFloat(attractionDay.attractions[1].lat),
+                                    id : attractionDay.attractions[1].id,
+                                    lng : parseFloat(attractionDay.attractions[1].lng)};
+                    array.push(objLast);
                     var order = response.routes[0].waypoint_order;
                     var route = response.routes[0].legs;
                     var time = route[0].duration.value;
                     var distance = 0;
+                    for (var j = 0 ; j < route.length; j++){
+                        distance += route[j].distance.value;
+                    }
                     var hours = Math.floor(time / 3600);
                     time %= 3600;
                     var minutes = Math.floor(time / 60);
                     var seconds = time % 60;
                     $(".duration").text(hours + " hours " + minutes + " minutes " + seconds + " seconds");
                     $(".distance").text((distance/1000) + " km");
-                    
-                    }else{
-                        console.log(google.maps.DirectionsStatus);
-                        console.log(status);
-                    }
-                })
-                
-            }
+                    tripObject.push({"day": day.weekDay, "date": day.date,
+                        "attractions":array , "time": hours + " hours " + minutes + " minutes " + seconds + " seconds",
+                        "distance": distance,"pathname": '{{$request["pathName"]}}'
+                    });
+                }
+            })
         }
+    }
+     
         var promise = Promise.resolve();
         var interval = 500;
         attractionList.forEach(function (el) {
@@ -1160,7 +1173,10 @@ function generateObjToSend(url){
             });
           });
         });
+    
         promise.then(function () {
+            alert(flag_to_actions)
+            if(!flag_to_actions){
             console.log(tripObject);
             if(url == "downloadPDF"){
                 $("#pdfFile").html("<i class='fa fa-circle-o-notch fa-spin' style='font-size:35px'></i>Creating");
@@ -1194,7 +1210,10 @@ function generateObjToSend(url){
                 tripObject = JSON.stringify(tripObject);
                 window.location.href = "/"+url+"?array=" +  tripObject ;
             }
-        }); 
+        }
+    }); 
+    
+    
     }
 </script>
 

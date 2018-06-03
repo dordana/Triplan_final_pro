@@ -463,14 +463,14 @@ b:hover{
     
     
 <!--left sidebar-->
-<div id='social-sidebar'>
+<div id='social-sidebar' class="right-bar">
     <ul>
 
         <li id="saveTrip">
         	<a class='entypo-twitter opt' href='javascript:void(0)' target='_blank' id="saveText">
         		<span>Save</span>
         		<i id="saveIco" class="far fa-save"></i><br>
-        		Save my trip
+        		<div class="titleBTN">Save my trip</div>
         	</a>
         </li>
 
@@ -478,21 +478,21 @@ b:hover{
         	<a class='entypo-gplus opt' href='javascript:void(0)' target='_blank' id="sendEmail">
         		<span>Email</span>
         		<i class="far fa-envelope"></i><br>
-        		Send to email
+        		<div class="titleBTN">Send to email</div>
         	</a>
         </li>
         <li>
         	<a class='entypo-tumblr opt' href='javascript:void(0)' target='_blank' id="pdfFile">
         		<span>PDF</span>
         		<i class="far fa-file-pdf"></i><br>
-        		Download PDF file
+            	<div class="titleBTN">Download PDF file</div>
         	</a>
         </li>
         <li>
         	<a class='entypo-facebook opt' href='javascript:void(0)' target='_blank' id="listview">
         		<span>List</span>
         		 <i class="fas fa-list-ul"></i><br>
-        	    Show list view
+        	        <div class="titleBTN">Show list view</div>
         	</a>
         </li>
 
@@ -500,7 +500,7 @@ b:hover{
         	<a class='entypo-rss opt' href='javascript:void(0)' target='_blank' id="backToBuilder" >
         		<span>Builder</span>
         		 <i class="far fa-edit"></i><br>
-        	    Back to trip builder
+        	    <div class="titleBTN">Back to trip builder</div>
         	</a>
         </li>
 
@@ -508,7 +508,7 @@ b:hover{
         	<a class='entypo-facebook opt' href='/'>
         		<span>Homepage</span>
         		 <i class="fas fa-home"></i><br>
-        	    Back to homepage
+        	    <div class="titleBTN">Back to homepage</div>
         	</a>
         </li>
     </ul>
@@ -621,13 +621,9 @@ var req = {!! json_encode($request) !!};
 				}
 			});
 	    });
-	    
-	    $( "#saveTrip" ).delegate( ".editTrip", "click", function() {
-          alert("sds");
-        });
-	    
+
         $('#backToBuilder').click(function () {
-           history.back().back();
+           history.go(-2);
         });
         $('#listview').click(function () {
            generateObjToSend("listView");
@@ -649,6 +645,15 @@ var req = {!! json_encode($request) !!};
 
 
 <script type="text/javascript">
+ $(window).resize(function() {
+    if ($(window).height() < 770) {
+        $(".titleBTN").hide();
+    }else{
+        $(".titleBTN").show();
+    }
+});
+
+
 	var attractionList = {!! json_encode($attractionList) !!};
   $(".attraction_li").click(function(){
     var dayIndex = $(this).attr("indexAttr");
@@ -929,9 +934,11 @@ google.maps.event.addDomListener(window, "load", initializeMap);
 function generateObjToSend(url){
     var tripObject = [];
     var array = [];
+    var flag_to_actions = false;
     var attractionList = {!! json_encode($attractionList) !!};
-    
     function itrDay(day){
+        console.log(day)
+        if(day.attractions.length > 0){
         array = [];
         var locationList = [];
         var attractionDay = day;
@@ -987,6 +994,7 @@ function generateObjToSend(url){
                       title: 'Oops...',
                       text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
                     });
+                    flag_to_actions = true;
             }
             else if (status == google.maps.DirectionsStatus.OK) {
                 
@@ -1040,6 +1048,7 @@ function generateObjToSend(url){
                           title: 'Oops...',
                             text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
                         });
+                        flag_to_actions = true;
                     }
                     else if (status == google.maps.DirectionsStatus.OK) {
                         var order = response.routes[0].waypoint_order;
@@ -1052,16 +1061,16 @@ function generateObjToSend(url){
                         
                         var distance = 0;
                         var time = 0;
-                        console.log(route)
                         for (var j = 0 ; j < route.length; j++){
                             distance += route[j].distance.value;
                             time += route[j].duration.value;
                         }
+                        
                         var hours = Math.floor(time / 3600);
                         time %= 3600;
                         var minutes = Math.floor(time / 60);
                         var seconds = time % 60;
-                         tripObject.push({"day": day.weekDay, "date": day.date,
+                        tripObject.push({"day": day.weekDay, "date": day.date,
                             "attractions":array , "time": hours + " hours " + minutes + " minutes " + seconds + " seconds",
                             "distance": distance,"pathname": '{{$request["pathName"]}}'
                         });
@@ -1076,7 +1085,7 @@ function generateObjToSend(url){
             }
         })
     }else if(wayPoints.length == 1){
-         
+        
             if (travelMode == "TRANSIT"){
                 var directionsRequest = {
                     origin: new google.maps.LatLng(parseFloat(attractionDay.attractions[0].lat),parseFloat(attractionDay.attractions[0].lng)),
@@ -1100,33 +1109,48 @@ function generateObjToSend(url){
             
                 
                 directionsService.route(directionsRequest, function (response, status) {
-                if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
-                    swal({
-                      type: 'error',
-                      title: 'Oops...',
-                      text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
-                    });
-                }
-                else if (status == google.maps.DirectionsStatus.OK) {
-                    var order = response.routes[0].waypoint_order;
-                    var route = response.routes[0].legs;
-                    var time = route[0].duration.value;
-                    var distance = 0;
-                    var hours = Math.floor(time / 3600);
-                    time %= 3600;
-                    var minutes = Math.floor(time / 60);
-                    var seconds = time % 60;
-                    $(".duration").text(hours + " hours " + minutes + " minutes " + seconds + " seconds");
-                    $(".distance").text((distance/1000) + " km");
-                    
+                    if (status == google.maps.DirectionsStatus.ZERO_RESULTS){
+                        swal({
+                          type: 'error',
+                          title: 'Oops...',
+                          text: 'There is no ' +(transitMode ? transitMode.toLowerCase() : travelMode.toLowerCase())+ ' path',
+                        });
+                        flag_to_actions = true;
+                    }
+                    else if (status == google.maps.DirectionsStatus.OK) {
+                        var objLast = {lat : parseFloat(attractionDay.attractions[1].lat),
+                                    id : attractionDay.attractions[1].id,
+                                    lng : parseFloat(attractionDay.attractions[1].lng)};
+                        array.push(objLast);
+                        var order = response.routes[0].waypoint_order;
+                        var route = response.routes[0].legs;
+                        var time = route[0].duration.value;
+                        var distance = 0;
+                        for (var j = 0 ; j < route.length; j++){
+                            distance += route[j].distance.value;
+                        }
+                        var hours = Math.floor(time / 3600);
+                        time %= 3600;
+                        var minutes = Math.floor(time / 60);
+                        var seconds = time % 60;
+                        $(".duration").text(hours + " hours " + minutes + " minutes " + seconds + " seconds");
+                        $(".distance").text((distance/1000) + " km");
+                        tripObject.push({"day": day.weekDay, "date": day.date,
+                            "attractions":array , "time": hours + " hours " + minutes + " minutes " + seconds + " seconds",
+                            "distance": distance,"pathname":"{{$request['pathName']}}"})
+                        
                     }else{
                         console.log(google.maps.DirectionsStatus);
                         console.log(status);
                     }
                 })
-                
             }
         }
+    }
+        
+        
+        
+        
         var promise = Promise.resolve();
         var interval = 500;
         attractionList.forEach(function (el) {
@@ -1137,8 +1161,15 @@ function generateObjToSend(url){
             });
           });
         });
+        
+        
+        
+        
+        
+     
+        
         promise.then(function () {
-            console.log(tripObject);
+    if(!flag_to_actions){
             if(url == "downloadPDF"){
                 $("#pdfFile").html("<i class='fa fa-circle-o-notch fa-spin' style='font-size:35px'></i>Creating");
                 setTimeout(function(){
@@ -1169,9 +1200,12 @@ function generateObjToSend(url){
                 },2000);
             }else{
                 tripObject = JSON.stringify(tripObject);
+                console.log(tripObject);
                 window.location.href = "/"+url+"?array=" +  tripObject ;
             }
-        }); 
+    }
+}); 
+    
     }
 </script>
 

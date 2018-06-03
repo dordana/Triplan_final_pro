@@ -1,20 +1,20 @@
 $(document).ready(function(){
 	
 	$(".largeGrid").click(function(){											
-    $(this).find('a').addClass('active');
-    $('.smallGrid a').removeClass('active');
-    
-    $('.product').addClass('large').each(function(){											
-		});						
-		setTimeout(function(){
-			$('.info-large').show();	
-		}, 200);
-		setTimeout(function(){
-
-			$('.view_gallery').trigger("click");	
-		}, 400);								
-		
-		return false;				
+	    $(this).find('a').addClass('active');
+	    $('.smallGrid a').removeClass('active');
+	    
+	    $('.product').addClass('large').each(function(){											
+			});						
+			setTimeout(function(){
+				$('.info-large').show();	
+			}, 200);
+			setTimeout(function(){
+	
+				$('.view_gallery').trigger("click");	
+			}, 400);								
+			
+			return false;				
 	});
 	
 	$(".smallGrid").click(function(){		        

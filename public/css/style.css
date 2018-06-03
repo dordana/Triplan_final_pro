@@ -367,27 +367,27 @@ figure {
 }
 
 #fh5co-logo {
-  position: relative;
-  z-index: 2;
-  font-size: 28px;
-  text-transform: uppercase;
-  margin-top: 35px;
-  font-weight: 700;
-  float: left;
-  padding-left: 40px;
+  position: relative !important;
+  z-index: 2 !important;
+  font-size: 28px !important;
+  text-transform: uppercase !important;
+  margin-top: 30px !important;
+  font-weight: 700 !important;
+  float: left !important;
+  padding-left: 40px !important;
 }
 #fh5co-logo i {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 16px;
-  color: #F78536;
-  background: rgba(0, 0, 0, 0.06);
-  padding: 10px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  border-radius: 50%;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  font-size: 16px !important;
+  color: #F78536 !important;
+  background: rgba(0, 0, 0, 0.06) !important;
+  padding: 10px !important;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -ms-border-radius: 50% !important;
+  border-radius: 50% !important;
 }
 #fh5co-logo a {
   color: #F78536;

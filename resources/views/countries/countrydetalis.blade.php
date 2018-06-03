@@ -238,7 +238,7 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 									<!-- Heading -->
 									<h4><a href="#">population</a></h4>
 									<!-- Paragraph -->
-									<h5 class="evenFlip">in {{ $country->name }} live around <em><span class="boldValue">{{ $country->population }}</span></em> peoples.</h5>
+									<h5 class="evenFlip">in {{ $country->name }} live around <em><span class="boldValue">{{number_format( $country->population) }}</span></em> peoples.</h5>
 								</div>
 							</div>
 						</div>
@@ -255,7 +255,7 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 									<!-- Heading -->
 									<h4><a href="#">surface area</a></h4>
 									<!-- Paragraph -->
-									<h5 class="evenFlip">the surface area of {{ $country->name }} is about <em><span class="boldValue">{{ $country->surface }}</span></em> km2.</h5>
+									<h5 class="evenFlip">The surface area of {{ $country->name }} is about <em><span class="boldValue">{{ number_format($country->surface_area) }}</span></em> km2.</h5>
 								</div>
 							</div>
 						</div>
@@ -330,20 +330,8 @@ src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name=
 					<div id="Content">
 					<div class="boxed"><div id="lipsum">
 					<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed pulvinar nulla. Integer mollis eros ac sapien pretium, ac aliquam ante vulputate. Phasellus euismod, massa posuere posuere lobortis, erat ante cursus purus, id pretium justo risus non orci. Cras tempor metus sed sollicitudin hendrerit. Aenean erat ligula, tincidunt interdum porta vitae, gravida ut ipsum. Morbi accumsan nibh ac nisi lacinia, eu mollis sem facilisis. Sed congue ipsum odio, eget tristique nisl consectetur sit amet.
+						{{$country->description}}
 					</p>
-					<p>
-					Suspendisse finibus urna rhoncus pretium consequat. Nullam tincidunt vel lacus quis eleifend. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In iaculis sem nunc, semper auctor purus vehicula fringilla. Nam dictum ex sit amet justo hendrerit accumsan. Praesent gravida quam et ultrices interdum. Duis maximus lorem felis, in sollicitudin tellus imperdiet vulputate. Phasellus sed lacinia orci, ac gravida quam. Pellentesque placerat tristique urna, eget efficitur ipsum lobortis nec.
-					</p>
-					<p>
-					Proin sit amet tellus nec urna finibus fermentum. Aenean eget sapien vel dolor tincidunt pharetra quis nec eros. Integer vehicula id orci vitae tristique. Ut ipsum risus, tristique sed pulvinar sit amet, consectetur eleifend tellus. Cras luctus aliquam est. In sed ipsum purus. Duis tempus dictum massa, sed pretium massa egestas vestibulum. Nullam semper turpis eu ipsum cursus, sed viverra enim molestie. Phasellus nec magna massa. Vivamus ornare ullamcorper mauris in dictum. Praesent vulputate sem a malesuada tincidunt. Curabitur elementum sit amet sapien eu lacinia. Sed viverra, nisi a iaculis lobortis, orci mi luctus turpis, in facilisis felis risus nec felis. Aliquam dictum mauris massa, sit amet mattis nunc consectetur id. Duis sagittis tortor non urna mollis mattis. Pellentesque sollicitudin justo non ligula viverra malesuada.
-					</p>
-					<p>
-					Nam convallis vitae neque non luctus. Duis ut imperdiet sem, sit amet euismod nibh. Phasellus in ex eget eros posuere egestas. Quisque imperdiet, purus fermentum mollis luctus, ipsum dolor porttitor lorem, tristique efficitur lectus est ac mi. Nulla ut vehicula elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed dapibus tellus quis pulvinar pretium. Nunc pellentesque bibendum libero, eu consectetur risus condimentum et. Donec fermentum ligula ac nisl porttitor fermentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce augue est, porta ac eros varius, luctus viverra turpis. Fusce vitae consequat dui.
-					</p>
-					<p>
-					Sed volutpat, lorem eu maximus rhoncus, massa massa cursus risus, in mollis dolor nisl at velit. Quisque in odio ac felis tincidunt dignissim nec sit amet nibh. Sed iaculis nisl sit amet tempus iaculis. Vivamus neque enim, consequat ut felis eu, porttitor congue magna. Maecenas lorem arcu, suscipit vel laoreet sit amet, fringilla ut enim. Donec nulla tortor, finibus non scelerisque id, varius sed lectus. Donec sed lacus at tellus euismod luctus. Morbi sagittis quis nunc vitae ornare. Morbi vel libero semper, porttitor elit non, finibus libero. In efficitur sapien erat, eu tincidunt tellus semper nec. Quisque scelerisque efficitur ipsum, nec scelerisque nulla sodales at. Sed eu tincidunt tellus, quis convallis tortor. Nam vestibulum mauris sagittis interdum porttitor. Pellentesque eget nibh nec sem pretium tempor id.
-					</p></div>
 					</div>
 					</div>
 					<hr>

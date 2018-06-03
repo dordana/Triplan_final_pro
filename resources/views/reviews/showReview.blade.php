@@ -390,7 +390,10 @@ img{
   right: 5px;
   opacity: 1;
 }
-
+#vacationTime{
+  color:#F58541;
+  font-size: 20px;
+}
 /**/
 
 </style>
@@ -404,12 +407,13 @@ img{
 		<h2  class="headline">{{$review->title}}{{$review->id}}</h2>
 		<h4 class="headline1">{{$review->type}}</h4>
 		<div class="article-meta">
-			<time datetime="2015-09-30 09:00">{{ Carbon\Carbon::parse( $review->created_at->diffForHumans())->format('d-m-Y') }}</time>
+			<time datetime="2015-09-30 09:00">Posted on: {{ Carbon\Carbon::parse( $review->created_at->diffForHumans())->format('d/m/Y') }}</time>
 			<span class="author">{{App\User::find($review->user_id)->username}}</span>
 		</div>
-		
-		
+		<span id="vacationTime" style="text-align:center;display: block;">Vacation dates: {{ $start }} - {{ $end }}</span>
+		<br>
 		<!---->
+		@if($review->mainpic)
 <div id="carousel-example" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
       <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
@@ -428,8 +432,8 @@ img{
       <a href="#"><img src="{{ url('/uploads/reviews') }}/{{$photo->path}}"/></a>
     </div>
     @endforeach
-    
   </div>
+
 
   <a class="left carousel-control" href="#carousel-example" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
@@ -438,8 +442,9 @@ img{
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
 </div>
-
-	            <p>{{$review->body}}</p>
+@endif
+<br><br>
+	            <p style="text-align:center">{{$review->body}}</p>
 	<br>
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <h2  class="headline1">Did you like it?</h2>

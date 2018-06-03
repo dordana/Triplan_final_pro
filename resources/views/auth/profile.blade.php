@@ -18,7 +18,7 @@
 			<div id="form-tab-menu">
 				<div class="tab-menu-item current personal-tab">Personal info</div>
 				<div class="tab-menu-item add-tab">My friends</div>
-				<div class="tab-menu-item other-tab">My paths</div>
+				<div class="tab-menu-item other-tab" >My paths</div>
 			</div>
 			<!-- Body of the Form -->
 			<div id="form-body">
@@ -108,7 +108,7 @@
        <th class="col-md-3 col-xs-3">Actions</th>
     </tr>
     <tr class="warning no-result">
-      <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+      <td colspan="5"><i class="fa fa-warning"></i> No result</td>
     </tr>
   </thead>
   <tbody>
@@ -121,7 +121,7 @@
 	      <td>
 	      	<div class="actionsButtons" style="display:flex;">
 	      		<a href="{{route('showuserprofile', $friend->user_friend_id)}}" class="btn btn-primary" style="background-color:#74a948; width: 50%; height:40%;    display: inline-table; margin-right:10px;">View</a>
-	      		<a  class="btn btn-primary" style="background-color: #00aeff; width: 50%; height:40%;    display: inline-table;">Message</a>
+	      		<a  class="btn btn-primary msgfriendbtn" firstName="{{App\User::find($friend->user_friend_id)->firstname}}" userName="{{App\User::find($friend->user_friend_id)->username}}" userId="{{$friend->user_friend_id}}" data-toggle="modal" data-target="#msgfriend" style="background-color: #00aeff; width: 50%; height:40%;    display: inline-table;">Message</a>
 				<a class="btn btn-primary delete-friend" friendId="{{$friend->user_friend_id}}" style="background-color:#fc5a5a; width: 50%; height:40%; display: inline-table; margin-left:10px;">Delete</a>
 	      	</div>
 	      </td>
@@ -135,10 +135,10 @@
 				</div>
 				<div id="other-tab">
 					<div class="form-group ">
-					    <input type="text" class="search form-control" placeholder="Search friends..">
+					    <input type="text" class="searchP form-control" placeholder="Search friends..">
 					</div>
-					<span class="counter "></span>
-					<table class="table table-hover table-bordered results">
+					<span class="counterP "></span>
+					<table class="table table-hover table-bordered resultsP">
 					  <thead>
 					    <tr>
 					      <th class="col-md-3 col-xs-3">Path name</th>
@@ -149,18 +149,18 @@
 					       <th class="col-md-3 col-xs-3">Type</th>
 					        <th class="col-md-3 col-xs-3">Actions</th>
 					    </tr>
-					    <tr class="warning no-result">
-					      <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+					    <tr class="warning no-resultP" style="display: none;">
+					      <td colspan="7"><i class="fa fa-warning"></i> No result</td>
 					    </tr>
 					  </thead>
 					  <tbody>
 					  	@foreach(Auth::user()->paths as $path)
-						    <tr class="trP{{$path->id}}">
-						      <td>{{$path->pathName}}</td>
+						    <tr class="row_path trP{{$path->id}}">
+						      <td class="pathName">{{$path->pathName}}</td>
 						      <td>{{ Carbon\Carbon::parse($path->startDate)->format('d/m/Y') }}</td>
 						      <td>{{ Carbon\Carbon::parse($path->endDate)->format('d/m/Y') }}</td>
-						      <td>{{$path->cityname}}</td>
-						      <td>{{$path->countryName}}</td>
+						      <td class="cityName">{{$path->cityname}}</td>
+						      <td class="countryName">{{$path->countryName}}</td>
 						      <td>{{$path->type}}</td>
 						      <td>
 						      	<div class="actionsButtons" style="display:flex;">
@@ -228,13 +228,44 @@
 
 </div>
 				</div>
+				
+<!-- Modal msg friend -->
+<div class="modal fade" id="msgfriend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  	<form method="POST" action="{{ route('sendMsgFriend') }}" autocomplete="off">
+  		{{ csrf_field() }}
+    <div class="modal-content">
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <input hidden type="text" id="userIdInput" name="userId"/>  
+	      <div class="modal-body">
+	  		<div class="form-group">
+	            <label for="message-text" class="form-control-label">Title:</label>
+					<input class="form-control" type="text" name="title" id="textTitle"/>    
+				</div>
+			<div class="form-group">
+				<label for="message-text" class="form-control-label">Content:</label>
+				<textarea class="form-control" name="data" id="commentText"></textarea>
+			</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit"  class="btn btn-primary">Send </button>
+	      </div>
+      
+    </div>
+    </form>
+  </div>
+</div>
 <!-- Modal change password -->
     <div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="change-password-modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                
-                    
-                    
                     <div id="box">
                       <form action="{{ route('change-password') }}" method="POST">
                         {{ csrf_field() }}
@@ -284,6 +315,17 @@
 <script src="{!! asset('pages/profile/profile.js') !!}"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	$(".personal-tab").click(function(){
+		$("#form-submit").show();
+	})
+	$(".add-tab").click(function(){
+		$("#form-submit").hide();
+	})
+	$(".other-tab").click(function(){
+		$("#form-submit").hide();
+	})
+	
+	
   $(".search").keyup(function () {
     var searchTerm = $(".search").val();
     var listItem = $('.results tbody').children('tr');
@@ -307,7 +349,34 @@ $(document).ready(function() {
 
   if(jobCount == '0') {$('.no-result').show();}
     else {$('.no-result').hide();}
-		  });
+  });
+	
+	
+//paths
+$(".searchP").keyup(function () {
+    var searchTerm = $(".searchP").val();
+	var counter = 0;
+	$('.resultsP > tbody  > tr').each(function(){
+		if($(this).children(".pathName").text().toLowerCase().includes(searchTerm.toLowerCase())){
+			$(this).show();
+			counter++;
+		}else{
+			$(this).hide();
+		}
+	});
+    $('.counterP').text(counter + ' items');
+
+		if(counter == 0) {
+			$('.no-resultP').show();
+		}
+		else {
+			$('.no-resultP').hide();
+		}
+	});
+//
+	
+	
+	
 $(".delete-friend").click(function(){
 	
 
@@ -390,6 +459,15 @@ $(".notshared, .shared").click(function(){
     	}
     });
 });
+
+$(".msgfriendbtn").click(function() {
+	
+    $("#exampleModalLabel").text("New message to " + ($(this).attr("userName")?$(this).attr("userName"):$(this).attr("firstName")) );
+    $("#userIdInput").val($(this).attr("userId"));
+    
+})
+
+
 
 });
 </script>

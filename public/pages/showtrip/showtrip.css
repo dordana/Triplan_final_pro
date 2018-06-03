@@ -606,12 +606,10 @@ hr {
 /* UI Item Three */
 .ui-item-three{
     position: fixed;
-    width: 14% !important;
     z-index: 2;
     top: 0%;
     left: 50%;
     margin-left: -10%;
-    width: 17%;
 	display:inline-block;
 	font-size:20px;
 	padding:15px 10px;	
@@ -619,11 +617,41 @@ hr {
 	border-radius:4px;		
 	box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
 }
-@media(max-width: 767px){	
+@media(max-width: 928px){	
 	.ui-item-three{
-		font-size:18px;
+		font-size:13px;
+		width: 25% !important;
+	}
+	.right-bar{
+		
 	}
 }
+@media(max-width: 900px){	
+	.ui-item-three{
+		font-size:13px;
+		width: 26% !important;
+	}
+}
+@media(max-width: 877px){	
+	.ui-item-three{
+		font-size:12px;
+		width: 26% !important;
+	}
+}
+@media(max-width: 843px){	
+	.ui-item-three{
+		font-size:11px;
+		width: 27% !important;
+	}
+}
+@media(max-height: 928px){	
+	.right-bar{
+		
+	}
+}
+
+
+
 /* Anchor Link */
 .ui-item-three a{
 	position:relative;

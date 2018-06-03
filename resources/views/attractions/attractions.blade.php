@@ -2,84 +2,114 @@
 
 @section('content')
 <style type="text/css">
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,600);
-.snip1336 {
-  font-family: 'Roboto', Arial, sans-serif;
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,600,700);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+figure.snip1253 {
+  font-family: 'Raleway', Arial, sans-serif;
+  color: #fff;
+  height: 300px !important;
   position: relative;
   float: left;
   overflow: hidden;
   margin: 10px 1%;
-  min-width: 230px;
-  max-width: 315px;
+  min-width: 250px;
+  max-width: 310px;
   width: 100%;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #000000;
   text-align: left;
-  line-height: 1.4em;
-  background-color: #141414;
+  font-size: 16px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
-.snip1336 {
+figure.snip1253 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
-.snip1336 img {
+figure.snip1253 .image {
+  max-height: 220px;
+  overflow: hidden;
+}
+figure.snip1253 img {
   max-width: 100%;
   vertical-align: top;
-  opacity: 0.85;
-}
-.snip1336 figcaption {
-  width: 100%;
-  background-color: #ebebeb;
-  padding: 25px;
   position: relative;
+  transform: scale(1.30);
 }
-.snip1336 figcaption .info {
-  padding: 5px;
-  border: 1px solid #f68546 ;
-  font-size: 0.7em;
-  text-transform: uppercase;
-  margin: 0 auto;
-  display: block;
-  opacity: 0.65;
-  width: 47%;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 1px;
+figure.snip1253 figcaption {
+  margin: -40px 15px 0;
+  padding: 15px ;
+  position: relative;
+  background-color: #ffffff;
 }
-.snip1336 figcaption a:hover {
-  opacity: 1;
-}
-.snip1336 .profile {
-  border-radius: 50%;
+figure.snip1253 .date {
+  background-color: #f67930;
+  top: 15px;
+  color: #fff;
+  left: 15px;
+  min-height: 48px;
+  min-width: 48px;
   position: absolute;
-  bottom: 100%;
-  left: 25px;
-  z-index: 1;
-  max-width: 90px;
-  opacity: 1;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
-.snip1336 .follow {
-  margin-right: 4%;
-  border-color: #2980b9;
-  color: #2980b9;
-}
-.snip1336 h2 {
-  margin: 0 0 5px;
-  font-weight: 300;
-}
-.snip1336 h2 span {
+figure.snip1253 .date span {
   display: block;
-  font-size: 0.5em;
-  color: #2980b9;
+  line-height: 24px;
 }
-.snip1336 p {
-  margin: 0 0 10px;
+figure.snip1253 .date .month {
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+figure.snip1253 h3,
+figure.snip1253 p {
+  margin: 0;
+  padding: 0;
+}
+figure.snip1253 h3 {
+  min-height: 50px;
+  margin-bottom: 10px;
+  margin-left: 60px;
+  display: inline-block;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+figure.snip1253 p {
   font-size: 0.8em;
-  letter-spacing: 1px;
-  opacity: 0.8;
+  margin-bottom: 20px;
+  line-height: 1.6em;
+}
+figure.snip1253 footer {
+  padding: 0 25px;
+  background-color: #20638f;
+  color: #e6e6e6;
+  font-size: 0.8em;
+  line-height: 30px;
+  text-align: right;
+}
+figure.snip1253 footer > div {
+  display: inline-block;
+  margin-left: 10px;
+}
+figure.snip1253 footer i {
+  color: rgba(255, 255, 255, 0.2);
+  margin-right: 5px;
+}
+figure.snip1253 a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+}
+figure.snip1253:hover img,
+figure.snip1253.hover img {
+  -webkit-transform: scale(1.50);
+  transform: scale(1.50);
 }
 p{
   color:black;
@@ -178,13 +208,16 @@ p{
 @foreach($attractions as $attraction)  
 <div class="attraItem" name="{{$attraction->name}}" cityname="{{App\City::find($attraction->city_id)->name}}">
   <div class="col-md-4" >
-   <figure class="snip1336">
-    <img style="width:315px;height:180px;" src="{{ url('/uploads/attractions') }}/{{$attraction->mainpic}}" alt="sample87" />
+  <figure class="snip1253">
+    <div class="image"><img  src="{{ url('/uploads/attractions') }}/{{$attraction->mainpic}}" alt="sample59"/></div>
     <figcaption>
-      <h2><B>{{$attraction->name}}</B><span><a href="{{route('show-citydetalis', App\City::find($attraction->city_id)->name)}}">{{App\City::find($attraction->city_id)->name}}</a></span></h2>
-      <p>{{substr($attraction->description, 0,80)}}</p>
-      <a href="{{route('showattraction', $attraction->id)}}" class="info">More Info</a>
+      <div class="date"><span class="day">{{$attraction->pricePerPerson}}</span><span class="month">USD</span></div>
+      <h3>{{$attraction->name}}</h3>
+      <p>
+        {{substr($attraction->description, 0,80)}}
+      </p>
     </figcaption>
+    <a href="{{route('showattraction', $attraction->id)}}"></a>
   </figure>
   </div>
 </div>

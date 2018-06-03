@@ -75,8 +75,8 @@
        <div id="grid-menu">
        	   View:
            <ul>           	   
-               <li class="largeGrid"><a href=""></a></li>
-               <li class="smallGrid"><a class="active" href=""></a></li>
+               <li class="largeGrid"><a href="javascript:void(0)"></a></li>
+               <li class="smallGrid"><a class="active" href="javascript:void(0)"></a></li>
            </ul>
        </div>
        
@@ -93,50 +93,29 @@
             </div>
              
             <div class="price-big">
-            	<span>$43</span> $39
-            </div>
-             
-            <h3>COLORS</h3>
-            <div class="colors-large">
-                <ul>
-                    <li><a href="" style="background:#222"><span></span></a></li>
-                    <li><a href="" style="background:#6e8cd5"><span></span></a></li>
-                    <li><a href="" style="background:#f56060"><span></span></a></li>
-                    <li><a href="" style="background:#44c28d"><span></span></a></li>
-                </ul> 
+            	<span>${{intval($attraction->pricePerPerson*1.2)}} </span> ${{$attraction->pricePerPerson}} 
             </div>
 
-            <h3>SIZE</h3>
-            <div class="sizes-large">
- 				<span>XS</span>
-                <span>S</span>
-                <span>M</span>
-                <span>L</span>
-                <span>XL</span>
-                <span>XXL</span>
-            </div>
             
             <button class="add-cart-large">Add To Your trip</button>                          
-                         
         </div>
         <div class="make3D">
             <div class="product-front">
                 <div class="shadow"></div>
-                <img src="{{ url('/uploads/attractions') }}/{{$attraction->mainpic}}" alt="" />
+                <img src="{{ url('/uploads/attractions') }}/{{$attraction->mainpic}}" alt=""/>
                 <div class="image_overlay"></div>
-                <div class="add_to_cart">Add to your trip</div>
-                <div class="view_gallery">More Details</div>  
+                <div style="top:70px" class="add_to_cart">Add to your trip</div>
+                <div style="top:130px" class="view_gallery">More Details</div>  
                 <div class="stats">        	
                     <div class="stats-container">
                         <span class="product_price"><span class="rate">{{$attraction->rate}}</span>/5☆</span>
                         <span class="product_name">{{$attraction->name}}</span> 
                         <span class="product_id" hidden>{{$attraction->id}}</span> 
                         <p>Summer dress</p>                                            
-                        
                         <div class="product-options">
-                        <strong>Address</strong>
-                        <span>{{$attraction->address}}, {{$attraction->zip_code}}</span>
-                    </div>                       
+                            <strong>Address</strong>
+                            <span>{{$attraction->address}}, {{$attraction->zip_code}}</span>
+                        </div>                       
                     </div>                         
                 </div>
             </div>
@@ -180,13 +159,21 @@
     <script  src="js/tripbuilder.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script type="text/javascript">
+    $(".showpage1").click(function() {
+        alert("sdsd")
+        var attrId = $(this).attr("attrId");
+        window.open("/attractions/"+attrId).focus();
+    })
+</script>
 <script type="text/javascript">
 $.getJSON("http://freegeoip.net/json/", function(data) {
     var city = data.city;
     var country = data.country_name;
     $('#txtLocation').val(city +", "+ country); 
 });
+
+
 
 
 $(document).ready(function(){

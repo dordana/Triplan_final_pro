@@ -23,21 +23,50 @@ class AttractionController extends Controller
     public function showAttraction($id){
         $user = Auth::user();
         $fav_arr = [];
-        $userFavorites = $user->favorites;
-        for($i = 0 ; $i < count($userFavorites) ; $i++){
-            array_push($fav_arr,$userFavorites[$i]->attraction_id);
-        }
-
         $attraction = Attraction::find($id);
         $reviews = Review::where('kind', "attraction")->where('id_type', $id)->get();
+        $isRated = false;
+        if($user){
+            $userFavorites = $user->favorites;
+            for($i = 0 ; $i < count($userFavorites) ; $i++){
+                array_push($fav_arr,$userFavorites[$i]->attraction_id);
+            }
+            $usersRated = $attraction->users_id_rated;
+            $usersIdArray = explode(",", $usersRated);
+            if(in_array($user->id,$usersIdArray)){
+                $isRated = true;
+            }
+        }
+        
+        
+        
         return view('attractions/showattraction', [
             'attraction' => $attraction,
             'user' =>  $user,
             'userFavorites' => $fav_arr,
             'reviews' => $reviews,
-            'attractions' => Attraction::where('id', '!=', $id)->take(3)->get()
+            'attractions' => Attraction::where('id', '!=', $id)->take(3)->get(),
+            'questions' => Question::where('attraction_id',$id)->get(),
+            'isRated' => $isRated
             ]);
     }
+
+
+    public function addratetoattraction(Request $request){
+        $attraction = Attraction::find($request->attrId);
+        if($attraction->rate == 0){
+            $avgRate = intval($request->ratingValue);
+        }else{
+            $avgRate = (floatval($attraction->rate) + intval($request->ratingValue))/2;
+        }
+        $attraction->rate = $avgRate;
+        $user = Auth::user();
+        $users_id_rated = $attraction->users_id_rated . "," . $user->id;
+        $attraction->users_id_rated = $users_id_rated;
+        $attraction->save();
+        return $attraction;
+    }
+
 
     public function editQuestion(Request $request){
         $question = Question::where('id',$request->qId)->first();
@@ -86,7 +115,7 @@ class AttractionController extends Controller
             'msg' => 'Setting created successfully',
         );
         
-        return \Response::json($response);
+        return $question;
     }
     
      public function addAnswerToQuestion(Request $request){

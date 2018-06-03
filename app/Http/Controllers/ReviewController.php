@@ -8,6 +8,7 @@ use App\Answer;
 use App\City;
 use Image;
 use File;
+use DateTime;
 use App\Attraction;
 use App\Review;
 use Illuminate\Support\Facades\Auth;
@@ -52,8 +53,16 @@ class ReviewController extends Controller
     
     public function showreview($review_id){
         $review = Review::where('id',$review_id)->first();
+        $format = 'Y-m-d';
+        $dateS = DateTime::createFromFormat($format, $review->start_date);
+        $dateE = DateTime::createFromFormat($format, $review->end_date);
+        $start = $dateS->format('d/m/Y');
+        $end = $dateE->format('d/m/Y');
+        
         return view('reviews/showReview',[
             'review' => $review,
+            'start' => $start,
+            'end' => $end
         ]);
     }
     

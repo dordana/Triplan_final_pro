@@ -194,6 +194,7 @@ h1{
         <h2 class="daytitle" style="text-align:center">{{$day->day}}</h2>
         <h2 class="daytitle" style="text-align:center">{{$day->time}}</h2>
         <h2 class="daytitle" style="text-align:center">{{intval($day->distance)/1000}} km</h2>
+        <h2 class="daytitle" style="text-align:center">Number of attractions: {{count($day->attractions)-1}}</h2>
       </div>
     </li>
      <li>

@@ -437,6 +437,101 @@ ul.thumbnails-carousel li {
 .recent-posts-widget .single-recent-post .recent-details {
      margin-left: 0px; 
 }
+/*rating css*/
+
+pre {
+display: block;
+padding: 9.5px;
+margin: 0 0 10px;
+font-size: 13px;
+line-height: 1.42857143;
+color: #333;
+word-break: break-all;
+word-wrap: break-word;
+background-color: #F5F5F5;
+border: 1px solid #CCC;
+border-radius: 4px;
+}
+
+
+
+
+#a-footer {
+  margin: 20px 0;
+}
+
+.new-react-version {
+  padding: 20px 20px;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+  
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.new-react-version .react-svg-logo {
+  text-align: center;
+  max-width: 60px;
+  margin: 20px auto;
+  margin-top: 0;
+}
+
+
+
+
+
+.success-box {
+  padding:10px 10px;
+}
+
+.success-box img {
+  margin-right:10px;
+  display:inline-block;
+  vertical-align:top;
+}
+
+.success-box > div {
+  vertical-align:top;
+  display:inline-block;
+  color:#888;
+}
+
+.rating-widget{
+    margin-top: 60px;
+}
+
+
+/* Rating Star Widgets Style */
+.rating-stars ul {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+  display:inline-block;
+  
+}
+
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size:2.5em; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color:#FFCC36;
+}
+
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
+
 /**/
 </style>
 
@@ -502,12 +597,48 @@ ul.thumbnails-carousel li {
 								<div class="content-wrap">
 									<p>{{ $attraction->description }}</p>
 								</div>
-
+<!--rating-->
+@if(Auth::check())
+	@if(!$isRated)
+	<section class='rating-widget'>
+		<h3 class="mb-30">Rating</h3>
+	  <!-- Rating Stars Box -->
+	  <div class='rating-stars text-center'>
+	    <ul id='stars'>
+	      <li attrId="{{$attraction->id}}" class='star' title='Poor' data-value='1'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li attrId="{{$attraction->id}}" class='star' title='Fair' data-value='2'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li attrId="{{$attraction->id}}" class='star' title='Good' data-value='3'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li attrId="{{$attraction->id}}" class='star' title='Excellent' data-value='4'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	      <li attrId="{{$attraction->id}}" class='star' title='WOW!!!' data-value='5'>
+	        <i class='fa fa-star fa-fw'></i>
+	      </li>
+	    </ul>
+	  </div>
+	  <div class='success-box'>
+	    <div class='clearfix'></div>
+	    <div class='text-message'></div>
+	    <div class='clearfix'></div>
+	  </div>
+	</section>
+	@endif
+@endif
+<!--end rating-->
 			<div class="whole-wrap">
 				<div class="container">
 					<div class="section-top-border">
 						<h3 class="mb-30">Users Reviews</h3>
 						<div class="row">
+							@if(count($reviews) == 0)
+							<p style="margin: 0 auto;">No reviews</p>
+							@endif
 							@foreach($reviews as $review)
 							<div class="col-md-4">
 								<div class="single-defination">
@@ -544,7 +675,7 @@ ul.thumbnails-carousel li {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" data-dismiss="modal" class="btn btn-primary saveComment">Save </button>
+        <button type="button" data-dismiss="modal" attraId="{{$attraction->id}}" class="btn btn-primary saveComment">Save </button>
       </div>
     </div>
   </div>
@@ -617,8 +748,11 @@ ul.thumbnails-carousel li {
 			</div>
 			@endif
 			<br><br>
+			@if(count($questions) == 0)
+				<p style="margin: 0 auto;">No questions</p>
+			@endif
 		<ul id="comments-list" class="comments-list">
-			@foreach ($attraction->questions as $q)
+			@foreach ($questions as $q)
 			<li>
 				<div class="comment-main-level">
 					<div class="comment-avatar"><img src="{{ url('/uploads/user-photos') }}/{{App\User::find($q->user_id)->profile_phote_path}}" alt=""></div>
@@ -714,13 +848,12 @@ ul.thumbnails-carousel li {
 									@endif
 								</ul>
 							</div>
-
                             <div class="single-widget recent-posts-widget">
                                 <h4 class="title">Rating</h4>
                                 <div class="container_rate">
 								  <div class="inner">
 								    <div class="rating">
-								      <span class="rating-num">{{ $attraction->rate }}</span>
+								      <span class="rating-num"><span style="color:orange">{{ intval($attraction->rate) }}<span style="font-size:50px">/5</span></span></span>
 								      <div class="rating-stars">
 								      	@for($i=0;$i < intval($attraction->rate);$i++)
 								        	<span><i class="active fas fa-star"></i></span>
@@ -772,6 +905,87 @@ ul.thumbnails-carousel li {
 
 
 <script type="text/javascript">
+$(document).ready(function(){
+  
+  /* 1. Visualizing things on Hover - See next part for action on click */
+  $('#stars li').on('mouseover', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+   
+    // Now highlight all the stars that's not after the current hovered star
+    $(this).parent().children('li.star').each(function(e){
+      if (e < onStar) {
+        $(this).addClass('hover');
+      }
+      else {
+        $(this).removeClass('hover');
+      }
+    });
+    
+  }).on('mouseout', function(){
+    $(this).parent().children('li.star').each(function(e){
+      $(this).removeClass('hover');
+    });
+  });
+  
+  
+  /* 2. Action to perform on click */
+  $('#stars li').on('click', function(){
+    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+    var stars = $(this).parent().children('li.star');
+    
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+    
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+    
+    // JUST RESPONSE (Not needed)
+    var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+    var msg = "";
+    msg = "Thanks! You rated this attraction with " + ratingValue + " stars.";
+
+
+    // 
+	var url = "{{route('addratetoattraction')}}";
+	var attractionId = $(this).attr("attrId");
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		}
+	});
+
+	$.ajax({
+    	type: 'ajax',
+    	method: 'post',
+    	url: url,
+    	data: {ratingValue:ratingValue,attrId:attractionId},
+    	async: false,
+    	dataType: 'json',
+    	success: function(data){
+    		console.log(data);
+    		location.reload();
+    	},
+    	error: function(data){
+    		console.log(data)
+    		location.reload();
+    	}
+    });
+    
+    // 
+    responseMessage(msg);
+    
+  });
+  
+  
+});
+
+
+function responseMessage(msg) {
+  $('.success-box').fadeIn(200);  
+  $('.success-box div.text-message').html("<span>" + msg + "</span>");
+}
 	/* global $ */
 (function(window, $, undefined) {
 
@@ -1034,24 +1248,22 @@ $(document).ready(function(){
 	    $('.saveComment').click(function(e){
 	    	var commentText = $('#commentText').val();
 	    	var textTitle = $('#textTitle').val();
-	    	var attractionId = '{{$attraction->id}}';
+	    	var attractionId = $(this).attr("attraId");
 	    	var url = "{{route('Attraction_addquestion')}}";
 	    	e.preventDefault();
-	    	
 			$.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				}
 			});
-
 			$.ajax({
 				type:"POST",
 				url: url,
 				data : {aId: attractionId, data: commentText, title: textTitle },
-				success: function() {
+				success: function(data) {
 					location.reload();
 				},error:function(data){ 
-	                console.log(data);
+	                location.reload();
 	            }
 			});
 	    });

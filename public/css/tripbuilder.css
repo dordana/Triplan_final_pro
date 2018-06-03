@@ -954,30 +954,6 @@ div.sku strong{
 }
 
 
-.colors-large{
-	margin-bottom:38px;
-}
-.colors-large li{
-	float:left;
-	list-style:none;
-	margin-right:7px;
-	width:16px;
-	height:16px;
-}
-.colors-large li a{
-	float:left;
-	width:16px;
-	height:16px;
-	border-radius:50%;
-}
-.colors-large li a:hover{
-	width:19px;
-	height:19px;
-	position:relative;
-	top:-1px;
-	left:-1px;
-}
-
 .sizes-large{
 }
 .sizes-large span{
@@ -997,6 +973,7 @@ div.sku strong{
 	font-size: 15px;
     color: #b1b1b3;
     padding: 2px 0 20px 0;
+    margin-bottom: 15px !important;
 }
 .rate{
 	font-size: 30px;
@@ -1059,11 +1036,11 @@ div.sku strong{
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px) {
 	#grid{
-	 	width:1100px;
+	 	width:76%;
 	 }
 	 
 	 #grid-selector{
-	 	width:1200px;
+	 	width:55%;
 	 }
 }
 

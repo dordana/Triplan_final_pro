@@ -25,7 +25,7 @@ Route::get('auth/twitter/callback', 'Auth\AuthController@handleProviderCallbackT
 
 ///User Routes
 Route::get('/profile', 'UserController@showprofile');
-Route::post('/profile', 'UserController@udpateprofile');
+Route::post('/profile', 'UserController@updateprofile');
 Route::post('/profile/changepassword', ['as' => 'change-password', 'uses' => 'UserController@changepassword']);
 Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserController@changephoto']);
 Route::get('/profile/{id}', ['as' => 'showuserprofile', 'uses' => 'UserController@userprofile_byid']);
@@ -64,6 +64,8 @@ Route::post('/City_addAnswerToQuestion', ['as' => 'City_addanswertoquestion', 'u
 Route::get('/attractions', ['as' => 'showattractions', 'uses' => 'AttractionController@showAllAttractions']);
 Route::get('/attractions/{id}', ['as' => 'showattraction', 'uses' => 'AttractionController@showAttraction']);
 Route::post('/Attraction_addLike', ['as' => 'Attraction_addlike', 'uses' => 'AttractionController@addLike']);
+Route::post('/addratetoattraction', ['as' => 'addratetoattraction', 'uses' => 'AttractionController@addratetoattraction']);
+
 Route::post('/Attraction_addQuestion', ['as' => 'Attraction_addquestion', 'uses' => 'AttractionController@addQuestion']);
 Route::post('/Attraction_editQuestion', ['as' => 'Attraction_editquestion', 'uses' => 'AttractionController@editQuestion']);
 Route::post('/Attraction_deleteQuestion', ['as' => 'Attraction_deletequestion', 'uses' => 'AttractionController@deleteQuestion']);
@@ -95,6 +97,7 @@ Route::get('/downloadPDF', ['as' => 'downloadPDF', 'uses' => 'TripController@dow
 Route::get('/sendEmail', ['as' => 'sendEmail', 'uses' => 'TripController@sendEmail']);
 Route::get('/listView', ['as' => 'listView', 'uses' => 'TripController@listView']);
 Route::get('/tripbuilderbudget', ['as' => 'tripbuilderbudget', 'uses' => 'TripController@buildbudget']);
+Route::get('/showAllTrips', ['as' => 'showAllTrips', 'uses' => 'TripController@showAllTrips']);
 
 // Admin Routes
 Route::get('/admin/dashboard', 'AdminController@index');

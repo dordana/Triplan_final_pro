@@ -190,8 +190,8 @@ select option:hover {
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Hot countries</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						<h3>Most Popular Countries</h3>
+						<p>Explore the most popular and viewed countries</p>
 					</div>
 				</div>
 				<div class="row">
@@ -226,8 +226,7 @@ select option:hover {
 							</span>
 							<div class="feature-copy">
 								<h3>Family Travel</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<p>Find the best vacation for you and your family</p>
 							</div>
 						</div>
 
@@ -239,9 +238,8 @@ select option:hover {
 								<i class="icon-search"></i>
 							</span>
 							<div class="feature-copy">
-								<h3>Travel Plans</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<h3>Trip Builder</h3>
+								<p>Using our unique system, plan your trip in the most optimal way</p>
 							</div>
 						</div>
 					</div>
@@ -252,8 +250,7 @@ select option:hover {
 							</span>
 							<div class="feature-copy">
 								<h3>Honeymoon</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<p>Take full advantage of the time with the one you love</p>
 							</div>
 						</div>
 					</div>
@@ -267,8 +264,7 @@ select option:hover {
 							</span>
 							<div class="feature-copy">
 								<h3>Business Travel</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<p>Take a break from business and enjoy the attractions around you</p>
 							</div>
 						</div>
 
@@ -281,8 +277,7 @@ select option:hover {
 							</span>
 							<div class="feature-copy">
 								<h3>Solo Travel</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<p>Like to travel alone? Find out how to get the most out of your trip</p>
 							</div>
 						</div>
 
@@ -293,9 +288,8 @@ select option:hover {
 								<i class="icon-chat"></i>
 							</span>
 							<div class="feature-copy">
-								<h3>Explorer</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<h3>Social Network</h3>
+								<p>Share, Recommend, and Connect to other users through multiple platforms we've created for you</p>
 							</div>
 						</div>
 					</div>
@@ -346,7 +340,7 @@ select option:hover {
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
 						<h3>Recent From Reviews</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+						<p>Read reviews and recommendations from users to find out more about the destination you are looking for.</p>
 					</div>
 				</div>
 			</div>
@@ -382,7 +376,7 @@ select option:hover {
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Happy Clients</h2>
+					<h2>Happy Users</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -390,9 +384,10 @@ select option:hover {
 					<div class="box-testimony animate-box">
 						<blockquote>
 							<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-							<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+							<p>&ldquo;The best website for trip planning, convenient interface, efficient and user friendly.
+<br>I really enjoyed the holiday planning and will be back in the future!&rdquo;</p>
 						</blockquote>
-						<p class="author">John Doe, CEO <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span></p>
+						<p class="author">Alex Shmukler</a> <span class="subtext">Happy user</span></p>
 					</div>
 					
 				</div>
@@ -400,20 +395,21 @@ select option:hover {
 					<div class="box-testimony animate-box">
 						<blockquote>
 							<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-							<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+							<p>&ldquo;Thank you Triplan for my dream vacation with my wife.
+<br>Thanks to your interface, I've got many users recommendations and reviews&rdquo;</p>
 						</blockquote>
-						<p class="author">John Doe, CEO <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span></p>
+						<p class="author">Danny Ofer</a> <span class="subtext">Happy user</span></p>
 					</div>
-					
 					
 				</div>
 				<div class="col-md-4">
 					<div class="box-testimony animate-box">
 						<blockquote>
 							<span class="quote"><span><i class="icon-quotes-right"></i></span></span>
-							<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+							<p>&ldquo;I thought that I would not be able to enjoy my two days trip.<br> but thanks to your platform 
+							I managed to build a path for myself that made the most of these days. Thanks!&rdquo;</p>
 						</blockquote>
-						<p class="author">John Doe, Founder <a href="#">FREEHTML5.co</a> <span class="subtext">Creative Director</span></p>
+						<p class="author">Tammie Green</a> <span class="subtext">Happy user</span></p>
 					</div>
 					
 				</div>
@@ -440,8 +436,7 @@ select option:hover {
 						<div class="row">
 							<br><br><br>
 							<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-								<h3>Contact Information</h3>
-								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<h3>Contact Us</h3>
 							</div>
 						</div>
 					<div class="row animate-box">
