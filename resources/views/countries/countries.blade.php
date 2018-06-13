@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+<script type="text/javascript" >
+	document.title = 'Triplan - Countries';
+</script>
 <link href="{!! asset('pages/countries/countries.css') !!}" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" />
 <style type="text/css">

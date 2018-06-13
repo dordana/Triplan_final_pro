@@ -2,6 +2,9 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - Show Country - {{$country->name}}';
+</script>
 
 <style type="text/css">
 

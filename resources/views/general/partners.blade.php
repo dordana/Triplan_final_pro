@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - Partners';
+</script>
 <p id="pageName" hidden >Contact Us</p>
 
 <br><br><br><br>

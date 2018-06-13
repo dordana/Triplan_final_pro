@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+
+<script type="text/javascript" >
+	document.title = 'Triplan - Shared Trips';
+</script>
 <style type="text/css">
 /* ======================== */
 /*   Syed Sahar Ali Raza   	*/

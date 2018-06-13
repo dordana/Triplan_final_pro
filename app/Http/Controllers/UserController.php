@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests;
 use App\country;
+use App\Attraction;
 use App\User;
 use App\friend;
 use App\Path;
@@ -14,15 +15,36 @@ use App\user_favorite;
 use Image;
 use File;
 use Mail;
+use GuzzleHttp\Client;
 
 class UserController extends Controller
 {
     
     public function showprofile(){
         $user = Auth::user();
-        return view('auth/profile');
+        return view('auth/profile',[
+            'user' => $user
+            ]);
     }
-    
+    public function showuserfavopage(){
+        $user = Auth::user();
+        $userArray = $user->favorites;
+        
+        $userAttractions = [];
+        foreach($userArray as $row){
+            array_push($userAttractions,Attraction::find($row->attraction_id));
+        }
+        // 
+        // $client = new Client();
+        // $res = $client->request('GET', 'http://engine.hotellook.com/api/v2/lookup.json?query=Tel%20Aviv&lang=IL&lookFor=hotel&limit=10&token=9340bbb2f4f38e75ed742b62e8350482');
+        // echo $res->getBody();
+        // return;
+        // 
+        return view('auth/userfavorites',[
+            'userAttractions' => $userAttractions,
+            
+            ]);
+    }
     
     public function updateprofile(Request $request){
         $user = Auth::user();

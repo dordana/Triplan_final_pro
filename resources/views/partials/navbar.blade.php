@@ -8,8 +8,13 @@
 	</div>
 	@endif
 @endif
-
-
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css"
+  integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+  crossorigin="anonymous">
+<script>
+    setTimeout(function(){ $(".animated").removeClass("infinite") }, 5000);
+</script>
 <link href="{!! asset('pages/navbar/navbar.css') !!}" rel="stylesheet" />
 <header id="fh5co-header-section" class="sticky-banner">
 	<div class="container">
@@ -19,7 +24,6 @@
 			<!-- START #fh5co-menu-wrap -->
 			<nav id="fh5co-menu-wrap" role="navigation">
 				<ul class="sf-menu" id="fh5co-primary-menu">
-					<li class="active"><a href="/">Home</a></li>
 					<li><a href="{{route('showcountries')}}">Countries</a></li>
 					<li><a href="{{route('showcities')}}">Cities</a></li>
 					<li><a href="{{route('showattractions')}}">Attractions</a></li>
@@ -39,21 +43,20 @@
 					</li>
 					
 					@if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a class="animated infinite bounceIn" href="{{ url('/login') }}">Login</a></li>
+                        <li><a class="animated infinite bounceIn" href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li>
 						<a href="#" class="fh5co-sub-ddown">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</a>
 						<ul class="fh5co-sub-menu">
 							@if (Auth::user()->active)
-							<li><a style="color: green !important;" id="activeLbl" href="#">Active</a></li>
 							@else
 							<li><a style="color: red !important;" id="inactiveLbl" href="#">Inactive</a></li>
 							@endif
 							@if (Auth::user()->admin)
 							<li><a href="{{ url('/admin/dashboard') }}">Admin panel</a></li>
 							@endif
-							
+							<li><a href="{{ url('/userfavorites') }}">My Favorites</a></li>
 							<li><a href="{{ url('/profile') }}">Profile</a></li>
 							<li><a href="{{ url('/logout') }}">Logout</a></li>
 						</ul>

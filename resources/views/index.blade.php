@@ -5,6 +5,9 @@
 <script src="{!! asset('pages/index/index.js') !!}"></script>
 <link href="{!! asset('pages/index/index.css') !!}" rel="stylesheet" />
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYUrj824we7Ae73T3khwyy_epnUlgudSM&libraries=places"></script>
+<script type="text/javascript" >
+	document.title = 'Triplan - Home Page';
+</script>
 
 <style type="text/css">
 .text-border{
@@ -100,13 +103,13 @@ select option:hover {
 										<div class="col-xxs-12 col-xs-6 mt">
 											<div class="input-field">
 												<label for="date-start">Check In:</label>
-												<input type="text" name="start" class="form-control" id="date-start" placeholder="mm/dd/yyyy" required/>
+												<input type="text" name="start" class="form-control" autoComplete="off" id="date-start" placeholder="dd/mm/yyyy" required/>
 											</div>
 										</div>
 										<div class="col-xxs-12 col-xs-6 mt">
 											<div class="input-field">
 												<label for="date-end">Check Out:</label>
-												<input type="text" class="form-control" name="end" id="date-end" placeholder="mm/dd/yyyy" required/>
+												<input type="text" class="form-control" name="end" id="date-end" autoComplete="off" placeholder="dd/mm/yyyy" required/>
 											</div>
 										</div>
 										<div class="col-xxs-12 col-xs-12 mt">
@@ -176,7 +179,7 @@ select option:hover {
 						<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
 							<h1 class="text-border" style="color:white; font-size:75px;"><b>Welcome to Triplan</b></h1>
 							<h2 class="text-border" style="color:white;">Make your dream come true</h2>
-							<h3 class="text-border" style="color:white;">100 Paths, 500 Attractions and 1 Great site</h3>
+							<h3 class="text-border" style="color:white;">500 Attractions, 100 Paths and 1 Great site</h3>
 							<!-- <p><a class="btn btn-primary btn-lg" href="#">Get Started</a></p> -->
 						</div>
 					</div>
@@ -349,14 +352,14 @@ select option:hover {
 					@foreach($reviews as $review)
 					<div class="col-lg-4 col-md-4 col-sm-6">
 						<div class="fh5co-blog animate-box">
-							<a href="#"><img class="img-responsive" src="{{ url('/uploads/reviews')}}/{{$review->mainpic}}" alt=""></a>
+							<a href="{{route('show-review', $review->id)}}"><img class="img-responsive" src="{{ url('/uploads/reviews')}}/{{$review->mainpic}}" alt=""></a>
 							<div class="blog-text">
 								<div class="prod-title">
-									<h2><a href="#">{{$review->title}}</a></h2>
+									<h2><a href="{{route('show-review', $review->id)}}">{{$review->title}}</a></h2>
 									<span class="posted_by">{{$review->created_at}}</span>
 									<span class="comment">{{App\User::find($review->user_id)->username}}</span>
 									<p>{{substr($review->body, 0,40)}}...</p>
-									<p><a href="#">Learn More...</a></p>
+									<p><a href="{{route('show-review', $review->id)}}">Learn More...</a></p>
 								</div>
 							</div> 
 						</div>
@@ -366,7 +369,7 @@ select option:hover {
 				</div>
 
 				<div class="col-md-12 text-center animate-box">
-					<p><a class="btn btn-primary btn-outline btn-lg" href="{{route('showreviews')}}">See All Review <i class="icon-arrow-right22"></i></a></p>
+					<p><a class="btn btn-primary btn-outline btn-lg" href="{{route('showreviews')}}">See All Reviews <i class="icon-arrow-right22"></i></a></p>
 				</div>
 
 			</div>
@@ -426,7 +429,7 @@ select option:hover {
 						<h3>Our Address</h3>
 					</div>
 				</div>
-				<form method="POST" action="{{ route('usermsg') }}" autocomplete="off">
+				<form method="POST" action="" autocomplete="off">
 		                {{ csrf_field() }}
 					<div class="row animate-box">
 						<div class="col-md-12">
@@ -459,7 +462,7 @@ select option:hover {
 								</div>
 								<div class="col-md-12">
 									<div class="form-group text-center">
-										<input type="submit" style="width:350px;" value="Send Message" class="btn btn-primary send">
+										<input type="button" style="width:350px;" value="Send Message" class="btn btn-primary send">
 									</div>
 								</div>
 							</div>
@@ -504,27 +507,27 @@ select option:hover {
 		
 function nonRegisteredUserAlert(){
 	swal("Hey, You must log in to use this option", {
-  buttons: {
-    cancel: "Close",
-    Login: 'Login',
-    Register: 'Register',
-  },
-})
-.then((value) => {
-  switch (value) {
- 
-    case "Login":
-      window.location = "/login";
-      break;
- 
-    case "Register":
-		window.location = "/register";
-		break;
- 
-    default:
-      
-  }
-});
+	  buttons: {
+	    cancel: "Close",
+	    Login: 'Login',
+	    Register: 'Register',
+	  },
+	})
+	.then((value) => {
+	  switch (value) {
+	 
+	    case "Login":
+	      window.location = "/login";
+	      break;
+	 
+	    case "Register":
+			window.location = "/register";
+			break;
+	 
+	    default:
+	      
+	  }
+	});
 }		
 		function inactiveAlert(){
 			swal("Thank you for choosing Triplan."+"\nPlease waiting for Admin Approval", {
@@ -571,8 +574,11 @@ function nonRegisteredUserAlert(){
 				    $("#countryname").val(selected);
 				    var selected1 = $("#city-select").val();
 				    $("#cityname").val(selected1);
-				    var start = $('#date-start').val();
-				    var end = $('#date-end').val();
+				    var start = $('#date-start').datepicker( "getDate" );
+				    var end = $('#date-end').datepicker( "getDate" );
+				    alert(start)
+				    alert(end)
+				    
 				    if (start > end) {
 				    	swal("Check out must be greater then check in", {
 						  buttons: false,
@@ -584,7 +590,7 @@ function nonRegisteredUserAlert(){
 				}
 			}
 		}
-	
+	$('#date-start, #date-end').datepicker({ dateFormat: "DD/MM/y",autoclose: true });
 		autoComplete = new google.maps.places.Autocomplete(document.getElementById("startLocation")); 
 	</script>
 @endsection

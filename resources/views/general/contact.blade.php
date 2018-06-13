@@ -12,7 +12,7 @@
 						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 					</div>
 				</div>
-				<form method="POST" action="{{ route('usermsg') }}" autocomplete="off">
+				<form method="POST" action="" autocomplete="off">
 		                {{ csrf_field() }}
 					<div class="row animate-box">
 						<div class="col-md-6">
@@ -37,7 +37,7 @@
 								</div>
 								<div class="col-md-12">
 									<div class="form-group text-center">
-										<input type="submit" style="width:350px;" value="Send Message" class="btn btn-primary send">
+										<input type="button" style="width:350px;" value="Send Message" class="btn btn-primary send">
 									</div>
 								</div>
 							</div>

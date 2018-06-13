@@ -1,6 +1,9 @@
  @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - Friend Profile - {{$user->username}}';
+</script>
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 <style type="text/css">
 	

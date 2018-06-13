@@ -80,4 +80,8 @@ class AdminController extends Controller
         return $user;
     }
     
+    public function adduser(){
+        return view('admin.adduser');
+    }
+    
 }

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - Show Attraction - {{$attraction->name}}';
+</script>
 	<p id="pageName" hidden >Attractions</p>
 	<meta name="csrf_token" content="{ csrf_token() }" />
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
@@ -834,9 +837,10 @@ border-radius: 4px;
 							<div class="single-widget category-widget">
 								<h4 class="title">General Details:</h4>
 								<ul>
-									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><h6>Address: </h6> <span>{{ $attraction->address.", ".$attraction->zip_code }}</span></a></li>
+									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><span>{{ $attraction->address.", ".$attraction->zip_code }}</span></a></li>
 									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><h6>Telephone: </h6> <span>{{ $attraction->telephone }}</span></a></li>
-									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><h6>Opening Hours: </h6> <span>{{ $attraction->opening_hours }}</span></a></li>
+									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><h6>Opening Hours: </h6> <span>{{ $attraction->opening_hours ? $attraction->opening_hours :'empty' }}</span></a></li>
+									<li><a href="javascript:void(0)" class="justify-content-between align-items-center d-flex"><h6>Price Per Person: </h6> <span style="font-weight:bold">{{ $attraction->pricePerPerson ? $attraction->pricePerPerson . '$' :'---' }}</span></a></li>
 									<li><a style="width:250px;height:auto;" class="btn btn-primary" href="{{ $attraction->website }}" class="justify-content-between align-items-center d-flex">Website<span></span></a></li>
 									
 									@if (Auth::check())

@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+<script type="text/javascript" >
+	document.title = 'Triplan - Show Review - {{$review->title}}';
+</script>
 
 <style type="text/css">
 * {
@@ -404,11 +406,11 @@ img{
 		<div class="hero"></div>
 	</header>
 	<section id="headline" class="article-content">
-		<h2  class="headline">{{$review->title}}{{$review->id}}</h2>
+		<h2  class="headline">{{$review->title}}</h2>
 		<h4 class="headline1">{{$review->type}}</h4>
 		<div class="article-meta">
 			<time datetime="2015-09-30 09:00">Posted on: {{ Carbon\Carbon::parse( $review->created_at->diffForHumans())->format('d/m/Y') }}</time>
-			<span class="author">{{App\User::find($review->user_id)->username}}</span>
+			<span class="author">By: {{App\User::find($review->user_id)->username}}</span>
 		</div>
 		<span id="vacationTime" style="text-align:center;display: block;">Vacation dates: {{ $start }} - {{ $end }}</span>
 		<br>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Triplan - Show trip</title>
+    <title>Triplan - Show Trip - Budget</title>
     <meta id="token" name="token" content="{{ csrf_token() }}">
     <script src="/scripts/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
@@ -1175,7 +1175,6 @@ function generateObjToSend(url){
         });
     
         promise.then(function () {
-            alert(flag_to_actions)
             if(!flag_to_actions){
             console.log(tripObject);
             if(url == "downloadPDF"){

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - User Profile';
+</script>
 <link href="{!! asset('pages/profile/profile.css') !!}" rel="stylesheet" />
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -144,8 +147,8 @@
 					      <th class="col-md-3 col-xs-3">Path name</th>
 					      <th class="col-md-3 col-xs-3">Start date</th>
 					      <th class="col-md-1 col-xs-1">End date</th>
+						  <th class="col-md-3 col-xs-3">Country</th>
 					      <th class="col-md-1 col-xs-1">City</th>
-					      <th class="col-md-3 col-xs-3">Country</th>
 					       <th class="col-md-3 col-xs-3">Type</th>
 					        <th class="col-md-3 col-xs-3">Actions</th>
 					    </tr>
@@ -159,9 +162,9 @@
 						      <td class="pathName">{{$path->pathName}}</td>
 						      <td>{{ Carbon\Carbon::parse($path->startDate)->format('d/m/Y') }}</td>
 						      <td>{{ Carbon\Carbon::parse($path->endDate)->format('d/m/Y') }}</td>
+							  <td class="countryName">{{$path->countryName}}</td>		
 						      <td class="cityName">{{$path->cityname}}</td>
-						      <td class="countryName">{{$path->countryName}}</td>
-						      <td>{{$path->type}}</td>
+						      <td>{{$path->type ? $path->type : 'normal'}}</td>
 						      <td>
 						      	<div class="actionsButtons" style="display:flex;">
 						      		@if($path->shared == "1")
@@ -293,6 +296,16 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+    	$('.unmask').click(function(){
+    		var inputToShow = $(this).prev().val();
+    		if($(this).prev().attr('type') == "password"){
+    			$(this).prev().attr('type','text');
+    		}else{
+    			$(this).prev().attr('type','password');
+    		}
+    	});
+    </script>
     <!-- Modal change photo -->
     <div class="modal fade" id="change-photo-modal" tabindex="-1" role="dialog" aria-labelledby="change-photo-modal">
         <div class="modal-dialog" role="document">

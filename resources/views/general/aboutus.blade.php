@@ -1,14 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - About Us';
+</script>
 <p id="pageName" hidden >General</p>
 <style type="text/css">
-	p{
+	#aboutText{
 				margin: 0 25% !important;
 			}
 	@media screen and (max-width: 980px) {
 
-			p{
+			#aboutText{
 				margin: 0 15% !important;
 			}
 
@@ -16,11 +19,95 @@
 
 		@media screen and (max-width: 480px) {
 
-			p{
+			#aboutText{
 				margin: 0 5% !important;
 			}
 
 		}
+
+.about-us {
+  margin: 4em auto;
+  width: 1100px;
+  max-width: 90%;
+}
+.about-us::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+@media only screen and (min-width: 1000px) {
+  .about-us article, .about-us aside {
+    float: left;
+    width: 47.5%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .about-us article {
+    margin-right: 5%;
+  }
+}
+.about-us article h2 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 300;
+  color: #308fc3;
+}
+.about-us article #textP {
+  margin-bottom: 2em;
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 300;
+  color: #676767;
+}
+.about-us aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.about-us aside ul::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.about-us aside ul li {
+  display: table;
+  width: 100%;
+  height: 170px;
+}
+@media only screen and (min-width: 1000px) {
+  .about-us aside ul li {
+    float: left;
+    width: 33.3333333333%;
+  }
+}
+.about-us aside ul li:first-child {
+  background-color: #F79B5D;
+}
+.about-us aside ul li:nth-child(2) {
+  background-color: #FF7500;
+}
+.about-us aside ul li:nth-child(3) {
+  background-color: #F96230;
+}
+.about-us aside ul li h3 {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.about-us aside ul li h3 span {
+  display: block;
+  color: #fff;
+}
+.about-us aside ul li h3 span:first-child {
+  font-family: 'Roboto', sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+}
+.about-us aside ul li h3 span:nth-child(2) {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
 
 </style>
 <link rel="stylesheet" href="/css/aboutus.css" />
@@ -29,26 +116,19 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="content">
-					<h1 style="color:#f68546">Our Story</h1>
+					<h1 style="color:#f68546">So What Is Triplan?</h1>
 					<br><br>
-					<p id="aboutText>
-					    
-				    The standard Lorem Ipsum passage, used since the 1500s
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+					<p id="aboutText">
+
 <br>
-Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+We aim to offer our customers a variety of the latest reviews and news.
+<br>We’ve come a long way, so we know exactly which direction to take when supplying you with high quality yet budget friendly attractions worldwide.
+<br>We offer all of this while providing excellent social network and friendly support.
+
 <br>
-1914 translation by H. Rackham
-"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-<br>
-Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-<br>
-1914 translation by H. Rackham
-"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
-					
-					
+We always keep an eye on the latest trends\attractions and put our customers’ wishes first.
+<br>That is why we have satisfied customers all over the world, and are thrilled to be a part of the travelling industry.
+<br>The interests of our customers are always the top priority for us, so we hope you will enjoy our features as much as we enjoy making them available to you.
 					</p>
 					<br><br>
 					<ul class="actions">
@@ -56,7 +136,43 @@ Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 					</ul>
 				</div>
 			</section>
+<div class="about-us">
 
+	<article>
+
+		<h2>Strength in numbers</h2>
+		<p id="textP">Thank you to all our visitors and friends<br>
+We built the site in a way that will be convenient and helps everyone<br>
+</p>
+
+	</article>
+
+	<aside>
+
+		<ul>
+			<li>
+				<h3>
+					<span>4+</span>
+					<span>Years of Service</span>
+				</h3>
+			</li>
+			<li>
+				<h3>
+					<span>500+</span>
+					<span>Registered Friends</span>
+				</h3>
+			</li>
+			<li>
+				<h3>
+					<span>1M+</span>
+					<span>Links Per Month</span>
+				</h3>
+			</li>
+		</ul>
+
+	</aside>
+
+</div>
 
 		<!-- Two -->
 			<section id="two" class="wrapper style1 special">
@@ -85,7 +201,7 @@ Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 						</div>
 						<div class="content text-center">
 							<h3 class="text-center">Dor Dana<br> CEO & Co-Founder</h3>
-							<p>Senior web software engineer</p>
+							<p>Senior web applications</p>
 						</div>
 					</div>
 					<div class="flex-item box">
@@ -94,7 +210,7 @@ Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
 						</div>
 						<div class="content text-center">
 							<h3 class="text-center">Amit Yahav<br> CTO & Co-Founder</h3>
-							<p>Experience software engineer</p>
+							<p>Experienced software engineer</p>
 						</div>
 					</div>
 				</div>

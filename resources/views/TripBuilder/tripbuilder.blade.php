@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Trip Builder</title>
+  <title>Triplan - Trip Builder</title>
       <link rel="stylesheet" href="css/tripbuilder.css">
 </head>
 
@@ -161,7 +161,6 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
     $(".showpage1").click(function() {
-        alert("sdsd")
         var attrId = $(this).attr("attrId");
         window.open("/attractions/"+attrId).focus();
     })

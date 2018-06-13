@@ -1,6 +1,9 @@
  @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - Login';
+</script>
 <script src="{!! asset('pages/login/login.js') !!}"></script>
 <link href="{!! asset('pages/login/login.css') !!}" rel="stylesheet" />
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css'>

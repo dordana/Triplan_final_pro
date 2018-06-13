@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - Friends';
+</script>
+<p id="pageName" hidden >Friends</p>
 <style type="text/css">
 	@import url(//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);

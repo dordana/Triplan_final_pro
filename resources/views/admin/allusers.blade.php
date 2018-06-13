@@ -179,7 +179,6 @@
             $(document).ready(function() {
                 $(".searchBtn").click(function(){
                    var searchValue = $("#searchtext").val();
-                   alert(searchValue);
                    if(searchValue != ""){
                        $(".trData").fadeOut("slow");
                        $(".trData").each(function() {
@@ -230,7 +229,6 @@
                 
                 //Active user 
                 $('.inactive').click(function(e) {
-                    alert($(this).parent().parent().attr("id"));
                     var id = $(this).parent().parent().attr("id");
                     var url = 'user/inactive';
                     $.ajaxSetup({

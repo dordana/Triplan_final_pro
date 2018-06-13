@@ -13,7 +13,8 @@
         "anhskohbo/no-captcha": "^3.0",
         "guzzlehttp/guzzle": "~6.3",
         "symfony/psr-http-message-bridge": "0.2",
-        "barryvdh/laravel-dompdf": "^0.8.2"
+        "barryvdh/laravel-dompdf": "^0.8.2",
+        "guzzle/guzzle": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

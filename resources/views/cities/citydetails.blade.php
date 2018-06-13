@@ -1,6 +1,9 @@
  @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript" >
+	document.title = 'Triplan - Show City - {{$city->name}}';
+</script>
 <style type="text/css">
 
 .file-upload {

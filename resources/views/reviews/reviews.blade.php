@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
+<script type="text/javascript" >
+	document.title = 'Triplan - Reviews';
+</script>
 <link href="{!! asset('pages/reviews/reviews.css') !!}" rel="stylesheet" />
 <p id="pageName" hidden >Reviews</p>
 
@@ -10,7 +12,7 @@
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
 						<h3>Users Reviews</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+						<p>Here you can read other users reviews and recommendations <br>or even write few of your own!</br></p>
 					</div>
 				</div>
 			</div>

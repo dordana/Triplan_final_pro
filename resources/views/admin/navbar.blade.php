@@ -59,7 +59,7 @@
                                         <a href="/admin/allusers"><i class="fa fa-users"></i>  Show all users</a>
                                     </li>
                                     <li>
-                                        <a href="/admin/newuser"><i class="fa fa-user-plus"></i>  Add a new user</a>
+                                        <a href="/admin/adduser"><i class="fa fa-user-plus"></i>  Add a new user</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->

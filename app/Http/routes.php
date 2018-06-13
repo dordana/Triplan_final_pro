@@ -25,6 +25,7 @@ Route::get('auth/twitter/callback', 'Auth\AuthController@handleProviderCallbackT
 
 ///User Routes
 Route::get('/profile', 'UserController@showprofile');
+Route::get('/userfavorites', 'UserController@showuserfavopage');
 Route::post('/profile', 'UserController@updateprofile');
 Route::post('/profile/changepassword', ['as' => 'change-password', 'uses' => 'UserController@changepassword']);
 Route::post('/profile/changephoto', ['as' => 'change-photo', 'uses' => 'UserController@changephoto']);
@@ -86,7 +87,6 @@ Route::get('/general/partners', ['as' => 'show-partners', 'uses' => 'HomeControl
 Route::get('/general/shareus', ['as' => 'show-shareus', 'uses' => 'HomeController@shareus']);
 Route::get('/general/aboutus', ['as' => 'show-aboutus', 'uses' => 'HomeController@aboutus']);
 Route::get('/404');
-Route::post('/general/contact', ['as' => 'usermsg', 'uses' => 'HomeController@userMsgEmail']);
 
 ///Trip Routes
 Route::get('/trip', ['as' => 'trip', 'uses' => 'TripController@initTrip']);
@@ -102,6 +102,7 @@ Route::get('/showAllTrips', ['as' => 'showAllTrips', 'uses' => 'TripController@s
 // Admin Routes
 Route::get('/admin/dashboard', 'AdminController@index');
 Route::get('/admin/allusers', 'AdminController@showallusers');
+Route::get('/admin/adduser', 'AdminController@adduser');
 Route::post('/admin/user/edit', 'AdminController@userEdit');
 Route::post('/admin/user/inactive', 'AdminController@userInactive');
 Route::post('/admin/user/active', 'AdminController@userActive');

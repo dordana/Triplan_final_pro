@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
     <title>404</title>
-  <title>The HTML5 Herald</title>
+  <title>Triplan - 404 - Page Not Found</title>
   <meta name="description" content="404">
 
 <style type="text/css">
