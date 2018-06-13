@@ -45,7 +45,7 @@ class AttractionController extends Controller
             'user' =>  $user,
             'userFavorites' => $fav_arr,
             'reviews' => $reviews,
-            'attractions' => Attraction::where('id', '!=', $id)->take(3)->get(),
+            'attractions' => Attraction::where('id', '!=', $id)->where('city_id',$attraction->city_id)->take(4)->get(),
             'questions' => Question::where('attraction_id',$id)->get(),
             'isRated' => $isRated
             ]);

@@ -29,6 +29,7 @@ class TripController extends Controller
             $num_of_days = intval($interval->format('%a')) +1;
             $num_of_attractions = $num_of_days*4;
             $attractions = Attraction::where("city_id",$request->city)->get();
+            if(count($attractions) > 0){
             $typesArr = array('restauant'=> 0,
                             'sights'=> 0,
                             'museum'=> 0,
@@ -59,52 +60,61 @@ class TripController extends Controller
                 'num_of_attractions' => $num_of_attractions,
                 'types' => $typesArr
                 ]);
+            }else{
+                return redirect('/')->with(['errorform' => '0 Attractions']);
+            }
         }else{
-            $date = new DateTime($request->start);
-            $dateEnd = new DateTime($request->end);
-            $interval = $date->diff($dateEnd);
-            $num_of_days = intval($interval->format('%a')) +1;
+            
+            $date = $request->start;
+            $dateEnd = $request->end;
+            $num_of_days = intval($dateEnd - $date) + 1;
+          
             $num_of_attractions = $num_of_days*4;
             $attractions = Attraction::where("city_id",$request->city)->get();
-            $pathName = $request->pathName;
-            $startLocationString = $request->startLocationString;
-            $startLocation = $request->startLocation;
-            $budget = $request->budget;
-            $items4 = array();$w4 = array();$v4 = array();
-            foreach($attractions as $attr){
-                array_push($items4,$attr->id);
-                array_push($w4,$attr->pricePerPerson*intval($request->passengers));
-                array_push($v4,100);
+            if(count($attractions) > 0){
+                $pathName = $request->pathName;
+                $startLocationString = $request->startLocationString;
+                $startLocation = $request->startLocation;
+                $budget = $request->budget;
+                $items4 = array();$w4 = array();$v4 = array();
+                foreach($attractions as $attr){
+                    array_push($items4,$attr->id);
+                    array_push($w4,$attr->pricePerPerson*intval($request->passengers));
+                    array_push($v4,100);
+                }
+                $numcalls = 0;
+                $m = array();
+                $pickedItems = array();
+                list($m4,$pickedItems) = $this->knapSolveFast2($w4, $v4, sizeof($v4) -1, intval($budget), $m);
+                $attractionList = array();
+                $totalBudget = 0;
+                foreach($pickedItems as $key) {
+                	array_push($attractionList,"\"".$items4[$key]."\"");
+                	$totalBudget += $w4[$key];
+                }
+                $attractionList = implode(',',$attractionList);
+                $attractionListstring = "[".$attractionList."]";
+                
+                $data = [
+                    'attractionList' => $attractionListstring ,
+                    'totalBudget' => $totalBudget,
+                    'pathName' => $pathName,
+                    'cityname' => $request->city,
+                    'startDate' => $request->start,
+                    'endDate' => $request->end,
+                    'startLocation' => $startLocation,
+                    'startLocationString' => $startLocationString,
+                    'countryName' => country::where('id',$request->country)->first()->name,
+                    'numPass' => $request->passengers
+                ];
+                
+                return view('general/loadingbudget',[
+                    'request' => $data
+                ]);
+            }else{
+                return redirect('/')->with(['errorform' => '0 Attractions']);
             }
-            $numcalls = 0;
-            $m = array();
-            $pickedItems = array();
-            list($m4,$pickedItems) = $this->knapSolveFast2($w4, $v4, sizeof($v4) -1, intval($budget), $m);
-            $attractionList = array();
-            $totalBudget = 0;
-            foreach($pickedItems as $key) {
-            	array_push($attractionList,"\"".$items4[$key]."\"");
-            	$totalBudget += $w4[$key];
-            }
-            $attractionList = implode(',',$attractionList);
-            $attractionListstring = "[".$attractionList."]";
             
-            $data = [
-                'attractionList' => $attractionListstring ,
-                'totalBudget' => $totalBudget,
-                'pathName' => $pathName,
-                'cityname' => $request->city,
-                'startDate' => $request->start,
-                'endDate' => $request->end,
-                'startLocation' => $startLocation,
-                'startLocationString' => $startLocationString,
-                'countryName' => country::where('id',$request->country)->first()->name,
-                'numPass' => $request->passengers
-            ];
-            
-            return view('general/loadingbudget',[
-                'request' => $data
-            ]);
         }
     }
     

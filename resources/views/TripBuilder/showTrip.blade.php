@@ -470,7 +470,6 @@ b:hover{
         	<a class='entypo-twitter opt' href='javascript:void(0)' target='_blank' id="saveText">
         		<span>Save</span>
         		<i id="saveIco" class="far fa-save"></i><br>
-        		<div class="titleBTN">Save my trip</div>
         	</a>
         </li>
 
@@ -478,21 +477,18 @@ b:hover{
         	<a class='entypo-gplus opt' href='javascript:void(0)' target='_blank' id="sendEmail">
         		<span>Email</span>
         		<i class="far fa-envelope"></i><br>
-        		<div class="titleBTN">Send to email</div>
         	</a>
         </li>
         <li>
         	<a class='entypo-tumblr opt' href='javascript:void(0)' target='_blank' id="pdfFile">
         		<span>PDF</span>
         		<i class="far fa-file-pdf"></i><br>
-            	<div class="titleBTN">Download PDF file</div>
         	</a>
         </li>
         <li>
         	<a class='entypo-facebook opt' href='javascript:void(0)' target='_blank' id="listview">
         		<span>List</span>
         		 <i class="fas fa-list-ul"></i><br>
-        	        <div class="titleBTN">Show list view</div>
         	</a>
         </li>
 
@@ -500,7 +496,6 @@ b:hover{
         	<a class='entypo-rss opt' href='javascript:void(0)' target='_blank' id="backToBuilder" >
         		<span>Builder</span>
         		 <i class="far fa-edit"></i><br>
-        	    <div class="titleBTN">Back to trip builder</div>
         	</a>
         </li>
 
@@ -508,7 +503,6 @@ b:hover{
         	<a class='entypo-facebook opt' href='/'>
         		<span>Homepage</span>
         		 <i class="fas fa-home"></i><br>
-        	    <div class="titleBTN">Back to homepage</div>
         	</a>
         </li>
     </ul>
@@ -604,8 +598,6 @@ var req = {!! json_encode($request) !!};
                         $("#saveText").html("<span>Saved!</span><i class='far fa-check-circle'><br></i>Saved!");
                         $(".entypo-twitter").css("background", "green");
                         setTimeout(function(){
-                            $("#saveText").html("<span>Edit</span><i class='fas fa-pen-square'></i><br>Edit my trip");
-                            $("#saveText").addClass("editTrip");
                             $("#saveText").off('click');
                             $("#saveText").removeAttr( "id" )
                             $(".entypo-twitter").css("background", "#f79b5d");

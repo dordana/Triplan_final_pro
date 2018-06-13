@@ -717,7 +717,7 @@ a:hover, a:focus {
 									Dates: {{ $path->startDate }} - {{ $path->endDate }} <br>
 									Country: {{ $path->countryName }} <br>
 									City: {{ App\City::find($path->city_id)->name }}<br>
-									Type: {{ $path->type }}
+									Type: {{ $path->type ? $path->type : 'Normal'}}
 					    </p>
 					  </figcaption>
 					  @if (Auth::check())

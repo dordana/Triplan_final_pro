@@ -52,7 +52,6 @@ select option:hover {
 	}
 </style>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 <p id="pageName" hidden >Home</p>
 
 <div class="fh5co-hero">
@@ -79,6 +78,14 @@ select option:hover {
 							 		<input id="startLocationInput" type="hidden" name="startLocationString" value="">
 							 		<input id="pathNameInput" type="hidden" name="pathName" value="">
 									<div class="row">
+										@if (Session::has('errorform'))
+											<script type="text/javascript">
+												swal("There are no attractions for this city", {
+													  buttons: false,
+													  timer: 5000,
+													});
+											</script>
+										@endif
 										<div class="col-xxs-12 col-xs-6 mt">
 											<div class="input-field">
 												<label for="from">Country:</label>
@@ -249,7 +256,7 @@ select option:hover {
 					<div class="col-md-4 animate-box">
 						<div class="feature-left">
 							<span class="icon">
-								<i class="icon-wallet"></i>
+								<i class="icon-wine"></i>
 							</span>
 							<div class="feature-copy">
 								<h3>Honeymoon</h3>
@@ -263,7 +270,7 @@ select option:hover {
 
 						<div class="feature-left">
 							<span class="icon">
-								<i class="icon-wine"></i>
+								<i class="icon-wallet"></i>
 							</span>
 							<div class="feature-copy">
 								<h3>Business Travel</h3>
@@ -477,6 +484,7 @@ select option:hover {
 	
 	
 	<script type="text/javascript">
+	autoComplete = new google.maps.places.Autocomplete(document.getElementById("startLocation")); 
 		$( "#type-select" ).change(function() {
 		  var type = $(this).val();
 		  if(type == "budget"){
@@ -576,8 +584,6 @@ function nonRegisteredUserAlert(){
 				    $("#cityname").val(selected1);
 				    var start = $('#date-start').datepicker( "getDate" );
 				    var end = $('#date-end').datepicker( "getDate" );
-				    alert(start)
-				    alert(end)
 				    
 				    if (start > end) {
 				    	swal("Check out must be greater then check in", {
@@ -590,7 +596,5 @@ function nonRegisteredUserAlert(){
 				}
 			}
 		}
-	$('#date-start, #date-end').datepicker({ dateFormat: "DD/MM/y",autoclose: true });
-		autoComplete = new google.maps.places.Autocomplete(document.getElementById("startLocation")); 
 	</script>
 @endsection

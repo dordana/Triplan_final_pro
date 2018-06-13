@@ -96,7 +96,7 @@
 			<figure class="snip1551">
 			  <img width="360px" height="270px" src="{{ url('/uploads/attractions') }}/{{$fav->mainpic}}" alt="sample69" />
 			  <figcaption>
-			    <h3>{{$fav->name}}</h3>
+			    <h3 style="width:100%;text-align:center">{{$fav->name}}, {{App\City::find($fav->city_id)->name}}</h3>
 			  </figcaption>
 			  <a href="{{route('showattraction', $fav->id)}}"></a>
 			</figure>

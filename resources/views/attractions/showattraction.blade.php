@@ -456,7 +456,10 @@ border: 1px solid #CCC;
 border-radius: 4px;
 }
 
-
+.single-recent-post:hover{
+	background-color:#FBFBFB;
+	cursor : pointer;
+}
 
 
 #a-footer {
@@ -884,11 +887,13 @@ border-radius: 4px;
                                 	@foreach($attractions as $attraction)
                                     <div class="single-recent-post d-flex flex-row" style="margin-bottom: 19px;">
                                         <div class="recent-thumb"> 
-                                            <img class="img-fluid" style="width: 180px !important; height:90px !important;margin-right: 15px;" src="{{ url('/uploads/attractions') }}/{{$attraction->mainpic}}" alt="">
+                                        <a href="{{route('showattraction', $attraction->id)}}">
+                                            <img class="img-fluid" style="height:90px;width:auto;max-width:150px;min-width:150px;margin-right: 15px;" src="{{ url('/uploads/attractions') }}/{{$attraction->mainpic}}" alt="">
+                                        </a>
                                         </div>
                                         <div class="recent-details">
                                             <a href="{{route('showattraction', $attraction->id)}}">
-                                                <h6 style="margin-left: none; margin-top:15px;">
+                                                <h6 style="margin-left: none; margin-top:25%;">
                                                     {{ $attraction->name }}
                                                 </h6>
                                             </a>

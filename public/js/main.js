@@ -33,7 +33,7 @@
 
 	//Date Picker
 
-   $('#date-start, #date-end').datepicker({ format: 'dd/mm/yyyy', autoclose: true, });
+   	$('#date-start, #date-end').datepicker({ dateFormat: "MM/DD/y",autoclose: true });
 
    [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {  
       new SelectFx(el);

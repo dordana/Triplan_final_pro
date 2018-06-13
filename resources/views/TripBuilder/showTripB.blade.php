@@ -516,35 +516,30 @@ input:focus{
         	<a class='entypo-twitter opt' href='javascript:void(0)' target='_blank' id="saveText">
         		<span>Save</span>
         		<i id="saveIco" class="far fa-save"></i><br>
-        		Save my trip
         	</a>
         </li>
         <li>
         	<a class='entypo-gplus opt' href='javascript:void(0)' target='_blank' id="sendEmail">
         		<span>Email</span>
         		<i class="far fa-envelope"></i><br>
-        		Send to email
         	</a>
         </li>
         <li>
         	<a class='entypo-tumblr opt' href='javascript:void(0)' target='_blank' id="pdfFile">
         		<span>PDF</span>
         		<i class="far fa-file-pdf"></i><br>
-        		Download PDF file
         	</a>
         </li>
         <li>
         	<a class='entypo-facebook opt' href='javascript:void(0)' target='_blank' id="listview">
         		<span>List</span>
         		 <i class="fas fa-list-ul"></i><br>
-        	    Show list view
         	</a>
         </li>
         <li>
         	<a class='entypo-facebook opt' href='/'>
         		<span>Homepage</span>
         		 <i class="fas fa-home"></i><br>
-        	    Back to homepage
         	</a>
         </li>
     </ul>
