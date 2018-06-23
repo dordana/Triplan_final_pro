@@ -711,7 +711,10 @@ a:hover, a:focus {
 					<figure class="snip1493">
 					  <div class="image"><img src="{{ url('/uploads/cities') }}/{{str_replace(' ', '', App\City::find($path->city_id)->name)}}/{{App\City::find($path->city_id)->mainpic}}" alt="ls-sample1" /></div>
 					  <figcaption>
-					    <div class="date"><span class="day">{{ Carbon\Carbon::parse($path->start_date)->format('d') }}</span><span class="month">{{ date("F", mktime(0, 0, 0, Carbon\Carbon::parse($path->start_date)->format('m'), 1)) }}</span></div>
+					    <div class="date">
+					    	<span class="day">{{ Carbon\Carbon::parse($path->startDate)->format('d') }}</span>
+					    	<span class="month">{{ date("F", mktime(0, 0, 0, Carbon\Carbon::parse($path->startDate)->format('m'), 1)) }}</span>
+				    	</div>
 					    <h3 style="text-align: center;display: block;">{{ $path->pathName }}</h3>
 					    <p style="text-align:center">
 									Dates: {{ $path->startDate }} - {{ $path->endDate }} <br>
