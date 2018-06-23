@@ -5,9 +5,7 @@
 	document.title = 'Triplan - Shared Trips';
 </script>
 <style type="text/css">
-/* ======================== */
-/*   Syed Sahar Ali Raza   	*/
-/* ========================	*/
+
 @import url(https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700italic,700,900italic,900);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);
@@ -417,7 +415,7 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
 				<h3>Users Shared Trips</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+				<p>Explore other users trips</p>
 			</div>
 		</div>
 	</div>

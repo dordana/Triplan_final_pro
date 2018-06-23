@@ -172,8 +172,7 @@
 	  </ul>
 	</div>
 <br><br><br>
-<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" 
-src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name={{$country->name}}&color=#f49a66&font=Helvetica&units=si">
+<iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat={{$country->lat}}&lon={{$country->lng}}&name={{$country->name}}&color=#f49a66&font=Helvetica&units=si">
 </iframe>  
 <div class="ui-235">
 			<div class="container-fluid">
